@@ -65,5 +65,7 @@ class HibernateConfig {
                 getSessionFactory().getObject());
         return transactionManager;
     }
-
+    
+    // UpdateData
+   
 }

@@ -11,7 +11,9 @@ import com.restaurant.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -27,4 +29,16 @@ public class HomeController {
         model.addAttribute("employeies", this.employeeService.getEmployeies());
         return "index";
     }
+    
+//    @RequestMapping(value = "/addemp", method = RequestMethod.POST)
+//    public String addemp() {
+//        System.out.println("User Page Requested");
+//        //
+//        //       
+//        //  Some way to figure how much money there is in the user's account. For our purposes, say $5.
+//        //
+//        //
+////        model.addAttribute("account",account);
+//        return "addemp";
+//    }
 }
