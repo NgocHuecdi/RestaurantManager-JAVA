@@ -25,8 +25,9 @@ public class HomeController {
     private EmployeeService employeeService;
     @RequestMapping("/") //mapping vao trang chu
     public String index(Model model){
-        model.addAttribute("message", "WELCOME TO RESTAURANT MANAGER");
-        model.addAttribute("employeies", this.employeeService.getEmployeies());
+        
+        model.addAttribute("employeies", this.employeeService.getEmployeies(""));
+        
         return "index";
     }
     

@@ -53,7 +53,7 @@
 			</tbody>
         </table> 
          <br/>  
-        <a href= "RestaurantJava/WEB-INF/addemp.jsp">Add New Employee</a>  
+        <a href="<c:url value="addemp/" />">Add New Employee</a>  
 </body>
 </html>
 

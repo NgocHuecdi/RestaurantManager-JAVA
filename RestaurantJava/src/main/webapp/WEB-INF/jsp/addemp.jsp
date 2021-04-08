@@ -4,35 +4,29 @@
     Author     : HP
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add Employee Page</title>
-        
-    </head>
-    <body>
-          <h1>Add New Employee</h1>  
-       <form:form method="post" action="save">    
-        <table >    
-         <tr>    
-          <td>Name : </td>   
-          <td><form:input path="name"  /></td>  
-         </tr>    
-         <tr>    
-          <td>Salary :</td>    
-          <td><form:input path="salary" /></td>  
-         </tr>   
-         <tr>    
-          <td>Designation :</td>    
-          <td><form:input path="designation" /></td>  
-         </tr>   
-         <tr>    
-          <td> </td>    
-          <td><input type="submit" value="Save" /></td>    
-         </tr>    
-        </table>    
-       </form:form>    
-    </body>
-</html>
+<%@ taglib prefix="form"
+           uri="http://www.springframework.org/tags/form" %>
+
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<h1 class="text-center text-success">ADD EMPOYEE</h1>  
+
+<form:form method="post" modelAttribute="addemp">
+    <div class="form-group">  
+        <label><spring:message code="addemp.empId" /></label>
+        <form:input cssClass="form-control" path="empId" />
+    </div>
+    <div class="form-group">
+        <label><spring:message code="addemp.name" /></label>
+        <form:input cssClass="form-control" path="name" />
+    </div>
+    <div class="form-group">
+        <label><spring:message code="addemp.birth" /></label>
+        <form:input cssClass="form-control" path="birth" />
+    </div>
+    <div>
+        <input type="submit" class="btn btn-danger" value="<spring:message code="addemp.submit" />" />
+    </div>
+</form:form>

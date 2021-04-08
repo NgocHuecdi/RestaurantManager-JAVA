@@ -13,5 +13,5 @@ import java.util.List;
  * @author HP
  */
 public interface EmployeeRepository {
-    List<Employee> getEmployeies();
+    List<Employee> getEmployeies(String kw);
 }

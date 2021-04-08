@@ -10,6 +10,10 @@ import com.restaurant.repository.EmployeeRepository;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -26,9 +30,20 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
     private LocalSessionFactoryBean sessionFactory;
     @Override
      @Transactional
-    public List<Employee> getEmployeies(){
+    public List<Employee> getEmployeies(String kw){
         Session s = this.sessionFactory.getObject().getCurrentSession();
-        Query q = s.createQuery("From Employee");
+        CriteriaBuilder builder = s.getCriteriaBuilder();
+        CriteriaQuery<Employee> query = builder.createQuery(Employee.class);
+        Root root = query.from(Employee.class);
+        query.select(root);
+        
+        if (kw != null && !kw.isEmpty()){
+            Predicate p = builder.like(root.get("name").as(String.class), 
+                    String.format("%%%s%%", kw));
+            query = query.where(p);
+        }
+        
+        Query q = s.createQuery(query);
         return q.getResultList();
        
     }

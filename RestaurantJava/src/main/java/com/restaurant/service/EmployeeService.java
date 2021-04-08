@@ -13,5 +13,5 @@ import java.util.List;
  * @author HP
  */
 public interface EmployeeService {
-    List<Employee> getEmployeies();  
+    List<Employee> getEmployeies(String kw);  
 }

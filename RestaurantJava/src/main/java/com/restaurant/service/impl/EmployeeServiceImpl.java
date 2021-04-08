@@ -22,8 +22,8 @@ public class EmployeeServiceImpl implements EmployeeService{
     private EmployeeRepository employeeRepository;
 
     @Override
-    public List<Employee> getEmployeies() {
-        return this.employeeRepository.getEmployeies();
+    public List<Employee> getEmployeies(String kw) {
+        return this.employeeRepository.getEmployeies(kw);
     }
     
 }
