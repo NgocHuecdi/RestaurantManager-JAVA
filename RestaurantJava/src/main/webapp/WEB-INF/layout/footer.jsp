@@ -6,7 +6,21 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<div style = "background-color: #fff5e8">
-  <h1>Restaurant Wedding manager</h1>
-  <p>SpringMVC</p>
+<div style = "background-color: #4e402d">
+    <div class="nameStudent" style="color: wheat">
+        <p>Nguyễn Ngọc Huế</p>
+        <p>Nguyễn Ngọc Diễm</p>
+    </div>
+   <div class="copyright-container py-1">
+       <div class="container">
+           <div class="copyright" style="color: wheat"> COPYRIGHT © | 2021 RESTAURANT WEDDING MANAGER</div>
+               
+       </div>
+           
+   </div>
 </div>
+
+
+
+
+               

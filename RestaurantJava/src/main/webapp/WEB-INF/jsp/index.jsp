@@ -11,9 +11,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home Page</title>
-        <link href="<c:url value="/css/employeeCSS.css"/>" rel="stylesheet" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        
     </head>
     <body>
         <h1>Hello World!</h1>
@@ -39,19 +39,20 @@
 			</thead>
 			<tbody>
                             <c:forEach items="${employeies}" var = "emp">
-                                <tr>
+                                <tr id="employee${emp.empId}">
                                      <td> ${emp.empId}</td>
                                      <td>${emp.name}</td>
                                      <td>${emp.birth}</td>
 					
-					<td> <a th:href="" class="btn btn-primary">Update</a>
-					    <a th:href="" class="btn btn-danger">Delete</a>
+					<td> <a href="javascript:;" class="btn btn-primary">Update</a>
+                                            <a href="javascript:;" class="btn btn-danger" onclick="deleteEmployee(${emp.empId})">Delete</a>
 					</td>
                                  
 				</tr>
                             </c:forEach>
 			</tbody>
-        </table> 
+        </table>
+        <script src="<c:url value="/js/main.js" />"></script>
          <br/>  
         <a href="<c:url value="addemp/" />">Add New Employee</a>  
 </body>

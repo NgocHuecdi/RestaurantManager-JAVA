@@ -9,8 +9,11 @@ import com.restaurant.pojo.Employee;
 import com.restaurant.repository.EmployeeRepository;
 import com.restaurant.service.EmployeeService;
 import java.util.List;
+
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 /**
  *
@@ -24,6 +27,17 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public List<Employee> getEmployeies(String kw) {
         return this.employeeRepository.getEmployeies(kw);
+    }
+
+    @Override
+    public boolean addOrUpdateEmployee(Employee emp) {
+//        Session session = this.sessionFacto
+       return this.employeeRepository.addOrUpdateEmployee(emp);
+    }
+
+    @Override
+    public boolean deleteEmployee(int EmployeeId) {
+        return this.employeeRepository.deleteEmployee(EmployeeId);
     }
     
 }
