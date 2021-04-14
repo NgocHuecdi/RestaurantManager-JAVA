@@ -14,23 +14,28 @@
 <h1 class="text-center text-success">ADD EMPOYEE</h1>  
 
 <c:url value="/addemp/add" var="action" />
-<form:form method="post" modelAttribute="addemp" 
-           action="${action}">
+<form:form method="post"  action="${action}" modelAttribute="addemp">
       <form:errors path="*" element="div" 
                  cssClass="alert alert-danger" />
-    <div class="form-group">  
-        <label><spring:message code="addemp.empId" /></label>
-        <form:input cssClass="form-control" path="empId" />
-    </div>
+  
     <div class="form-group">
         <label><spring:message code="addemp.name" /></label>
         <form:input cssClass="form-control" path="name" />
+    </div>
+    <div class="form-group">
+        <label><spring:message code="addemp.mail" /></label>
+        <form:input cssClass="form-control" path="mail" />
+    </div>
+    <div class="form-group">
+        <label><spring:message code="addemp.address" /></label>
+        <form:input cssClass="form-control" path="address" />
     </div>
     <div class="form-group">
         <label><spring:message code="addemp.birth" /></label>
         <form:input cssClass="form-control" path="birth" />
     </div>
     <div>
+        <form:hidden path="empId" />
         <input type="submit" class="btn btn-danger" value="<spring:message code="addemp.submit" />" />
     </div>
 </form:form>

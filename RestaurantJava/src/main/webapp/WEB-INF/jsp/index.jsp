@@ -28,6 +28,12 @@
                                                 Name
 					</th>
                                         <th>
+                                                Mail
+					</th>
+                                        <th>
+                                                Address
+					</th>
+                                        <th>
                                                 Birth
 					</th>
                                         <th>
@@ -42,6 +48,8 @@
                                 <tr id="employee${emp.empId}">
                                      <td> ${emp.empId}</td>
                                      <td>${emp.name}</td>
+                                     <td>${emp.mail}</td>
+                                     <td>${emp.address}</td>
                                      <td>${emp.birth}</td>
 					
 					<td> <a href="javascript:;" class="btn btn-primary">Update</a>

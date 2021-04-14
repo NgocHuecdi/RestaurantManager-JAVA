@@ -11,9 +11,15 @@ import com.restaurant.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
+import java.util.Map;
+import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -22,7 +28,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
     @Autowired
-    private EmployeeService employeeService;
+    private EmployeeService employeeService; 
+    
+//     @ModelAttribute
+//    public void addAttributes(Model model, HttpSession session) {
+//        model.addAttribute("employees", this.employeeService.getEmployeies(""));
+//    }
     @RequestMapping("/") //mapping vao trang chu
     public String index(Model model){
         
@@ -31,15 +42,14 @@ public class HomeController {
         return "index";
     }
     
-//    @RequestMapping(value = "/addemp", method = RequestMethod.POST)
-//    public String addemp() {
-//        System.out.println("User Page Requested");
-//        //
-//        //       
-//        //  Some way to figure how much money there is in the user's account. For our purposes, say $5.
-//        //
-//        //
-////        model.addAttribute("account",account);
-//        return "addemp";
+//     public String index(Model model, @RequestParam(name = "empId", required = false) String empId) {
+//        
+//        if (empId == null)
+//            model.addAttribute("employees", this.employeeService.getEmployeies(""));
+//        else
+//            model.addAttribute("employees", this.employeeService.getEmpById(Integer.parseInt(empId)).getEmployeies("");
+////        
+//        return "index";
 //    }
+    
 }

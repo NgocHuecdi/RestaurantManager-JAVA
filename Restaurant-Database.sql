@@ -23,23 +23,23 @@ DROP TABLE IF EXISTS `bills`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bills` (
-  `billId` int NOT NULL,
+  `billId` int NOT NULL AUTO_INCREMENT,
   `customerId` int NOT NULL,
   `empId` int NOT NULL,
-  `datePay` date DEFAULT NULL,
-  `total` decimal(10,0) DEFAULT NULL,
+  `datePay` date NOT NULL,
+  `total` decimal(10,0) NOT NULL,
   `serviceId` int NOT NULL,
   `eventId` int NOT NULL,
   PRIMARY KEY (`billId`),
-  KEY `empId_idx` (`empId`),
-  KEY `serviceId_idx` (`serviceId`),
-  KEY `eventId_idx` (`eventId`),
-  KEY `customerId_idx` (`customerId`),
-  CONSTRAINT `customerId` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `empId_bill` FOREIGN KEY (`empId`) REFERENCES `employees` (`empId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `eventId_bill` FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `serviceId_bill` FOREIGN KEY (`serviceId`) REFERENCES `services` (`serviceId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `customerId_customers_idx` (`customerId`),
+  KEY `empId_employees_idx` (`empId`),
+  KEY `serviceId_service_idx` (`serviceId`),
+  KEY `eventId_event_idx` (`eventId`),
+  CONSTRAINT `customerId_customers` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`),
+  CONSTRAINT `empId_employees` FOREIGN KEY (`empId`) REFERENCES `employees` (`empId`),
+  CONSTRAINT `eventId_event` FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
+  CONSTRAINT `serviceId_service` FOREIGN KEY (`serviceId`) REFERENCES `services` (`serviceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -84,11 +84,13 @@ DROP TABLE IF EXISTS `employees`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `employees` (
-  `empId` int NOT NULL,
-  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `empId` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `mail` varchar(45) DEFAULT NULL,
+  `address` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `birth` date DEFAULT NULL,
   PRIMARY KEY (`empId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +99,7 @@ CREATE TABLE `employees` (
 
 LOCK TABLES `employees` WRITE;
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
-INSERT INTO `employees` VALUES (1,'Ngoc Hue','1999-09-27'),(2,'Ngoc Diem','1999-01-01'),(3,'Anh Hao','1999-02-02'),(4,'Tien Phat','1999-10-12');
+INSERT INTO `employees` VALUES (1,'Ngoc Hue','ngochue@gmail.com','ghjkl','1999-09-27'),(2,'Ngoc Diem','fghjk','jkl','1999-01-01'),(3,'CK GO',NULL,NULL,'2020-07-04'),(5,'Helen','helen@gmail.com','USA','1999-01-02');
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,20 +111,19 @@ DROP TABLE IF EXISTS `event_detail`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `event_detail` (
-  `eventId` int NOT NULL,
+  `eventId` int NOT NULL AUTO_INCREMENT,
   `customerId` int NOT NULL,
   `empId` int NOT NULL,
   `dateBook` date DEFAULT NULL,
   `dateEvent` date DEFAULT NULL,
   `numberGuest` double DEFAULT NULL,
-  `deposit` decimal(10,0) DEFAULT NULL,
-  KEY `customerId_idx` (`eventId`,`customerId`),
-  KEY `customarId_idx` (`customerId`),
+  `deposit` double DEFAULT NULL,
+  PRIMARY KEY (`eventId`),
+  KEY `customerId_idx` (`customerId`),
   KEY `empId_idx` (`empId`),
-  CONSTRAINT `customerId_event` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `empId` FOREIGN KEY (`empId`) REFERENCES `employees` (`empId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `eventId` FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  CONSTRAINT `customerId` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`),
+  CONSTRAINT `empId` FOREIGN KEY (`empId`) REFERENCES `employees` (`empId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -259,10 +260,6 @@ LOCK TABLES `services` WRITE;
 /*!40000 ALTER TABLE `services` DISABLE KEYS */;
 /*!40000 ALTER TABLE `services` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'restaurantdb'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -273,4 +270,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-07 11:09:02
+-- Dump completed on 2021-04-14 20:18:14

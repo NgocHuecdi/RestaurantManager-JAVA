@@ -14,6 +14,7 @@ import java.util.List;
  */
 public interface EmployeeRepository {
     List<Employee> getEmployeies(String kw);
+    Employee getEmpById(int empId);
     boolean addOrUpdateEmployee(Employee emp);
     boolean deleteEmployee(int EmployeeId);
 }

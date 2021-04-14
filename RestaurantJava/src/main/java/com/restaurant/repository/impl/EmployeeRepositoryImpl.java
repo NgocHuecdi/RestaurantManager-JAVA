@@ -7,7 +7,6 @@ package com.restaurant.repository.impl;
 
 import com.restaurant.pojo.Employee;
 import com.restaurant.repository.EmployeeRepository;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -20,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 
 /**
  *
@@ -34,7 +34,9 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     @Override
     @Transactional
     public List<Employee> getEmployeies(String kw) {
+        
         Session s = this.sessionFactory.getObject().getCurrentSession();
+        
         CriteriaBuilder builder = s.getCriteriaBuilder();
         CriteriaQuery<Employee> query = builder.createQuery(Employee.class);
         Root root = query.from(Employee.class);
@@ -60,9 +62,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
                 session.update(emp);
             } else {
                 session.save(emp);
-                
-                return true;
             }
+            return true;
         } catch (HibernateException ex){
             ex.printStackTrace();
         }
@@ -83,4 +84,13 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         
         return false;
     }
+
+    @Override
+    @Transactional
+    public Employee getEmpById(int empId) {
+         Session s = this.sessionFactory.getObject().getCurrentSession();
+        return s.get(Employee.class, empId);
+   }
+
+   
 }

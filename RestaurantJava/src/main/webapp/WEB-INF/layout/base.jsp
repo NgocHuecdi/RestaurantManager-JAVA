@@ -20,7 +20,8 @@
             <!-- header -->
             <tiles:insertAttribute name="header" />
 
-            <!-- content -->
+           <!-- content -->
+           
             <tiles:insertAttribute name="content" />
 
             <!-- footer -->

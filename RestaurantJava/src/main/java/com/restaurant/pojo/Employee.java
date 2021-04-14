@@ -6,10 +6,13 @@
 package com.restaurant.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -18,20 +21,25 @@ import javax.validation.constraints.NotNull;
  * @author HP
  */
 @Entity
-@Table (name = "employees")
-public class Employee implements Serializable{
-
- 
-
+@Table(name = "employees")
+public class Employee implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @NotNull(message = "{addemp.empId.notNullMsg}")
     private int empId;
+    
 //    @NotNull(message = "{addemp.name.notNullMsg}")
     private String name;
+    private String mail;
+    private String address;
     private String birth;
-    
-      /**
+
+    @Override
+    public String toString() {
+        return String.valueOf(empId);
+    }
+
+    /**
      * @return the empId
      */
     public int getEmpId() {
@@ -43,19 +51,6 @@ public class Employee implements Serializable{
      */
     public void setEmpId(int empId) {
         this.empId = empId;
-    }
-    /**
-     * @return the birth
-     */
-    public String getBirth() {
-        return birth;
-    }
-
-    /**
-     * @param birth the birth to set
-     */
-    public void setBirth(String birth) {
-        this.birth = birth;
     }
 
     /**
@@ -71,6 +66,46 @@ public class Employee implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
-    
+      /**
+     * @return the mail
+     */
+    public String getMail() {
+        return mail;
+    }
+
+    /**
+     * @param mail the mail to set
+     */
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    /**
+     * @return the address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    /**
+     * @return the birth
+     */
+    public String getBirth() {
+        return birth;
+    }
+
+    /**
+     * @param birth the birth to set
+     */
+    public void setBirth(String birth) {
+        this.birth = birth;
+    }
 
 }

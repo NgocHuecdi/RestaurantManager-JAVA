@@ -7,7 +7,9 @@ package com.restaurant.controllers;
 
 import com.restaurant.pojo.Employee;
 import com.restaurant.service.EmployeeService;
+
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -26,8 +29,12 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
    @RequestMapping("/")
-    public String addView(Model model) {
-        model.addAttribute("addemp", new Employee());
+    public String addView(Model model,
+                    @RequestParam(name = "empId", required=false, defaultValue = "0") int empId) {
+        if (empId > 0) 
+            model.addAttribute("addemp", this.employeeService.getEmpById(empId));
+        else    
+            model.addAttribute("addemp", new Employee());
         
         return "addemp";
     }
