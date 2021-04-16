@@ -24,22 +24,32 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author HP
  */
 @Controller
-@RequestMapping("/addemp")
+//@RequestMapping("/addemp")
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
-   @RequestMapping("/")
+   @RequestMapping("/addemp")
     public String addView(Model model,
                     @RequestParam(name = "empId", required=false, defaultValue = "0") int empId) {
         if (empId > 0) 
             model.addAttribute("addemp", this.employeeService.getEmpById(empId));
-        else    
+           
+        
+        else   
             model.addAttribute("addemp", new Employee());
         
         return "addemp";
     }
+    @RequestMapping("/updateEmp")
+    public String updateEmploy(Model model,  
+            @RequestParam(name = "empId", required=false, defaultValue = "0") int empId){
+         if (empId > 0) 
+            model.addAttribute("updateEmp", this.employeeService.getEmpById(empId));
+        
+        return "updateEmp";
+    }
     
-    @PostMapping("/add")
+    @PostMapping("/addemp/add")
    public String addEmploy(Model model,
        @ModelAttribute(value = "addemp") @Valid Employee emp,
         BindingResult result) {

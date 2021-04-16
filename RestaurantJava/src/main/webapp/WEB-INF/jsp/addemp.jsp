@@ -34,8 +34,10 @@
         <label><spring:message code="addemp.birth" /></label>
         <form:input cssClass="form-control" path="birth" />
     </div>
+    
+    
     <div>
         <form:hidden path="empId" />
-        <input type="submit" class="btn btn-danger" value="<spring:message code="addemp.submit" />" />
+        <input type="submit" class="btn btn-success" value="<spring:message code="addemp.submit" />" />
     </div>
 </form:form>

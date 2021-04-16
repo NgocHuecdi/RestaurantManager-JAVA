@@ -16,6 +16,9 @@
     <definition name="addemp" extends="baseLayout">
         <put-attribute name="title" value="Add Employee" />
         <put-attribute name="content" value="/WEB-INF/jsp/addemp.jsp" />
-    </definition>
-   
+    </definition>  
+    <definition name="updateEmp" extends="baseLayout">
+        <put-attribute name="title" value="Add Employee" />
+        <put-attribute name="content" value="/WEB-INF/jsp/updateEmp.jsp" />
+    </definition> 
 </tiles-definitions>

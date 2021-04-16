@@ -25,10 +25,10 @@ import javax.validation.constraints.NotNull;
 public class Employee implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @NotNull(message = "{addemp.empId.notNullMsg}")
+
     private int empId;
     
-//    @NotNull(message = "{addemp.name.notNullMsg}")
+    @NotNull(message = "{addemp.name.notNullMsg}")
     private String name;
     private String mail;
     private String address;

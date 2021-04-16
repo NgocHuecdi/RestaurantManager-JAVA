@@ -52,7 +52,7 @@
                                      <td>${emp.address}</td>
                                      <td>${emp.birth}</td>
 					
-					<td> <a href="javascript:;" class="btn btn-primary">Update</a>
+                                     <td> <a href="<c:url value="addemp" />/?empId=${emp.empId}"  class="btn btn-primary">Update</a>
                                             <a href="javascript:;" class="btn btn-danger" onclick="deleteEmployee(${emp.empId})">Delete</a>
 					</td>
                                  
@@ -63,6 +63,7 @@
         <script src="<c:url value="/js/main.js" />"></script>
          <br/>  
         <a href="<c:url value="addemp/" />">Add New Employee</a>  
+        
 </body>
 </html>
 
