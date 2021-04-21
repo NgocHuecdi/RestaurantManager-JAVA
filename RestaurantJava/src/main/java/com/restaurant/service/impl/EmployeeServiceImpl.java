@@ -42,5 +42,12 @@ public class EmployeeServiceImpl implements EmployeeService{
     public Employee getEmpById(int empId) {
         return this.employeeRepository.getEmpById(empId);
     }
+
+    @Override
+    public List<Employee> getSearch(String name) {
+        return this.employeeRepository.getSearch(name);
+    }
+
+   
     
 }

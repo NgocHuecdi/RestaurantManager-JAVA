@@ -32,7 +32,7 @@
     </div>
     <div class="form-group">
         <label><spring:message code="addemp.birth" /></label>
-        <form:input cssClass="form-control" path="birth" />
+        <form:input cssClass="form-control" path="birth" placeholder="yyyy/mm/dd"/>
     </div>
     
     

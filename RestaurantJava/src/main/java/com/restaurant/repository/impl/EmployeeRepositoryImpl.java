@@ -7,6 +7,7 @@ package com.restaurant.repository.impl;
 
 import com.restaurant.pojo.Employee;
 import com.restaurant.repository.EmployeeRepository;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -91,6 +92,26 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
          Session s = this.sessionFactory.getObject().getCurrentSession();
         return s.get(Employee.class, empId);
    }
+
+    @Override
+    @Transactional
+    public List<Employee> getSearch(String name) {
+            Session session = this.sessionFactory.getObject().getCurrentSession();
+        
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Employee> query = builder.createQuery(Employee.class);
+        Root rootEmp = query.from(Employee.class);
+        query.select(rootEmp);
+        if(name != null  && !name.isEmpty()){
+           Predicate p = builder.like(rootEmp.get("name").as(String.class),
+                    String.format("%%%s%%", name));
+            query = query.where(p);
+        }
+        
+        Query q = session.createQuery(query);
+        return q.getResultList();
+    }
+    
 
    
 }

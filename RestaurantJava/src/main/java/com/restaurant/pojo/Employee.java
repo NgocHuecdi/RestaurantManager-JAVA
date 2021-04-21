@@ -7,6 +7,7 @@ package com.restaurant.pojo;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;
@@ -29,6 +30,7 @@ public class Employee implements Serializable {
     private int empId;
     
     @NotNull(message = "{addemp.name.notNullMsg}")
+    @Column (name = "name")
     private String name;
     private String mail;
     private String address;

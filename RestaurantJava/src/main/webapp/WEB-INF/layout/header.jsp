@@ -10,10 +10,10 @@
 <nav class="navbar navbar-expand-sm" style="background-color: #4e402d">
     <ul class="navbar-nav">
         <li class="nav-item active">
-            <a class="nav-link" href="#" style="color: wheat">Home</a>
+            <a class="nav-link" href="<c:url value="/" />" style="color: wheat">Home</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="#" style="color: wheat">Employee</a>
+            <a class="nav-link" href="<c:url value="/" />" style="color: wheat">Employee</a>
         </li>
          <li class="nav-item active">
             <a class="nav-link" href="#" style="color: wheat">Feed Back</a>
