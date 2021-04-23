@@ -19,6 +19,9 @@
     <body>
 
         <h1 style = "text-align: center">List of Employees</h1>
+
+        <h1 style = "text-align: center">Danh Sách Nhân viên</h1>
+
         <form>
     <div class="row">
         <div class="col-md-10 form-group">
@@ -34,8 +37,14 @@
         </div>
     </div>
 </form>
+
               <br/>  
         <a href="<c:url value="addemp/" />">Thêm nhân viên mới</a> 
+
+          <br/>  
+        <a href="<c:url value="addemp/" />">Thêm nhân viên mới</a> 
+       
+
         <table border="1" class = "table table-striped table-responsive-md">
             <thead>
                 <tr>
@@ -49,13 +58,16 @@
                         EMail
                     </th>
                     <th>
+
                         Địa Chỉ
+
+
                     </th>
                     <th>
                         Ngày Sinh
                     </th>
                     <th>
-                       
+
                     </th>
 
 
@@ -79,8 +91,6 @@
             </tbody>
         </table>
         <script src="<c:url value="/js/main.js" />"></script>
-  
-     
 
     </body>
 </html>

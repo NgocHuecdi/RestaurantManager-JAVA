@@ -36,6 +36,7 @@ public class HomeController {
 //    }
     @RequestMapping("/") //mapping vao trang chu
     public String index(Model model,@RequestParam(name="name", required = false) String name){
+
         if(name != null){
             model.addAttribute("employeies", this.employeeService.getEmployeies(name));
         }
@@ -43,17 +44,21 @@ public class HomeController {
             model.addAttribute("employeies", this.employeeService.getEmployeies(""));
         }
         
+
+       
+        if(name != null){
+            model.addAttribute("employeies", this.employeeService.getEmployeies(name));
+        }
+        else
+             model.addAttribute("employeies", this.employeeService.getEmployeies(""));
+
         return "index";
     }
     
-//     public String index(Model model, @RequestParam(name = "empId", required = false) String empId) {
-//        
-//        if (empId == null)
-//            model.addAttribute("employees", this.employeeService.getEmployeies(""));
-//        else
-//            model.addAttribute("employees", this.employeeService.getEmpById(Integer.parseInt(empId)).getEmployeies("");
-////        
-//        return "index";
+//    @RequestMapping("/")
+//    public String searchEmp(Model model,@RequestParam(name="name", required = false) String name){
+//         model.addAttribute("employeies", this.employeeService.getEmployeies(name));
+//         return "index";
 //    }
     
 }

@@ -68,4 +68,5 @@ public class Services implements Serializable{
     public void setUnit_price(BigDecimal unit_price) {
         this.unit_price = unit_price;
     }
+
 }

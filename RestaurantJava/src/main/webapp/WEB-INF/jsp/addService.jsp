@@ -1,6 +1,7 @@
 <%-- 
     Document   : addService
     Created on : Apr 23, 2021, 2:43:56 PM
+    Created on : Apr 23, 2021, 12:53:28 PM
     Author     : HP
 --%>
 
@@ -13,12 +14,16 @@
 
 <h1 class="text-center text-success">Thêm Dịch Vụ Mới</h1>  
 
+<h1 class="text-center text-success">Add Service</h1>  
+
+
 <c:url value="/addService/add" var="action" />
 <form:form method="post"  action="${action}" modelAttribute="addService">
       <form:errors path="*" element="div" 
                  cssClass="alert alert-danger" />
   
     <div class="form-group">
+
         <label>Tên Dịch Vụ</label>
         <form:input cssClass="form-control" path="name" />
     </div>
@@ -31,5 +36,22 @@
     <div>
         <form:hidden path="serviceId" />
         <input type="submit" class="btn btn-success" value="Thêm Dịch Vụ" />
+
+        <label>Tên dịch vụ</label>
+        <form:input cssClass="form-control" path="name" />
+    </div>
+    <div class="form-group">
+        <label for="price">Giá dịch vụ</label>
+        <form:input 
+                    cssClass="form-control" 
+                    path="unit_price" />
+       
+    </div>
+    
+    
+    <div>
+        <form:hidden path="serviceId" />
+        <input type="submit" class="btn btn-success" value="Thêm" />
+
     </div>
 </form:form>

@@ -5,7 +5,9 @@
  */
 package com.restaurant.repository.impl;
 
+
 import com.restaurant.pojo.Employee;
+
 import com.restaurant.pojo.Services;
 import com.restaurant.repository.ServiceRepository;
 import java.util.List;
@@ -26,11 +28,11 @@ import org.springframework.transaction.annotation.Transactional;
  * @author HP
  */
 @Repository
+
 public class ServiceRepositoryImpl implements ServiceRepository {
 
     @Autowired
     private LocalSessionFactoryBean sessionFactory;
-
     @Override
     @Transactional
     public List<Services> getServices(String kw) {
@@ -42,8 +44,8 @@ public class ServiceRepositoryImpl implements ServiceRepository {
         query.select(root);
 
         if (kw != null && !kw.isEmpty()) {
-            Predicate p = builder.like(root.get("name").as(String.class),
-                    String.format("%%%s%%", kw));
+
+            Predicate p = builder.like(root.get("name").as(String.class), String.format("%%%s%%", kw));
             query = query.where(p);
         }
 
@@ -72,5 +74,4 @@ public class ServiceRepositoryImpl implements ServiceRepository {
         }
         return false;
     }
-
 }

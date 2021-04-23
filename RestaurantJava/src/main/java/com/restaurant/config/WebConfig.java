@@ -27,6 +27,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @ComponentScan(basePackages
         = {"com.restaurant.controllers",
+            "com.restaurant.formatter",
             "com.restaurant.repository",
             "com.restaurant.service"}
 )

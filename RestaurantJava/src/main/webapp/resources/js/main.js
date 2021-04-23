@@ -15,27 +15,27 @@ function deleteEmployee(employeeId) {
         })
     }
 }
-function loadEmp(){
- fetch("/RestaurantJava/api/searchEmp").then(function(res) {
-        return res.json();
-    }).then(function(data) {
-        console.log(data);
-        let d = document.getElementById("empId");
-        let msg = "";
-        data.forEach(function(v) {
-            let h = `
-            <tr>
-                <td>${v["empId"]}</td>
-                <td>${v["name"]}</td>
-                <td>${v["mail"]}</td>
-                <td>${v["address"]}</td>
-                <td>${v["birth"]}</td>
-            </tr>
-            `
-            msg += h;
-        });
-        
-        d.innerHTML = msg;
-    });
-}
+//function loadEmp(){
+// fetch("/RestaurantJava/api/searchEmp").then(function(res) {
+//        return res.json();
+//    }).then(function(data) {
+//        console.log(data);
+//        let d = document.getElementById("empId");
+//        let msg = "";
+//        data.forEach(function(v) {
+//            let h = `
+//            <tr>
+//                <td>${v["empId"]}</td>
+//                <td>${v["name"]}</td>
+//                <td>${v["mail"]}</td>
+//                <td>${v["address"]}</td>
+//                <td>${v["birth"]}</td>
+//            </tr>
+//            `
+//            msg += h;
+//        });
+//        
+//        d.innerHTML = msg;
+//    });
+//}
 
