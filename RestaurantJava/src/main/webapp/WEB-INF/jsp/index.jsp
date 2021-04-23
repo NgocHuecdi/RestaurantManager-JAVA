@@ -19,26 +19,43 @@
     <body>
 
         <h1 style = "text-align: center">List of Employees</h1>
+        <form>
+    <div class="row">
+        <div class="col-md-10 form-group">
+            <input type="text" 
+                   name="name"
+                   class="form-control" 
+                   placeholder="Nhập từ khoá để tìm..." />
+        </div>
+        <div class="col-md-2">
+            <input type="submit" 
+                   class="btn btn-info"
+                   value="Tìm kiếm" />
+        </div>
+    </div>
+</form>
+              <br/>  
+        <a href="<c:url value="addemp/" />">Thêm nhân viên mới</a> 
         <table border="1" class = "table table-striped table-responsive-md">
             <thead>
                 <tr>
                     <th>
-                        ID
+                        Mã Nhân Viên
                     </th>
                     <th>
-                        Name
+                        Tên
                     </th>
                     <th>
-                        Mail
+                        EMail
                     </th>
                     <th>
-                        Address
+                        Địa Chỉ
                     </th>
                     <th>
-                        Birth
+                        Ngày Sinh
                     </th>
                     <th>
-                        Actions
+                       
                     </th>
 
 
@@ -53,8 +70,8 @@
                         <td>${emp.address}</td>
                         <td>${emp.birth}</td>
 
-                        <td> <a href="<c:url value="addemp" />/?empId=${emp.empId}"  class="btn btn-primary">Update</a>
-                            <a href="javascript:;" class="btn btn-danger" onclick="deleteEmployee(${emp.empId})">Delete</a>
+                        <td> <a href="<c:url value="addemp" />/?empId=${emp.empId}"  class="btn btn-primary">Cập Nhật</a>
+                            <a href="javascript:;" class="btn btn-danger" onclick="deleteEmployee(${emp.empId})">Xóa</a>
                         </td>
 
                     </tr>
@@ -62,10 +79,8 @@
             </tbody>
         </table>
         <script src="<c:url value="/js/main.js" />"></script>
-        <br/>  
-        <a href="<c:url value="addemp/" />">Add New Employee</a> 
-        <br/>
-        <a href="<c:url value="searchEmp" />">Search Employee</a> 
+  
+     
 
     </body>
 </html>

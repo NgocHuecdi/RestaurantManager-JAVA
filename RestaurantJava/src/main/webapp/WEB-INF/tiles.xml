@@ -25,4 +25,12 @@
         <put-attribute name="title" value="Search Employee" />
         <put-attribute name="content" value="/WEB-INF/jsp/searchEmp.jsp" />
     </definition>
+     <definition name="services" extends="baseLayout">
+        <put-attribute name="title" value="Search Employee" />
+        <put-attribute name="content" value="/WEB-INF/jsp/services.jsp" />
+    </definition>
+     <definition name="addService" extends="baseLayout">
+        <put-attribute name="title" value="Search Employee" />
+        <put-attribute name="content" value="/WEB-INF/jsp/addService.jsp" />
+    </definition>
 </tiles-definitions>

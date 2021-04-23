@@ -26,19 +26,19 @@ CREATE TABLE `bills` (
   `billId` int NOT NULL AUTO_INCREMENT,
   `customerId` int NOT NULL,
   `empId` int NOT NULL,
-  `datePay` date NOT NULL,
-  `total` decimal(10,0) NOT NULL,
   `serviceId` int NOT NULL,
   `eventId` int NOT NULL,
+  `datePay` date DEFAULT NULL,
+  `total` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`billId`),
   KEY `customerId_customers_idx` (`customerId`),
   KEY `empId_employees_idx` (`empId`),
-  KEY `serviceId_service_idx` (`serviceId`),
+  KEY `serviceId_services_idx` (`serviceId`),
   KEY `eventId_event_idx` (`eventId`),
   CONSTRAINT `customerId_customers` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`),
   CONSTRAINT `empId_employees` FOREIGN KEY (`empId`) REFERENCES `employees` (`empId`),
   CONSTRAINT `eventId_event` FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
-  CONSTRAINT `serviceId_service` FOREIGN KEY (`serviceId`) REFERENCES `services` (`serviceId`)
+  CONSTRAINT `serviceId_services` FOREIGN KEY (`serviceId`) REFERENCES `services` (`serviceId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -90,7 +90,7 @@ CREATE TABLE `employees` (
   `address` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `birth` date DEFAULT NULL,
   PRIMARY KEY (`empId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +99,7 @@ CREATE TABLE `employees` (
 
 LOCK TABLES `employees` WRITE;
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
-INSERT INTO `employees` VALUES (1,'Ngoc Hue','ngochue@gmail.com','ghjkl','1999-09-27'),(2,'Ngoc Diem','fghjk','jkl','1999-01-01'),(3,'CK GO',NULL,NULL,'2020-07-04'),(5,'Helen','helen@gmail.com','USA','1999-01-02');
+INSERT INTO `employees` VALUES (1,'Ngoc Hue','ngochue@gmail.com','ghjkl','1999-09-27'),(2,'Ngoc Diem','fghjk','jkl','1999-01-01'),(5,'Helen','helen@gmail.com','USA','1999-01-02'),(6,'Money','helen@gmail.com','USA','1999-01-02'),(10,'Hue','heledn@gmail.com','USA','2020-07-04'),(11,'Pham Tien','helen@gmail.com','USA','2020-07-04'),(12,'gh','cvbn','vbn','1999-01-02'),(15,'dsqq','heledn@gmail.com','USA','1999-01-02'),(19,'Tien Phat','heledn@gmail.com','USA','2020-07-07');
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +117,6 @@ CREATE TABLE `event_detail` (
   `dateBook` date DEFAULT NULL,
   `dateEvent` date DEFAULT NULL,
   `numberGuest` double DEFAULT NULL,
-  `deposit` double DEFAULT NULL,
   PRIMARY KEY (`eventId`),
   KEY `customerId_idx` (`customerId`),
   KEY `empId_idx` (`empId`),
@@ -198,6 +197,8 @@ DROP TABLE IF EXISTS `halls`;
 CREATE TABLE `halls` (
   `hallId` int NOT NULL,
   `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `img` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `unit_price` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`hallId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -219,13 +220,14 @@ DROP TABLE IF EXISTS `service_detail`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `service_detail` (
-  `customerId` int NOT NULL,
   `serviceId` int NOT NULL,
+  `customerId` int NOT NULL,
   `dateUse` date DEFAULT NULL,
-  KEY `serviceId_idx` (`serviceId`),
-  KEY `customerId_idx` (`customerId`),
-  CONSTRAINT `serviceId` FOREIGN KEY (`serviceId`) REFERENCES `services` (`serviceId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `serviceId_services_idx` (`serviceId`),
+  KEY `customerId_customers_idx` (`customerId`),
+  CONSTRAINT `customerId_customers_detail` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`),
+  CONSTRAINT `serviceId_services_detail` FOREIGN KEY (`serviceId`) REFERENCES `services` (`serviceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -245,11 +247,11 @@ DROP TABLE IF EXISTS `services`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `services` (
-  `serviceId` int NOT NULL,
+  `serviceId` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `unit_price` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`serviceId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -258,8 +260,13 @@ CREATE TABLE `services` (
 
 LOCK TABLES `services` WRITE;
 /*!40000 ALTER TABLE `services` DISABLE KEYS */;
+INSERT INTO `services` VALUES (1,'Dịch vụ 1',2000),(2,'Dịch vụ 2',3000),(3,NULL,NULL),(4,'Dá»ch vá»¥ 3',4000),(5,'Dich Vu 5',5000),(6,'Dich Vu 5',5000),(7,'Dich Vu 5',5000),(8,'Dich Vu 6',6000),(9,NULL,NULL),(10,'Dich Vu 7',7000);
 /*!40000 ALTER TABLE `services` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'restaurantdb'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -270,4 +277,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-14 20:18:14
+-- Dump completed on 2021-04-23 15:15:36

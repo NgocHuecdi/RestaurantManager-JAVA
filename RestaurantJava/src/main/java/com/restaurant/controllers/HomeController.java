@@ -35,9 +35,13 @@ public class HomeController {
 //        model.addAttribute("employees", this.employeeService.getEmployeies(""));
 //    }
     @RequestMapping("/") //mapping vao trang chu
-    public String index(Model model){
-        
-        model.addAttribute("employeies", this.employeeService.getEmployeies(""));
+    public String index(Model model,@RequestParam(name="name", required = false) String name){
+        if(name != null){
+            model.addAttribute("employeies", this.employeeService.getEmployeies(name));
+        }
+        else {
+            model.addAttribute("employeies", this.employeeService.getEmployeies(""));
+        }
         
         return "index";
     }

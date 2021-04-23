@@ -10,13 +10,16 @@
 <nav class="navbar navbar-expand-sm" style="background-color: #4e402d">
     <ul class="navbar-nav">
         <li class="nav-item active">
-            <a class="nav-link" href="<c:url value="/" />" style="color: wheat">Home</a>
+            <a class="nav-link" href="<c:url value="/" />" style="color: wheat">Trang Chủ</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="<c:url value="/" />" style="color: wheat">Employee</a>
+            <a class="nav-link" href="<c:url value="/" />" style="color: wheat">Nhân Viên</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="<c:url value="/services" />" style="color: wheat">Dịch Vụ</a>
         </li>
          <li class="nav-item active">
-            <a class="nav-link" href="#" style="color: wheat">Feed Back</a>
+            <a class="nav-link" href="#" style="color: wheat">Phản Hồi Của Khách Hàng</a>
         </li>
        
     </ul>
