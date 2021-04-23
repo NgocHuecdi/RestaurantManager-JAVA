@@ -23,9 +23,7 @@
     </head>
     <body>
 
-        <h1 style = "text-align: center">List of Servcies</h1>
-              <br/>  
-        <a href="<c:url value="/addService" />">Thêm dịch vụ mới</a> 
+
 
         <h1 style = "text-align: center">Danh Sách Dịch Vụ</h1>
           <br/>  
@@ -54,14 +52,7 @@
                         <td> ${ser.serviceId}</td>
                         <td>${ser.name}</td>
                         <td>${ser.unit_price}</td>
-                      
-
-                    <tr id="services${ser.serviceId}">
-                        <td> ${ser.serviceId}</td>
-                        <td>${ser.name}</td>
-                        <td>${ser.unit_price}</td>
-
-                    </tr>
+                     
                 </c:forEach>
             </tbody>
         </table>
