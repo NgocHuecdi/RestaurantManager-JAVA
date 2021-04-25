@@ -11,8 +11,7 @@
 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<h1 class="text-center text-success">ADD EMPOYEE</h1>  
-
+<h1 class="text-center text-success m-3">Thêm Nhân Viên Mới</h1>  
 <c:url value="/addemp/add" var="action" />
 <form:form method="post"  action="${action}" modelAttribute="addemp">
       <form:errors path="*" element="div" 
