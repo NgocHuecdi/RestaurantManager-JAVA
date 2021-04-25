@@ -11,58 +11,49 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home Page</title>
-
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="<c:url value="/css/employee.css"/>"
               rel="stylesheet" />
     </head>
     <body>
+        <h1 class="text-center mt-3 mb-5">Danh Sách Nhân Viên</h1>
 
-
-        <h1 style = "text-align: center">Danh Sách Nhân viên</h1>
-
-        <form>
-    <div class="row">
-        <div class="col-md-10 form-group">
-            <input type="text" 
-                   name="name"
-                   class="form-control" 
-                   placeholder="Nhập từ khoá để tìm..." />
-        </div>
-        <div class="col-md-2">
-            <input type="submit" 
-                   class="btn btn-info"
-                   value="Tìm kiếm" />
-        </div>
-    </div>
+        <form class="mb-5">
+            <div class="row">
+                <div class="col-md-10 form-group">
+                    <input type="text" 
+                           name="name"
+                           class="form-control" 
+                           placeholder="Nhập từ khoá để tìm..." />
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" 
+                           class="btn btn-secondary"
+                           value="Tìm kiếm" />
+                </div>
+            </div>
         </form>
-        <a href="<c:url value="addemp/" />">Thêm nhân viên mới</a> 
-        <table border="1" class = "table table-striped table-responsive-md">
+        <a href="<c:url value="addemp/" />" class="btn btn-success">Thêm nhân viên mới</a> 
+        <table border="1" class = "table table-striped table-responsive-md mt-3">
             <thead>
                 <tr>
-                    <th>
+                    <th class="text-center">
                         Mã Nhân Viên
                     </th>
-                    <th>
+                    <th class="text-center">
                         Tên
                     </th>
-                    <th>
-                        EMail
+                    <th class="text-center">
+                        Email
                     </th>
-                    <th>
-
+                    <th class="text-center">
                         Địa Chỉ
-
-
                     </th>
-                    <th>
+                    <th class="text-center">
                         Ngày Sinh
                     </th>
-                    <th>
-
+                    <th class="text-center">
+                        Chỉnh sửa
                     </th>
-
-
                 </tr>
             </thead>
             <tbody>
@@ -73,17 +64,14 @@
                         <td>${emp.mail}</td>
                         <td>${emp.address}</td>
                         <td>${emp.birth}</td>
-
-                        <td> <a href="<c:url value="addemp" />/?empId=${emp.empId}"  class="btn btn-primary">Cập Nhật</a>
+                        <td class="text-center"> <a href="<c:url value="addemp" />/?empId=${emp.empId}"  class="btn btn-primary">Cập Nhật</a>
                             <a href="javascript:;" class="btn btn-danger" onclick="deleteEmployee(${emp.empId})">Xóa</a>
                         </td>
-
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
         <script src="<c:url value="/js/main.js" />"></script>
-
     </body>
 </html>
 

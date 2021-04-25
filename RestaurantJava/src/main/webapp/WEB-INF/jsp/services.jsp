@@ -15,34 +15,26 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Services</title>
-
-
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="<c:url value="/css/employee.css"/>"
               rel="stylesheet" />
     </head>
     <body>
-
-
-
-        <h1 style = "text-align: center">Danh Sách Dịch Vụ</h1>
+        <h1 class="text-center mt-3 mb-5">Danh Sách Dịch Vụ</h1>
           <br/>  
-        <a href="<c:url value="/addService" />">Thêm dịch vụ mới</a> 
-       
-
-        <table border="1" class = "table table-striped table-responsive-md">
+        <a href="<c:url value="/addService" />" class="btn btn-success">Thêm dịch vụ mới</a> 
+        <table border="1" class = "table table-striped table-responsive-md mt-3">
             <thead>
                 <tr>
-                    <th>
+                    <th class="text-center">
                         Mã Dịch Vụ
                     </th>
-                    <th>
+                    <th class="text-center">
                         Tên Dịch Vụ
                     </th>
-                    <th>
+                    <th class="text-center">
                         Giá
                     </th>
-
                 </tr>
             </thead>
             <tbody>
@@ -52,12 +44,9 @@
                         <td> ${ser.serviceId}</td>
                         <td>${ser.name}</td>
                         <td>${ser.unit_price}</td>
-                     
                 </c:forEach>
             </tbody>
         </table>
-
         <script src="<c:url value="/js/main.js" />"></script>
-
     </body>
 </html>

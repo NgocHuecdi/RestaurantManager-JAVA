@@ -25,12 +25,16 @@
         <put-attribute name="title" value="Search Employee" />
         <put-attribute name="content" value="/WEB-INF/jsp/searchEmp.jsp" />
     </definition>
-     <definition name="services" extends="baseLayout">
+    <definition name="services" extends="baseLayout">
         <put-attribute name="title" value="Search Employee" />
         <put-attribute name="content" value="/WEB-INF/jsp/services.jsp" />
     </definition>
-     <definition name="addService" extends="baseLayout">
+    <definition name="addService" extends="baseLayout">
         <put-attribute name="title" value="Search Employee" />
         <put-attribute name="content" value="/WEB-INF/jsp/addService.jsp" />
+    </definition>
+    <definition name="feedback" extends="baseLayout">
+        <put-attribute name="title" value="Feedback" />
+        <put-attribute name="content" value="/WEB-INF/jsp/feedback.jsp" />
     </definition>
 </tiles-definitions>

@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author HP
  */
 @Controller
+@ControllerAdvice
 public class HomeController {
     @Autowired
     private EmployeeService employeeService; 
