@@ -12,7 +12,7 @@
 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<h1 class="text-center text-success">Thêm Dịch Vụ Mới</h1>  
+<h1 class="text-center text-success m-3">Thêm Dịch Vụ Mới</h1>  
 
 <c:url value="/addService/add" var="action" />
 <form:form method="post"  action="${action}" modelAttribute="addService">
