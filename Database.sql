@@ -29,7 +29,6 @@ CREATE TABLE `bills` (
   `serviceId` int NOT NULL,
   `eventId` int NOT NULL,
   `datePay` date DEFAULT NULL,
-  `total` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`billId`),
   KEY `customerId_customers_idx` (`customerId`),
   KEY `empId_employees_idx` (`empId`),
@@ -39,7 +38,7 @@ CREATE TABLE `bills` (
   CONSTRAINT `empId_employees` FOREIGN KEY (`empId`) REFERENCES `employees` (`empId`),
   CONSTRAINT `eventId_event` FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
   CONSTRAINT `serviceId_services` FOREIGN KEY (`serviceId`) REFERENCES `services` (`serviceId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,6 +47,7 @@ CREATE TABLE `bills` (
 
 LOCK TABLES `bills` WRITE;
 /*!40000 ALTER TABLE `bills` DISABLE KEYS */;
+INSERT INTO `bills` VALUES (1,1,1,1,1,'2021-04-24'),(2,2,2,2,2,'2021-04-24');
 /*!40000 ALTER TABLE `bills` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -73,6 +73,7 @@ CREATE TABLE `customers` (
 
 LOCK TABLES `customers` WRITE;
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
+INSERT INTO `customers` VALUES (1,'James','01234567','USA'),(2,'Harry','12304567','USA'),(3,'Teo','1456230','VN');
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +91,7 @@ CREATE TABLE `employees` (
   `address` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `birth` date DEFAULT NULL,
   PRIMARY KEY (`empId`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +100,7 @@ CREATE TABLE `employees` (
 
 LOCK TABLES `employees` WRITE;
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
-INSERT INTO `employees` VALUES (1,'Ngoc Hue','ngochue@gmail.com','ghjkl','1999-09-27'),(2,'Ngoc Diem','fghjk','jkl','1999-01-01'),(5,'Helen','helen@gmail.com','USA','1999-01-02'),(6,'Money','helen@gmail.com','USA','1999-01-02'),(10,'Hue','heledn@gmail.com','USA','2020-07-04'),(11,'Pham Tien','helen@gmail.com','USA','2020-07-04'),(12,'gh','cvbn','vbn','1999-01-02'),(15,'dsqq','heledn@gmail.com','USA','1999-01-02'),(19,'Tien Phat','heledn@gmail.com','USA','2020-07-07');
+INSERT INTO `employees` VALUES (1,'Ngoc Hue','ngochue@gmail.com','ghjkl','1999-09-27'),(2,'Ngoc Diem','fghjk','jkl','1999-01-01'),(5,'Helen','helen@gmail.com','USA','1999-01-02'),(6,'Money','helen@gmail.com','USA','1999-01-02'),(10,'Hue','heledn@gmail.com','USA','2020-07-04'),(11,'Pham Tien','helen@gmail.com','USA','2020-07-04'),(12,'gh','cvbn','vbn','1999-01-02'),(15,'dsqq','heledn@gmail.com','USA','1999-01-02'),(19,'Tien Phat','heledn@gmail.com','USA','2020-07-07'),(20,'B','B@gmail.com','USA','2020-07-07'),(22,'Ray','ray@gmail.com','vn','2020-07-04');
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,11 +118,12 @@ CREATE TABLE `event_detail` (
   `dateBook` date DEFAULT NULL,
   `dateEvent` date DEFAULT NULL,
   `numberGuest` double DEFAULT NULL,
-  PRIMARY KEY (`eventId`),
   KEY `customerId_idx` (`customerId`),
   KEY `empId_idx` (`empId`),
+  KEY `eventId_idx` (`eventId`),
   CONSTRAINT `customerId` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`),
-  CONSTRAINT `empId` FOREIGN KEY (`empId`) REFERENCES `employees` (`empId`)
+  CONSTRAINT `empId` FOREIGN KEY (`empId`) REFERENCES `employees` (`empId`),
+  CONSTRAINT `eventId` FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -145,6 +147,7 @@ CREATE TABLE `events` (
   `eventId` int NOT NULL,
   `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `hallId` int DEFAULT NULL,
+  `price` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`eventId`),
   KEY `hallId` (`hallId`),
   CONSTRAINT `events_ibfk_1` FOREIGN KEY (`hallId`) REFERENCES `halls` (`hallId`)
@@ -157,6 +160,7 @@ CREATE TABLE `events` (
 
 LOCK TABLES `events` WRITE;
 /*!40000 ALTER TABLE `events` DISABLE KEYS */;
+INSERT INTO `events` VALUES (1,'Su Kien 1',1,1000),(2,'Su Kien 2',2,2000);
 /*!40000 ALTER TABLE `events` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,7 +174,7 @@ DROP TABLE IF EXISTS `feedback`;
 CREATE TABLE `feedback` (
   `feedbackId` int NOT NULL,
   `customerId` int NOT NULL,
-  `discription` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `description` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`feedbackId`),
   KEY `customerId_idx` (`customerId`),
@@ -184,6 +188,7 @@ CREATE TABLE `feedback` (
 
 LOCK TABLES `feedback` WRITE;
 /*!40000 ALTER TABLE `feedback` DISABLE KEYS */;
+INSERT INTO `feedback` VALUES (1,1,'hjgsdcjdsjhgg','2021-05-24'),(2,2,'bcggffhkdkkajfhjheggggggggggggggggggggg','2021-04-25');
 /*!40000 ALTER TABLE `feedback` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,7 +203,6 @@ CREATE TABLE `halls` (
   `hallId` int NOT NULL,
   `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `img` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `unit_price` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`hallId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -209,6 +213,7 @@ CREATE TABLE `halls` (
 
 LOCK TABLES `halls` WRITE;
 /*!40000 ALTER TABLE `halls` DISABLE KEYS */;
+INSERT INTO `halls` VALUES (1,'Sanh 1',NULL),(2,'Sanh 2',NULL);
 /*!40000 ALTER TABLE `halls` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,7 +256,7 @@ CREATE TABLE `services` (
   `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `unit_price` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`serviceId`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -260,13 +265,9 @@ CREATE TABLE `services` (
 
 LOCK TABLES `services` WRITE;
 /*!40000 ALTER TABLE `services` DISABLE KEYS */;
-INSERT INTO `services` VALUES (1,'Dịch vụ 1',2000),(2,'Dịch vụ 2',3000),(3,NULL,NULL),(4,'Dá»ch vá»¥ 3',4000),(5,'Dich Vu 5',5000),(6,'Dich Vu 5',5000),(7,'Dich Vu 5',5000),(8,'Dich Vu 6',6000),(9,NULL,NULL),(10,'Dich Vu 7',7000);
+INSERT INTO `services` VALUES (1,'Dịch vụ 1',2000),(2,'Dịch vụ 2',3000),(3,NULL,NULL),(4,'Dá»ch vá»¥ 3',4000),(5,'Dich Vu 5',5000),(6,'Dich Vu 5',5000),(7,'Dich Vu 5',5000),(8,'Dich Vu 6',6000),(9,NULL,NULL),(10,'Dich Vu 7',7000),(11,'Dich Vu 8',8000);
 /*!40000 ALTER TABLE `services` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'restaurantdb'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -277,4 +278,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-23 15:15:36
+-- Dump completed on 2021-04-25 16:28:23

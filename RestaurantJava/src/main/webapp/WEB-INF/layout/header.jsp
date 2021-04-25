@@ -21,6 +21,9 @@
          <li class="nav-item active">
             <a class="nav-link" href="#" style="color: wheat">Phản Hồi Của Khách Hàng</a>
         </li>
+           <li class="nav-item active">
+            <a class="nav-link" href="<c:url value="/statsRe" />" style="color: wheat">Thống Kê</a>
+        </li>
        
     </ul>
 </nav>
