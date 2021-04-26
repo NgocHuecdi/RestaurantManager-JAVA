@@ -15,27 +15,31 @@ function deleteEmployee(employeeId) {
         })
     }
 }
-//function loadEmp(){
-// fetch("/RestaurantJava/api/searchEmp").then(function(res) {
-//        return res.json();
-//    }).then(function(data) {
-//        console.log(data);
-//        let d = document.getElementById("empId");
-//        let msg = "";
-//        data.forEach(function(v) {
-//            let h = `
-//            <tr>
-//                <td>${v["empId"]}</td>
-//                <td>${v["name"]}</td>
-//                <td>${v["mail"]}</td>
-//                <td>${v["address"]}</td>
-//                <td>${v["birth"]}</td>
-//            </tr>
-//            `
-//            msg += h;
-//        });
-//        
-//        d.innerHTML = msg;
-//    });
-//}
+function loadStatsBill(){
+ fetch("/RestaurantJava/api/statsRe").then(function(res) {
+          return res.json();
+    }).then(function(data) {
+        console.log(data);
+        let d = document.getElementById("billId");
+        let msg = "";
+        data.forEach(function(v) {
+            let createdDate = new Date(v[2]);
+            
+            let h = `
+            <tr>
+                <td>${v[0]}</td>
+                <td>${v[1]}</td>
+             <td>${v[2]}</td>
+             <td>${v[3]}</td>
+             <td>${v[4]}</td>
+               <td>${v[5]}</td>
+                <td>${v[6]}</td>
+            </tr>
+            `
+            msg += h;
+        });
+        
+        d.innerHTML = msg;
+    });
+}
 

@@ -58,31 +58,18 @@ public class BillStatsRepositoryImpl implements BillStatsRepository {
                     builder.equal(serviceRoot.get("serviceId"), billRoot.get("services")),
                     builder.equal(eventRoot.get("eventId"), billRoot.get("event"))
             ));
-
-               
-        
-        //Bills with Employee
-         
-  //           query = query.where(builder.equal(empRoot.get("empId"), billRoot.get("employee")));
-//         
-//         //Bills with Service
-//         Root serviceRoot = query.from(Services.class);
-//         query = query.where(builder.equal(serviceRoot.get("serviceId"), billRoot.get("services")));
-//         
-//         //Bills with Event
-//         Root eventRoot = query.from(Event.class);
-//         query = query.where(builder.equal(eventRoot.get("eventId"), billRoot.get("event")));
-//         
-         //Select
+       
+        BigDecimal total = null;
+//         //Select
          query.multiselect(billRoot.get("billId"), 
                 customerRoot.get("name").as(String.class),
                 empRoot.get("name").as(String.class),
                 serviceRoot.get("name").as(String.class),
                 eventRoot.get("name").as(String.class),
                billRoot.get("datePay").as(Date.class),
-                builder.sum(eventRoot.get("price")).as(BigDecimal.class), serviceRoot.get("unit_price").as(BigDecimal.class));
-              
-         List<Object[]> resultList = session.createQuery(query).getResultList();
+                builder.sum(eventRoot.<BigDecimal>get("price"), serviceRoot.<BigDecimal>get("unit_price")));
+             
+//         List<Object[]> resultList = session.createQuery(query).getResultList();
          query.groupBy(billRoot.get("billId"), 
                 customerRoot.get("name").as(String.class),
                empRoot.get("name").as(String.class),

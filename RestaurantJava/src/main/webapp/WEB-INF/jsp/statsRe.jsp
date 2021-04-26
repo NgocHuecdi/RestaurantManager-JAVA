@@ -16,7 +16,7 @@
         <input placeholder="To date..." type="date" name="datePay" class="form-control" />
     </div>
     <div class="form-group">
-        <input type="submit" value="Tra cuu" />
+        <input type="button" onclick="loadStatsBill()" value="Tra cuu" />
     </div>
 </form>
 
@@ -30,17 +30,11 @@
         <th>Ngày Thanh Toán</th>
         <th>Tổng Tiền</th>
     </tr>
-     <c:forEach items="${dataStats}" var="stats">
-    <tr>
-        <td>${stats[0]}</td>
-        <td>${stats[1]}</td>
-        <td>${stats[2]}</td>
-        <td>${stats[3]}</td>
-        <td>${stats[4]}</td>
-        <td>${stats[5]}</td>
-        <td>${stats[6]}</td>
-    </tr>
-    </c:forEach>
+      <tbody id="billId">
+        
+    </tbody>
+   
    
 </table>
 
+<script src="<c:url value="/js/main.js" />"></script>
