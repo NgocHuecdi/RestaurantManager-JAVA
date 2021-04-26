@@ -23,7 +23,7 @@ function loadStatsBill(){
         let d = document.getElementById("billId");
         let msg = "";
         data.forEach(function(v) {
-            let createdDate = new Date(v[2]);
+            let datePay = new Date(v[5]);
             
             let h = `
             <tr>
@@ -32,7 +32,7 @@ function loadStatsBill(){
              <td>${v[2]}</td>
              <td>${v[3]}</td>
              <td>${v[4]}</td>
-               <td>${v[5]}</td>
+                <td>${datePay.getFullYear()}-${datePay.getMonth()}-${datePay.getDay()}</td>
                 <td>${v[6]}</td>
             </tr>
             `

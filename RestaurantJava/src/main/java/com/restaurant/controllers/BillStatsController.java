@@ -34,23 +34,22 @@ public class BillStatsController {
     public String statsRe(Model model,  @RequestParam(name = "fromDate", required = false) String fromDate,
              @RequestParam(name = "toDate", required = false) String toDate) {
         
-//        Date fr = null, to = null;
-//        
-////        try {
-////            fr = this.simpleDateFormat.parse(fromDate);
-////            to = this.simpleDateFormat.parse(toDate);
-////        } catch (Exception ex) {
-////            ex.printStackTrace();
-////        }
-//        
-//        List<Object[]> dataStats = this.billStatsService.getBillStats(fr, to);
-//        List<BigDecimal> total = new ArrayList<>();
+        Date fr = null, to = null;
+        
+        try {
+            fr = this.simpleDateFormat.parse(fromDate);
+            to = this.simpleDateFormat.parse(toDate);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+        List<Object[]> dataStats = this.billStatsService.getBillStats(fr, to);
+        List<BigDecimal> total = new ArrayList<>();
 //        for (Object[] d: dataStats)
 //            total.add((BigDecimal) d[1]);
-//        
-//        
-//        model.addAttribute("dataStats", dataStats);
-//        model.addAttribute("total", total);
+                
+        model.addAttribute("dataStats", dataStats);
+       model.addAttribute("total", total);
        return "statsRe";
     }
 }
