@@ -22,7 +22,7 @@
             <a class="nav-link text-white" href="<c:url value="/feedback" />">Phản Hồi</a>
         </li>
            <li class="nav-item active">
-            <a class="nav-link" href="<c:url value="/statsRe" />" style="color: wheat">Thống Kê</a>
+            <a class="nav-link text-white" href="<c:url value="/statsRe" />">Thống Kê</a>
         </li>  
 
     </ul>

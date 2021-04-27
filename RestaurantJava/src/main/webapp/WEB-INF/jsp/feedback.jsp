@@ -5,14 +5,23 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form"
+           uri="http://www.springframework.org/tags/form" %>
+
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <h1 class="text-center m-3">Phản Hồi Của Khách Hàng</h1>
 
-<%--<c:url value="/feedback" var="action"/>--%>
-<c:forEach items="${feedbacks}" var="fb">
-<div class="media border p-3">
-  <div class="media-body">
-    <h4> <small><i>Posted on ${fb.date}</i></small></h4>
-    <p>${fb.description}</p>
-  </div>
-</div>
-</c:forEach>
+<c:url value="/feedback" var="action"/>
+
+<ul class="list-unstyled">
+    <c:forEach items="${feedback}" var="fb">
+  <li class="media border border-secondary rounded p-3 mb-3">
+    <div class="media-body">
+        <div class="pr-1">${fb[0]}. <span class="font-weight-bold">${fb[1]}</span></div> 
+        <small><div class="mt-0 mb-1 font-italic">Đăng ngày ${fb[3]}</div></small>
+      ${fb[2]}
+    </div>
+  </li>
+    </c:forEach>
+</ul>
+
