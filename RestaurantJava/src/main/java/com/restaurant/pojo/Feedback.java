@@ -27,9 +27,9 @@ public class Feedback implements Serializable{
     private int feedbackId;
     private String description;
     private String date;
-//    @ManyToOne
-//    @JoinColumn(name = "category_id")
-//    private Customers customer;
+    @ManyToOne
+    @JoinColumn(name = "customerId")
+    private Customer customer;
 
     /**
      * @return the feedbackId
@@ -71,5 +71,19 @@ public class Feedback implements Serializable{
      */
     public void setDate(String date) {
         this.date = date;
+    }
+
+    /**
+     * @return the customer
+     */
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    /**
+     * @param customer the customer to set
+     */
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
