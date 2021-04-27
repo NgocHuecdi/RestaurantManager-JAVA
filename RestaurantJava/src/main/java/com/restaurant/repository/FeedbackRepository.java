@@ -14,4 +14,5 @@ import java.util.List;
  */
 public interface FeedbackRepository {
     List<Object[]> getFeedbacks(String kw);
+    boolean addFeedback(Feedback f);
 }

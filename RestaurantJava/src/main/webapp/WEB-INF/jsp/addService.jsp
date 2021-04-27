@@ -18,23 +18,20 @@
 <form:form method="post"  action="${action}" modelAttribute="addService">
     <form:errors path="*" element="div" 
                  cssClass="alert alert-danger" />
-<div class="form-group">
+    <div class="form-group">
+        <label>Tên dịch vụ</label>
+        <form:input cssClass="form-control" path="name" />
+    </div>
+    <div class="form-group">
+        <label for="price">Giá dịch vụ</label>
+        <form:input 
+            cssClass="form-control" 
+            path="unit_price" />
+    </div>
 
 
-    <label>Tên dịch vụ</label>
-    <form:input cssClass="form-control" path="name" />
-</div>
-<div class="form-group">
-    <label for="price">Giá dịch vụ</label>
-    <form:input 
-        cssClass="form-control" 
-        path="unit_price" />
-
-</div>
-
-
-<div>
-    <form:hidden path="serviceId" />
-    <input type="submit" class="btn btn-success" value="Thêm Dịch Vụ" />
-</div>
+    <div>
+        <form:hidden path="serviceId" />
+        <input type="submit" class="btn btn-success" value="Thêm Dịch Vụ" />
+    </div>
 </form:form>
