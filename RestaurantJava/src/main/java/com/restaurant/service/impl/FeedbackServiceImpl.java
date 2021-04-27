@@ -25,5 +25,10 @@ public class FeedbackServiceImpl implements FeedbackService{
     public List<Object[]> getFeedbacks(String kw) {
         return this.feedbackRepository.getFeedbacks(kw);
     }
+
+    @Override
+    public boolean addFeedback(Feedback fdbck) {
+        return this.feedbackRepository.addFeedback(fdbck);
+    }
     
 }
