@@ -7,10 +7,13 @@ package com.restaurant.pojo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -20,12 +23,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "services")
 public class Services implements Serializable{
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     private int serviceId;
     private String name;
     private BigDecimal unit_price;
+    @OneToMany(mappedBy = "services", fetch = FetchType.EAGER)
+    private List<BookDetail> bookDetail;
+
 
     /**
      * @return the serviceId
@@ -67,6 +75,19 @@ public class Services implements Serializable{
      */
     public void setUnit_price(BigDecimal unit_price) {
         this.unit_price = unit_price;
+    }
+        /**
+     * @return the bookDetail
+     */
+    public List<BookDetail> getBookDetail() {
+        return bookDetail;
+    }
+
+    /**
+     * @param bookDetail the bookDetail to set
+     */
+    public void setBookDetail(List<BookDetail> bookDetail) {
+        this.bookDetail = bookDetail;
     }
 
 }

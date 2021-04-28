@@ -15,15 +15,15 @@ function deleteEmployee(employeeId) {
         })
     }
 }
-function loadStatsBill(){
- fetch("/RestaurantJava/api/statsRe").then(function(res) {
+function loadBookDetail(){
+ fetch("/RestaurantJava/api/viewBook").then(function(res) {
           return res.json();
     }).then(function(data) {
         console.log(data);
-        let d = document.getElementById("billId");
+        let d = document.getElementById("bookId");
         let msg = "";
         data.forEach(function(v) {
-            let datePay = new Date(v[5]);
+            let datePay = new Date(v[7]);
             
             let h = `
             <tr>
@@ -32,8 +32,10 @@ function loadStatsBill(){
              <td>${v[2]}</td>
              <td>${v[3]}</td>
              <td>${v[4]}</td>
-                <td>${datePay.getFullYear()}-${datePay.getMonth()}-${datePay.getDay()}</td>
+                <td>${[5]}</td>
                 <td>${v[6]}</td>
+            <td>${datePay.getFullYear()}-${datePay.getMonth()}-${datePay.getDay()}</td>
+            <td>${v[8]}</td>
             </tr>
             `
             msg += h;

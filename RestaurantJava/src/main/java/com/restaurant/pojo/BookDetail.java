@@ -21,23 +21,17 @@ import javax.persistence.Temporal;
  * @author HP
  */
 @Entity
-@Table(name = "bills")
-public class Bill implements Serializable{
+@Table(name = "book_detail")
+public class BookDetail implements Serializable {
 
-
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int billId;
-            
+    private int id;
+    
     @ManyToOne
     @JoinColumn(name = "customerId")
     private Customer customer;
-    
-    @ManyToOne
-    @JoinColumn(name = "empId")
-    private Employee employee;
-    
+        
     @ManyToOne
     @JoinColumn(name = "serviceId")
     private Services services;
@@ -46,26 +40,23 @@ public class Bill implements Serializable{
     @JoinColumn(name = "eventId")
     private Event event;
     
-    @ManyToOne
-    @JoinColumn(name = "booId")
-    private BookDetail bookDetail;
-    
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date datePay;
+    private Date dateUse;
     
-
+    private Double numberGuest;
+    private String description;
     /**
-     * @return the billId
+     * @return the id
      */
-    public int getBillId() {
-        return billId;
+    public int getId() {
+        return id;
     }
 
     /**
-     * @param billId the billId to set
+     * @param id the id to set
      */
-    public void setBillId(int billId) {
-        this.billId = billId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
@@ -80,20 +71,6 @@ public class Bill implements Serializable{
      */
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    /**
-     * @return the employee
-     */
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    /**
-     * @param employee the employee to set
-     */
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
     }
 
     /**
@@ -125,30 +102,44 @@ public class Bill implements Serializable{
     }
 
     /**
-     * @return the datePay
+     * @return the dateUse
      */
-    public Date getDatePay() {
-        return datePay;
+    public Date getDateUse() {
+        return dateUse;
     }
 
     /**
-     * @param datePay the datePay to set
+     * @param dateUse the dateUse to set
      */
-    public void setDatePay(Date datePay) {
-        this.datePay = datePay;
+    public void setDateUse(Date dateUse) {
+        this.dateUse = dateUse;
     }
-       /**
-     * @return the bookDetail
+    /**
+     * @return the numberGuest
      */
-    public BookDetail getBookDetail() {
-        return bookDetail;
+    public Double getNumberGuest() {
+        return numberGuest;
     }
 
     /**
-     * @param bookDetail the bookDetail to set
+     * @param numberGuest the numberGuest to set
      */
-    public void setBookDetail(BookDetail bookDetail) {
-        this.bookDetail = bookDetail;
+    public void setNumberGuest(Double numberGuest) {
+        this.numberGuest = numberGuest;
     }
     
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 }

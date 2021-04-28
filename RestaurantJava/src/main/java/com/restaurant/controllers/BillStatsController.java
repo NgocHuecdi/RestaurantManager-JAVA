@@ -43,13 +43,13 @@ public class BillStatsController {
             ex.printStackTrace();
         }
         
-        List<Object[]> dataStats = this.billStatsService.getBillStats(fr, to);
+        List<Object[]> dataBills = this.billStatsService.getBillStats(fr, to);
         List<BigDecimal> total = new ArrayList<>();
 //        for (Object[] d: dataStats)
 //            total.add((BigDecimal) d[1]);
                 
-        model.addAttribute("dataStats", dataStats);
-       model.addAttribute("total", total);
+        model.addAttribute("dataBills", dataBills);
+        model.addAttribute("total", total);
        return "statsRe";
     }
 }

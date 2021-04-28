@@ -5,7 +5,7 @@
  */
 package com.restaurant.utils;
 
-import com.restaurant.pojo.Cart;
+import com.restaurant.pojo.Book;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.HashMap;
@@ -17,28 +17,22 @@ import java.util.Map;
  */
 public class Utils {
 
-    public static Map<String, BigDecimal> cartStats(Map<Integer, Cart> sessionCart) {
-        Map<String, BigDecimal> re = new HashMap<>();
-
-        if (sessionCart != null) {
-            Collection<Cart> carts = sessionCart.values();
-            BigDecimal totalEvent = new BigDecimal(0);
-            BigDecimal totalService = new BigDecimal(0);
-            BigDecimal total = new BigDecimal(0);
-            for (Cart c : carts) {
-                totalService = totalService.add(c.getPriceService());
-                totalEvent = totalEvent.add(c.getPriceEvent());
-                total = totalService.add(totalEvent);
-
+    public static Map<String, BigDecimal> bookStats(Map<Integer, Book> book) {
+        BigDecimal priceService = new BigDecimal(0);
+        BigDecimal priceEvent = new BigDecimal(0);
+        BigDecimal total = new BigDecimal(0);
+        if (book != null) {
+            for (Book b: book.values()) {
+                priceService = b.getPriceService();
+                priceEvent = b.getPriceEvent();
+                total = priceEvent.add(priceService);
             }
-
-            re.put("total", total);
-//            re.put("totalQuantity", new BigDecimal(totalQuantity));
-        } else {
-            re.put("totalService", new BigDecimal(0));
-            re.put("totalEvent", new BigDecimal(0));
         }
-
+        
+        Map<String, BigDecimal> re = new HashMap<>();
+        re.put("total", total);
+//        re.put("totalService", new BigDecimal());
+        
         return re;
 
     }

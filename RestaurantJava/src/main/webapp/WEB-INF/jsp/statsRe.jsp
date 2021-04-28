@@ -30,7 +30,7 @@
         <th>Ngày Thanh Toán</th>
         <th>Tổng Tiền</th>
     </tr>
-     <c:forEach items="${dataStats}" var="stats">
+     <c:forEach items="${dataBills}" var="stats">
     <tr>
         <td>${stats[0]}</td>
         <td>${stats[1]} </td>

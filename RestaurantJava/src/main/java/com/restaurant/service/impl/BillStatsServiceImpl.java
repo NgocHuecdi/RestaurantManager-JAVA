@@ -5,10 +5,12 @@
  */
 package com.restaurant.service.impl;
 
+import com.restaurant.pojo.Book;
 import com.restaurant.repository.BillStatsRepository;
 import com.restaurant.service.BillStatsService;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,4 +28,6 @@ public class BillStatsServiceImpl implements BillStatsService {
     public List<Object[]> getBillStats(Date fromDate, Date toDate) {
            return this.billStatsRepository.getBillStats(toDate, toDate);
     }
+
+
 }

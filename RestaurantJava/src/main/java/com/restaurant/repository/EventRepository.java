@@ -5,15 +5,14 @@
  */
 package com.restaurant.repository;
 
-import com.restaurant.pojo.Book;
-import java.util.Date;
+import com.restaurant.pojo.Event;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
  * @author HP
  */
-public interface BillStatsRepository {
-    List<Object[]> getBillStats(Date fromDate, Date toDate);
+public interface EventRepository {
+    List<Event> getEvents();
+    Event getEventById(int eventId);
 }

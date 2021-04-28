@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,11 +22,46 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "customers")
 public class Customer implements Serializable {
+
+
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     private int customerId;
     private String name;
+    private String phone;
+    private String address;
+//    @OneToMany(mappedBy = "customers", fetch = FetchType.EAGER)
+//    private List<BookDetail> bookDetail;
+    /**
+     * @return the phone
+     */
+    public String getPhone() {
+        return phone;
+    }
+
+    /**
+     * @param phone the phone to set
+     */
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    /**
+     * @return the address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     /**
      * @return the customerId
      */
@@ -57,7 +93,10 @@ public class Customer implements Serializable {
     /**
      * @return the feedback
      */
-    
+        /**
+     * @return the bookDetail
+     */
+   
     
     
 }

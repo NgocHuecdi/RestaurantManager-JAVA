@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.restaurant.repository;
+package com.restaurant.service;
 
-import com.restaurant.pojo.Book;
-import java.util.Date;
+import com.restaurant.pojo.Event;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
  * @author HP
  */
-public interface BillStatsRepository {
-    List<Object[]> getBillStats(Date fromDate, Date toDate);
+
+public interface EventService {
+    List<Event> getEvents();
+    Event getEventById(int eventId);
 }

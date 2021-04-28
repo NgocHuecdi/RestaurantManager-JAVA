@@ -6,20 +6,33 @@
 package com.restaurant.pojo;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  *
  * @author HP
  */
-public class Cart {
+public class Book {
+
+ 
+
     private int serviceId;
     private int eventId;
+    private int hallId;
+    private int empId;
+    private Date dateUse;
+    private double numberGuest;
     private BigDecimal priceService;
     private BigDecimal priceEvent;
     
-    public Cart(int serviceId, int eventId, BigDecimal priceService, BigDecimal priceEvent){
+    public Book(int serviceId, int eventId,int hallId,int empId, Date dateUse, double numberGuest, 
+            BigDecimal priceService, BigDecimal priceEvent){
         this.serviceId = serviceId;
         this.eventId = eventId;
+        this.hallId = hallId;
+        this.empId = empId;
+        this.dateUse = dateUse;
+        this.numberGuest = numberGuest;
         this.priceService = priceEvent;
         this.priceEvent = priceEvent;
     }
@@ -79,5 +92,59 @@ public class Cart {
     public void setPriceEvent(BigDecimal priceEvent) {
         this.priceEvent = priceEvent;
     }
- 
+    
+    /**
+     * @return the hallId
+     */
+    public int getHallId() {
+        return hallId;
+    }
+
+    /**
+     * @param hallId the hallId to set
+     */
+    public void setHallId(int hallId) {
+        this.hallId = hallId;
+    }
+
+    /**
+     * @return the dateUse
+     */
+    public Date getDateUse() {
+        return dateUse;
+    }
+
+    /**
+     * @param dateUse the dateUse to set
+     */
+    public void setDateUse(Date dateUse) {
+        this.dateUse = dateUse;
+    }
+
+    /**
+     * @return the numberGuest
+     */
+    public double getNumberGuest() {
+        return numberGuest;
+    }
+
+    /**
+     * @param numberGuest the numberGuest to set
+     */
+    public void setNumberGuest(double numberGuest) {
+        this.numberGuest = numberGuest;
+    }
+    /**
+     * @return the empId
+     */
+    public int getEmpId() {
+        return empId;
+    }
+
+    /**
+     * @param empId the empId to set
+     */
+    public void setEmpId(int empId) {
+        this.empId = empId;
+    }
 }
