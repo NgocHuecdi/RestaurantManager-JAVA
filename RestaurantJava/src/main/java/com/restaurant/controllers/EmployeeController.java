@@ -28,6 +28,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
+    
+    @RequestMapping("/employee") //mapping vao trang chu
+    public String employee(Model model,@RequestParam(name="name", required = false) String name){
+
+        if(name != null){
+            model.addAttribute("employees", this.employeeService.getEmployeies(name));
+        }
+        else {
+            model.addAttribute("employees", this.employeeService.getEmployeies(""));
+        }
+
+          
+
+        return "employee";
+    }
+     
    @RequestMapping("/addemp")
     public String addView(Model model,
                     @RequestParam(name = "empId", required=false, defaultValue = "0") int empId) {
@@ -62,7 +78,7 @@ public class EmployeeController {
             return "addemp";
         }
         
-        return "redirect:/";
+        return "redirect:/employee";
     }
        
 }

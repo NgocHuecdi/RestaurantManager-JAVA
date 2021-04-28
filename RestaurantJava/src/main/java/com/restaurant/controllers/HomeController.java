@@ -28,38 +28,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @ControllerAdvice
 public class HomeController {
-    @Autowired
-    private EmployeeService employeeService; 
-    
-//     @ModelAttribute
-//    public void addAttributes(Model model, HttpSession session) {
-//        model.addAttribute("employees", this.employeeService.getEmployeies(""));
-//    }
+
     @RequestMapping("/") //mapping vao trang chu
-    public String index(Model model,@RequestParam(name="name", required = false) String name){
-
-        if(name != null){
-            model.addAttribute("employeies", this.employeeService.getEmployeies(name));
-        }
-        else {
-            model.addAttribute("employeies", this.employeeService.getEmployeies(""));
-        }
-        
-
-       
-        if(name != null){
-            model.addAttribute("employeies", this.employeeService.getEmployeies(name));
-        }
-        else
-             model.addAttribute("employeies", this.employeeService.getEmployeies(""));
+    public String index(Model model){
 
         return "index";
     }
-    
-//    @RequestMapping("/")
-//    public String searchEmp(Model model,@RequestParam(name="name", required = false) String name){
-//         model.addAttribute("employeies", this.employeeService.getEmployeies(name));
-//         return "index";
-//    }
     
 }

@@ -44,7 +44,7 @@
             <form:select path="services" cssClass="form-control">
             <c:forEach items="${services}" var="ser">
                 <c:if test="${services.serviceId == bookDetail.services.serviceId}">
-                    <option selected value="${ser.serviceId}">${ser.name}s</option>
+                    <option selected value="${ser.serviceId}">${ser.name}</option>
                 </c:if>
                 <c:if test="${ser.serviceId != bookDetail.services.serviceId}">
                     <option value="${ser.serviceId}">${ser.name}</option>

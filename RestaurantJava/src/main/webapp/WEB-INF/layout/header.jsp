@@ -13,7 +13,7 @@
             <a class="nav-link text-white" href="<c:url value="/" />">Trang Chủ</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" href="<c:url value="/" />">Nhân Viên</a>
+            <a class="nav-link text-white" href="<c:url value="/employee" />">Nhân Viên</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-white" href="<c:url value="/services" />">Dịch Vụ</a>

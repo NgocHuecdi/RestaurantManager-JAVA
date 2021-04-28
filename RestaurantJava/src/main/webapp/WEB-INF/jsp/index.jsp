@@ -15,63 +15,9 @@
               rel="stylesheet" />
     </head>
     <body>
-        <h1 class="text-center mt-3 mb-5">Danh Sách Nhân Viên</h1>
+        <h1 class="text-center mt-3 mb-5">NHÀ HÀNG TIỆC CƯỚI</h1>
 
-        <form class="mb-5">
-            <div class="row">
-                <div class="col-md-10 form-group">
-                    <input type="text" 
-                           name="name"
-                           class="form-control" 
-                           placeholder="Nhập từ khoá để tìm..." />
-                </div>
-                <div class="col-md-2">
-                    <input type="submit" 
-                           class="btn btn-secondary"
-                           value="Tìm kiếm" />
-                </div>
-            </div>
-        </form>
-        <a href="<c:url value="addemp/" />" class="btn btn-success">Thêm nhân viên mới</a> 
-        <table border="1" class = "table table-striped table-responsive-md mt-3">
-            <thead>
-                <tr>
-                    <th class="text-center">
-                        Mã Nhân Viên
-                    </th>
-                    <th class="text-center">
-                        Tên
-                    </th>
-                    <th class="text-center">
-                        Email
-                    </th>
-                    <th class="text-center">
-                        Địa Chỉ
-                    </th>
-                    <th class="text-center">
-                        Ngày Sinh
-                    </th>
-                    <th class="text-center">
-                        Chỉnh sửa
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${employeies}" var = "emp">
-                    <tr id="employee${emp.empId}">
-                        <td> ${emp.empId}</td>
-                        <td>${emp.name}</td>
-                        <td>${emp.mail}</td>
-                        <td>${emp.address}</td>
-                        <td>${emp.birth}</td>
-                        <td class="text-center"> <a href="<c:url value="addemp" />/?empId=${emp.empId}"  class="btn btn-primary">Cập Nhật</a>
-                            <a href="javascript:;" class="btn btn-danger" onclick="deleteEmployee(${emp.empId})">Xóa</a>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-        <script src="<c:url value="/js/main.js" />"></script>
+        
     </body>
 </html>
 

@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -25,6 +26,7 @@ public class Feedback implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     private int feedbackId;
+    @NotNull(message = "(addfb.description.notNullMsg)")
     private String description;
     private String date;
     @ManyToOne
