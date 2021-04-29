@@ -45,6 +45,10 @@
         <put-attribute name="title" value="Feedback" />
         <put-attribute name="content" value="/WEB-INF/jsp/feedback.jsp" />
     </definition>
+    <definition name="addFeedback" extends="baseLayout">
+        <put-attribute name="title" value=" Add Feedback" />
+        <put-attribute name="content" value="/WEB-INF/jsp/addFeedback.jsp" />
+    </definition>
      <definition name="bookParty" extends="baseLayout">
         <put-attribute name="title" value="Book Party" />
         <put-attribute name="content" value="/WEB-INF/jsp/bookParty.jsp" />
