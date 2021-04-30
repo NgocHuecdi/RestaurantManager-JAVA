@@ -23,6 +23,7 @@
         <textarea class="form-control" id="fb" rows="3" placeholder="Nhập nội dung..."></textarea>
     </div>
     <div class="form-group text-right">
+        <form:hidden path="feedbackId" />
         <input type="submit" class="btn btn-success" value="Bình luận">
     </div>
 </form:form>

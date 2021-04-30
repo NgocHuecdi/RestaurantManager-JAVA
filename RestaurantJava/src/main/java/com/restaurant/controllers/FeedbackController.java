@@ -40,19 +40,19 @@ public class FeedbackController {
             model.addAttribute("addFeedback", new Feedback());
         }
 
-        return "addFeedback ";
+        return "addFeedback";
     }
     @PostMapping("/addFeedback/add")
     public String addFeedback(Model model,
             @ModelAttribute(value = "feedback") @Valid Feedback feedback,
             BindingResult result) {
         if (result.hasErrors()) {
-            return "feedback";
+            return "addFeedback";
         }
         
         if (!this.feedbackService.addFeedback(feedback)) {
             model.addAttribute("error_msg", "SOMETHING WRONG!!! PLEASE COME BACK LATER!");
-            return "feedback";
+            return "addFeedback";
         }
         
         return "redirect:/feedback";
