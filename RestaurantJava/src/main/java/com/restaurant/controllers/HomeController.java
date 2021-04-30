@@ -7,7 +7,10 @@ package com.restaurant.controllers;
 
 
 
+import com.restaurant.service.CustomerService;
 import com.restaurant.service.EmployeeService;
+import com.restaurant.service.EventService;
+import com.restaurant.service.ServicesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,10 +31,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @ControllerAdvice
 public class HomeController {
-
+    @Autowired
+    private ServicesService servicesService;
+    @Autowired
+    private EventService eventService;
+    @Autowired
+    private CustomerService customerService;
+    
+    @ModelAttribute
+    public void addAttributes(Model model, HttpSession session) {
+         model.addAttribute("services", this.servicesService.getServices(""));
+        model.addAttribute("event", this.eventService.getEvents());
+        model.addAttribute("customer", this.customerService.getCustomers());
+       
+    }
+    
     @RequestMapping("/") //mapping vao trang chu
     public String index(Model model){
-
+//        model.addAttribute("services", this.servicesService.getServices(""));
+//        model.addAttribute("events", this.eventService.getEvents());
         return "index";
     }
     

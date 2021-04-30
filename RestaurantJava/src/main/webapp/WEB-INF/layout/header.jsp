@@ -29,7 +29,9 @@
             <a class="nav-link text-white" href="<c:url value="/bookParty" />">Đặt Tiệc</a>
         </li>
          <li class="nav-item active">
-            <a class="nav-link text-white" href="<c:url value="/viewBook" />">Đơn Đặt Tiệc</a>
+            <a class="nav-link text-white" href="<c:url value="/viewBook" />">Đơn Đặt Tiệc
+                <span class="badge badge-danger" id="book-counter">0</span></a>
+            
         </li>
 
     </ul>

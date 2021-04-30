@@ -34,7 +34,10 @@ public class Services implements Serializable{
     @OneToMany(mappedBy = "services", fetch = FetchType.EAGER)
     private List<BookDetail> bookDetail;
 
-
+    @Override
+    public String toString() {
+        return String.valueOf(serviceId);
+    }
     /**
      * @return the serviceId
      */

@@ -51,9 +51,7 @@ public class ServicesController {
     public String addSer(Model model,
             @ModelAttribute(value = "addService") @Valid Services ser,
             BindingResult result) {
-        if (result.hasErrors()) {
-            return "addService";
-        }
+   
 
         if (!this.servicesService.addService(ser)) {
             model.addAttribute("erroMsg", "Something Wrong!!!");

@@ -80,23 +80,26 @@ public class BookDetailRepositoryImpl implements BookDetailRepository {
 
     @Override
     @Transactional
-    public BookDetail getBookId(int bookId) {
-        Session s = this.sessionFactory.getObject().getCurrentSession();
-        return s.get(BookDetail.class, bookId);
+    public BookDetail getBookDetailById(int bookDetailId) {
+         Session s = this.sessionFactory.getObject().getCurrentSession();
+        return s.get(BookDetail.class, bookDetailId);
     }
 
     @Override
     @Transactional
     public boolean addBook(BookDetail bookDetail) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
+         Session session = this.sessionFactory.getObject().getCurrentSession();
         try {
             if (bookDetail.getId() == 0) {
+                
                 session.save(bookDetail);
             }
             return true;
-        } catch (HibernateException ex) {
+        } catch (HibernateException ex){
             ex.printStackTrace();
         }
         return false;
     }
+
+    
 }

@@ -30,10 +30,15 @@ public class Event implements Serializable {
 
     private int eventId;
     private String name;
-    private int hallId;
+//    private int hallId;
     private BigDecimal price;
     @OneToMany(mappedBy = "event", fetch = FetchType.EAGER)
     private List<BookDetail> bookDetail;
+    
+    @Override
+    public String toString() {
+        return String.valueOf(eventId);
+    }
 
     /**
      * @return the eventId
@@ -76,20 +81,20 @@ public class Event implements Serializable {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
-
-    /**
-     * @return the hallId
-     */
-    public int getHallId() {
-        return hallId;
-    }
-
-    /**
-     * @param hallId the hallId to set
-     */
-    public void setHallId(int hallId) {
-        this.hallId = hallId;
-    }
+//
+//    /**
+//     * @return the hallId
+//     */
+//    public int getHallId() {
+//        return hallId;
+//    }
+//
+//    /**
+//     * @param hallId the hallId to set
+//     */
+//    public void setHallId(int hallId) {
+//        this.hallId = hallId;
+//    }
 //    /**
 //     * @return the bookDetail
 //     */
