@@ -23,9 +23,7 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "customers")
 public class Customer implements Serializable {
-
-
-    
+   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
@@ -40,6 +38,13 @@ public class Customer implements Serializable {
     private String confirmPassword;
 //    @OneToMany(mappedBy = "customers", fetch = FetchType.EAGER)
 //    private List<BookDetail> bookDetail;
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
+    private List<BookDetail> bookDetail;
+    
+    @Override
+    public String toString() {
+        return String.valueOf(customerId);
+    }
     /**
      * @return the phone
      */
@@ -144,7 +149,19 @@ public class Customer implements Serializable {
         /**
      * @return the bookDetail
      */
-   
+      /**
+     * @return the bookDetail
+     */
+    public List<BookDetail> getBookDetail() {
+        return bookDetail;
+    }
+
+    /**
+     * @param bookDetail the bookDetail to set
+     */
+    public void setBookDetail(List<BookDetail> bookDetail) {
+        this.bookDetail = bookDetail;
+    }
     
     
 }

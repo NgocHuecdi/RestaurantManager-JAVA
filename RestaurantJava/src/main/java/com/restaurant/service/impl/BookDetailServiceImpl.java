@@ -26,17 +26,17 @@ public class BookDetailServiceImpl implements BookDetailService{
     public List<Object[]> getBookDetail(String kw) {
         return this.bookDetailRepository.getBookDetail(kw);
     }
-
+    
     @Override
-    public BookDetail getBookId(int bookId) {
-        return this.bookDetailRepository.getBookId(bookId);
+    public BookDetail getBookDetailById(int bookDetailId) {
+         return this.bookDetailRepository.getBookDetailById(bookDetailId);
     }
+   
 
     @Override
     public boolean addBook(BookDetail bookDetail) {
         return this.bookDetailRepository.addBook(bookDetail);
     }
 
-    
     
 }

@@ -45,19 +45,21 @@ public class BookDetail implements Serializable {
     
     private Double numberGuest;
     private String description;
-    /**
-     * @return the id
+    
+       /**
+     * @return the bookDetailId
      */
     public int getId() {
         return id;
     }
 
     /**
-     * @param id the id to set
+     * @param bookDetailId the bookDetailId to set
      */
     public void setId(int id) {
         this.id = id;
     }
+
 
     /**
      * @return the customer
@@ -141,5 +143,7 @@ public class BookDetail implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+ 
 
 }

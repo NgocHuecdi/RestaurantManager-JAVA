@@ -5,16 +5,15 @@
  */
 package com.restaurant.repository;
 
-import com.restaurant.pojo.Book;
-import com.restaurant.pojo.BookDetail;
+import com.restaurant.pojo.Customer;
 import java.util.List;
 
 /**
  *
  * @author HP
  */
-public interface BookDetailRepository {
-    List<Object[]> getBookDetail(String kw);
-    BookDetail getBookDetailById(int bookDetailId);
-    boolean addBook(BookDetail bookDetail);
+public interface CustomerRepository {
+    List<Customer> getCustomers();
+    Customer getCustomerById(int customerId);
+    
 }

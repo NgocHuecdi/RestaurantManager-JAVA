@@ -22,11 +22,7 @@ public class Utils {
         BigDecimal priceEvent = new BigDecimal(0);
         BigDecimal total = new BigDecimal(0);
         if (book != null) {
-            for (Book b: book.values()) {
-                priceService = b.getPriceService();
-                priceEvent = b.getPriceEvent();
-                total = priceEvent.add(priceService);
-            }
+            
         }
         
         Map<String, BigDecimal> re = new HashMap<>();

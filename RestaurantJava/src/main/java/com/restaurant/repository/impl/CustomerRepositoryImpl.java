@@ -5,8 +5,8 @@
  */
 package com.restaurant.repository.impl;
 
-import com.restaurant.pojo.Event;
-import com.restaurant.repository.EventRepository;
+import com.restaurant.pojo.Customer;
+import com.restaurant.repository.CustomerRepository;
 import java.util.List;
 import javax.persistence.Query;
 import org.hibernate.Session;
@@ -20,24 +20,24 @@ import org.springframework.transaction.annotation.Transactional;
  * @author HP
  */
 @Repository
-public class EventRepositoryImpl implements EventRepository{
-
-    @Autowired
-    private LocalSessionFactoryBean sessionFactory;
+public class CustomerRepositoryImpl implements CustomerRepository{
     
-    @Override
-    @Transactional
-    public List<Event> getEvents() {
-        Session s = this.sessionFactory.getObject().getCurrentSession();
-        Query q = s.createQuery("From Event");
-        return q.getResultList();
-     }
+        @Autowired
+    private LocalSessionFactoryBean sessionFactory;
 
     @Override
     @Transactional
-    public Event getEventById(int eventId) {
+    public List<Customer> getCustomers() {
+        Session s = this.sessionFactory.getObject().getCurrentSession();
+        Query q = s.createQuery("From Customer");
+        return q.getResultList();
+    }
+
+    @Override
+    @Transactional
+    public Customer getCustomerById(int customerId) {
          Session s = this.sessionFactory.getObject().getCurrentSession();
-        return s.get(Event.class, eventId);
+        return s.get(Customer.class, customerId);
     }
     
 }

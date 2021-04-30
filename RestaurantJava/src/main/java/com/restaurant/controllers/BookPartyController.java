@@ -7,6 +7,7 @@ package com.restaurant.controllers;
 
 import com.restaurant.pojo.BookDetail;
 import com.restaurant.service.BookDetailService;
+import com.restaurant.service.EventService;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -28,11 +29,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class BookPartyController {
    @Autowired
     private BookDetailService bookDetailService;
+   @Autowired
+    private EventService eventService;
+
 
     @GetMapping("/viewBook") //mapping vao trang chu
-    public String viewBook(Model model, @RequestParam(name = "bookDetailId", required = false) String bookDetailId) {
+    public String viewBook(Model model, @RequestParam(name = "description", required = false) String description) {
       
-       List<Object[]> bookDetails = this.bookDetailService.getBookDetail(bookDetailId);
+       List<Object[]> bookDetails = this.bookDetailService.getBookDetail("");
         model.addAttribute("bookDetails", bookDetails);
         return "viewBook";
     }
@@ -40,7 +44,7 @@ public class BookPartyController {
     @RequestMapping("/bookParty")
     public String addView(Model model,
             @RequestParam(name = "bookDetailId", required = false, defaultValue = "0") int bookDetailId) {
-        if (bookDetailId > 0) {
+        if (bookDetailId == 0) {
             model.addAttribute("bookParty", new BookDetail());
         }
 
@@ -48,19 +52,18 @@ public class BookPartyController {
     }
 
     @PostMapping("/bookParty/add")
-
     public String addBookParty(Model model,
-            @ModelAttribute(value = "addBookParty") @Valid BookDetail bookdetail,
+            @ModelAttribute(value = "bookParty") @Valid BookDetail bookdetail,
             BindingResult result) {
-        if (result.hasErrors()) {
-            return "bookParty";
-        }
+//        if (result.hasErrors()) {
+//            return "bookParty";
+//        }
 
         if (!this.bookDetailService.addBook(bookdetail)) {
             model.addAttribute("erroMsg", "Something Wrong!!!");
             return "bookParty";
         }
 
-        return "redirect:/bookParty";
+        return "redirect:/";
     }
 }

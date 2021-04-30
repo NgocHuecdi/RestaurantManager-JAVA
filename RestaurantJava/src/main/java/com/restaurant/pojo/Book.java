@@ -13,98 +13,113 @@ import java.util.Date;
  * @author HP
  */
 public class Book {
-
- 
-
-    private int serviceId;
-    private int eventId;
-    private int hallId;
-    private int empId;
+    
+    private int bookDetailId;
+    private String customerName;
+    private String phone;
+    private String address;
+    private String serviceName;
+    private String eventName;
     private Date dateUse;
     private double numberGuest;
-    private BigDecimal priceService;
-    private BigDecimal priceEvent;
+    private String discription;
     
-    public Book(int serviceId, int eventId,int hallId,int empId, Date dateUse, double numberGuest, 
-            BigDecimal priceService, BigDecimal priceEvent){
-        this.serviceId = serviceId;
-        this.eventId = eventId;
-        this.hallId = hallId;
-        this.empId = empId;
-        this.dateUse = dateUse;
-        this.numberGuest = numberGuest;
-        this.priceService = priceEvent;
-        this.priceEvent = priceEvent;
-    }
-
-    /**
-     * @return the serviceId
-     */
-    public int getServiceId() {
-        return serviceId;
-    }
-
-    /**
-     * @param serviceId the serviceId to set
-     */
-    public void setServiceId(int serviceId) {
-        this.serviceId = serviceId;
-    }
-
-    /**
-     * @return the eventId
-     */
-    public int getEventId() {
-        return eventId;
-    }
-
-    /**
-     * @param eventId the eventId to set
-     */
-    public void setEventId(int eventId) {
-        this.eventId = eventId;
-    }
-
-    /**
-     * @return the priceService
-     */
-    public BigDecimal getPriceService() {
-        return priceService;
-    }
-
-    /**
-     * @param priceService the priceService to set
-     */
-    public void setPriceService(BigDecimal priceService) {
-        this.priceService = priceService;
-    }
-
-    /**
-     * @return the priceEvent
-     */
-    public BigDecimal getPriceEvent() {
-        return priceEvent;
-    }
-
-    /**
-     * @param priceEvent the priceEvent to set
-     */
-    public void setPriceEvent(BigDecimal priceEvent) {
-        this.priceEvent = priceEvent;
-    }
     
+//    public Book(int bookDetailId,String customerName,String phone,String address, String serviceNamee, String eventName, 
+//            Date dateUse, double numberGuest, String discription){
+//        this.bookDetailId = bookDetailId;
+//        this.customerName = customerName;
+//        this.phone = phone;
+//        this.address = address;
+//        this.eventName = eventName;
+//        this.numberGuest = numberGuest;
+//        this.dateUse = dateUse;
+//        this.numberGuest = numberGuest;
+//        this.discription = discription;
+//    }
+
     /**
-     * @return the hallId
+     * @return the bookId
      */
-    public int getHallId() {
-        return hallId;
+    public int getBookDetailId() {
+        return bookDetailId;
     }
 
     /**
-     * @param hallId the hallId to set
+     * @param bookId the bookId to set
      */
-    public void setHallId(int hallId) {
-        this.hallId = hallId;
+    public void setBookDetailId(int bookDetailId) {
+        this.bookDetailId = bookDetailId;
+    }
+
+    /**
+     * @return the customerName
+     */
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    /**
+     * @param customerName the customerName to set
+     */
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    /**
+     * @return the phone
+     */
+    public String getPhone() {
+        return phone;
+    }
+
+    /**
+     * @param phone the phone to set
+     */
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    /**
+     * @return the address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    /**
+     * @return the serviceName
+     */
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    /**
+     * @param serviceName the serviceName to set
+     */
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    /**
+     * @return the eventName
+     */
+    public String getEventName() {
+        return eventName;
+    }
+
+    /**
+     * @param eventName the eventName to set
+     */
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
 
     /**
@@ -134,17 +149,22 @@ public class Book {
     public void setNumberGuest(double numberGuest) {
         this.numberGuest = numberGuest;
     }
+
     /**
-     * @return the empId
+     * @return the discription
      */
-    public int getEmpId() {
-        return empId;
+    public String getDiscription() {
+        return discription;
     }
 
     /**
-     * @param empId the empId to set
+     * @param discription the discription to set
      */
-    public void setEmpId(int empId) {
-        this.empId = empId;
+    public void setDiscription(String discription) {
+        this.discription = discription;
     }
+    
+
+
+  
 }

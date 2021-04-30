@@ -44,4 +44,14 @@ function loadBookDetail(){
         d.innerHTML = msg;
     });
 }
-
+function addBookParty(bookDetailId) {
+    fetch(`/RestaurantJava/api/bookParty/${bookDetailId}`).then(function(res) {
+            if (res.status == 200) {
+                let d = document.getElementById("book-counter");
+                let v = parseInt(d.innerText);
+                d.innerText = v + 1;
+            } else {
+                alert("Something wrong!!!");
+            }
+        })
+}
