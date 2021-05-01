@@ -6,7 +6,6 @@
 package com.restaurant.pojo;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -40,8 +39,8 @@ public class BookDetail implements Serializable {
     @JoinColumn(name = "eventId")
     private Event event;
     
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateUse;
+ 
+    private String dateUse;
     
     private Double numberGuest;
     private String description;
@@ -106,14 +105,14 @@ public class BookDetail implements Serializable {
     /**
      * @return the dateUse
      */
-    public Date getDateUse() {
+    public String getDateUse() {
         return dateUse;
     }
 
     /**
      * @param dateUse the dateUse to set
      */
-    public void setDateUse(Date dateUse) {
+    public void setDateUse(String dateUse) {
         this.dateUse = dateUse;
     }
     /**

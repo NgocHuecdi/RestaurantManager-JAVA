@@ -18,15 +18,14 @@
            modelAttribute="bookParty">
 
   <div class="form-group">
-        <label for="">customerID</label>
+        <label for="">Tên Khách Hàng</label>
        <form:select path="customer" cssClass="form-control">
             <c:forEach items="${customer}" var="cus">
                 <option value="${cus.customerId}">${cus.name}</option>
             </c:forEach>
         </form:select>
     </div>
-
-  
+ 
     <div class="form-group">
         <label for="service">Dịch vụ</label>
         <form:select path="services" cssClass="form-control">
@@ -44,18 +43,19 @@
         </form:select>
     </div>
     <div class="form-group">
+        <label for="">Ngày tổ chức</label>
+        <form:input cssClass="form-control" path="dateUse"  />
+    </div>
+    <div class="form-group">
         <label for="">Số lượng khách</label>
         <form:input cssClass="form-control" path="numberGuest" />
     </div>
-    <div class="form-group">
-        <label for="">Ngày tổ chức</label>
-        <form:input cssClass="form-control" path="dateUse" />
-
-    </div>
+  
     <div class="form-group">
         <label for="">Ghi Chú</label>
-        <form:input cssClass="form-control" path="description" />
+        <form:input cssClass="form-control" path="description"/>
     </div>
+  
     <div class="form-group">
         <form:hidden path="id" />
         <input type="submit" value="Gửi thông tin" 

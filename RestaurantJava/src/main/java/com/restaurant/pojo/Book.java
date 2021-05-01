@@ -20,7 +20,7 @@ public class Book {
     private String address;
     private String serviceName;
     private String eventName;
-    private Date dateUse;
+    private String dateUse;
     private double numberGuest;
     private String discription;
     
@@ -125,14 +125,14 @@ public class Book {
     /**
      * @return the dateUse
      */
-    public Date getDateUse() {
+    public String getDateUse() {
         return dateUse;
     }
 
     /**
      * @param dateUse the dateUse to set
      */
-    public void setDateUse(Date dateUse) {
+    public void setDateUse(String dateUse) {
         this.dateUse = dateUse;
     }
 

@@ -40,35 +40,35 @@ public class ApiBookPartyController {
         return new ResponseEntity<>(this.bookDetailService.getBookDetail(null), HttpStatus.OK);
     }
     
-//    @GetMapping("/bookParty")
-//    @ResponseStatus(HttpStatus.OK)
-//    public void addBookParty(@PathVariable(name = "bookDetailId") int bookDetailId,
-//            HttpSession session) {
-//        
-//        Map<Integer, Book> book = (Map<Integer, Book>) session.getAttribute("book");
-//        if (book == null)
-//            book = new HashMap<>();
-//        
-//        if (book.containsKey(bookDetailId) == true) {// đã có trong don dat tiec
-//            Book b = book.get(bookDetailId);
-////            b.setQuantity(c.getQuantity() + 1);
-//        } else { // chưa có trong giỏ
-//            BookDetail bookDetail = this.bookDetailService.getBookDetailById(bookDetailId);
-//            
-//            Book b = new Book();
-//            b.setBookDetailId(bookDetail.getId());
-//            b.setCustomerName(null);
-//            b.setPhone(null);
-//            b.setAddress(null);
-//            b.setServiceName(null);
-//            b.setEventName(null);
-//            b.setDateUse(bookDetail.getDateUse());
-//            b.setNumberGuest(bookDetail.getNumberGuest());
-//            b.setDiscription(bookDetail.getDescription());
-//            
-//            book.put(bookDetailId, b);
-//        }
-//        
-//        session.setAttribute("bookParty", book);
-//    }
+    @GetMapping("/bookParty/{bookPartyId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void addBookParty(@PathVariable(name = "bookDetailId") int bookDetailId,
+            HttpSession session) {
+        
+        Map<Integer, Book> book = (Map<Integer, Book>) session.getAttribute("book");
+        if (book == null)
+            book = new HashMap<>();
+        
+        if (book.containsKey(bookDetailId) == true) {// đã có trong don dat tiec
+            Book b = book.get(bookDetailId);
+           // b.setQuantity(b.getQuantity() + 1);
+        } else { // chưa có trong giỏ
+            BookDetail bookDetail = this.bookDetailService.getBookDetailById(bookDetailId);
+            
+            Book b = new Book();
+            b.setBookDetailId(bookDetail.getId());
+            b.setCustomerName(null);
+            b.setPhone(null);
+            b.setAddress(null);
+            b.setServiceName(null);
+            b.setEventName(null);
+            b.setDateUse(bookDetail.getDateUse());
+            b.setNumberGuest(bookDetail.getNumberGuest());
+            b.setDiscription(bookDetail.getDescription());
+            
+            book.put(bookDetailId, b);
+        }
+        
+        session.setAttribute("bookParty", book);
+    }
 }

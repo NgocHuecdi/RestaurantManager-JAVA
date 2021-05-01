@@ -38,9 +38,6 @@ public class EmployeeController {
         else {
             model.addAttribute("employees", this.employeeService.getEmployeies(""));
         }
-
-          
-
         return "employee";
     }
      

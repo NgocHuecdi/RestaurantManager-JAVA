@@ -59,7 +59,7 @@ public class BookDetailRepositoryImpl implements BookDetailRepository {
                 customerRoot.get("address").as(String.class),
                 serviceRoot.get("name").as(String.class),
                 eventRoot.get("name").as(String.class),
-                bookDetailRoot.get("dateUse").as(Date.class),
+                bookDetailRoot.get("dateUse").as(String.class),
                 bookDetailRoot.get("numberGuest").as(Double.class),
                 bookDetailRoot.get("description").as(String.class)
         );
@@ -69,7 +69,7 @@ public class BookDetailRepositoryImpl implements BookDetailRepository {
                 customerRoot.get("address").as(String.class),
                 serviceRoot.get("name").as(String.class),
                 eventRoot.get("name").as(String.class),
-                bookDetailRoot.get("dateUse").as(Date.class),
+                bookDetailRoot.get("dateUse").as(String.class),
                 bookDetailRoot.get("numberGuest").as(Double.class),
                 bookDetailRoot.get("description").as(String.class)
         );

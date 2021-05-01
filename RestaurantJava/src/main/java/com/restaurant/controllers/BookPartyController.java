@@ -8,6 +8,8 @@ package com.restaurant.controllers;
 import com.restaurant.pojo.BookDetail;
 import com.restaurant.service.BookDetailService;
 import com.restaurant.service.EventService;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -27,6 +29,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class BookPartyController {
+    @Autowired
+    private SimpleDateFormat simpleDateFormat;
    @Autowired
     private BookDetailService bookDetailService;
    @Autowired
@@ -44,6 +48,7 @@ public class BookPartyController {
     @RequestMapping("/bookParty")
     public String addView(Model model,
             @RequestParam(name = "bookDetailId", required = false, defaultValue = "0") int bookDetailId) {
+        
         if (bookDetailId == 0) {
             model.addAttribute("bookParty", new BookDetail());
         }
@@ -54,11 +59,11 @@ public class BookPartyController {
     @PostMapping("/bookParty/add")
     public String addBookParty(Model model,
             @ModelAttribute(value = "bookParty") @Valid BookDetail bookdetail,
-            BindingResult result) {
-//        if (result.hasErrors()) {
-//            return "bookParty";
-//        }
-
+            BindingResult result) { 
+      
+        if (result.hasErrors()) {
+            return "bookParty";
+        } 
         if (!this.bookDetailService.addBook(bookdetail)) {
             model.addAttribute("erroMsg", "Something Wrong!!!");
             return "bookParty";
