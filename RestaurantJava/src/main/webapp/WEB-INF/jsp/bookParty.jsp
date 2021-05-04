@@ -55,13 +55,15 @@
         <label for="">Ghi Chú</label>
         <form:input cssClass="form-control" path="description"/>
     </div>
+    <a  path = "customer" href="javascript:;" 
+           onclick="addBookParty(${customerId})">Them gio hang</a>
   
     <div class="form-group">
         <form:hidden path="id" />
         <input type="submit" value="Gửi thông tin" 
                class="btn btn-danger" />
+        
     </div>
 </form:form>
 
-
-
+<script src="<c:url value="/js/main.js" />"></script>

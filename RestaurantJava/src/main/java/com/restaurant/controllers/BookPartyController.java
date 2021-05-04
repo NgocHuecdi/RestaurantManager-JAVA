@@ -38,13 +38,20 @@ public class BookPartyController {
 
 
     @GetMapping("/viewBook") //mapping vao trang chu
-    public String viewBook(Model model, @RequestParam(name = "description", required = false) String description) {
+    public String viewBook(Model model, HttpSession session,
+            @RequestParam(name = "description", required = false) String description) {
       
        List<Object[]> bookDetails = this.bookDetailService.getBookDetail("");
         model.addAttribute("bookDetails", bookDetails);
+        model.addAttribute("viewBook", session.getAttribute("viewBook"));
         return "viewBook";
     }
 
+//    @GetMapping("/viewBook")
+//    public String book(Model model, HttpSession session){
+//       model.addAttribute("bookParty", session.getAttribute("viewBook"));
+//        return "viewBook";
+//    }
     @RequestMapping("/bookParty")
     public String addView(Model model,
             @RequestParam(name = "bookDetailId", required = false, defaultValue = "0") int bookDetailId) {
@@ -65,7 +72,7 @@ public class BookPartyController {
             return "bookParty";
         } 
         if (!this.bookDetailService.addBook(bookdetail)) {
-            model.addAttribute("erroMsg", "Something Wrong!!!");
+            model.addAttribute("erroMsg", "Something looi!!!");
             return "bookParty";
         }
 

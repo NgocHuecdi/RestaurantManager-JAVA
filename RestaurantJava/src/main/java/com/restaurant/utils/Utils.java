@@ -1,4 +1,4 @@
-/*
+            /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -18,17 +18,16 @@ import java.util.Map;
 public class Utils {
 
     public static Map<String, BigDecimal> bookStats(Map<Integer, Book> book) {
-        BigDecimal priceService = new BigDecimal(0);
-        BigDecimal priceEvent = new BigDecimal(0);
-        BigDecimal total = new BigDecimal(0);
+        int totalQuantity = 0;
         if (book != null) {
-            
+            for (Book b: book.values()) {
+                totalQuantity += b.getQuantity();
+            }
         }
         
         Map<String, BigDecimal> re = new HashMap<>();
-        re.put("total", total);
+        re.put("totalQuantity", new BigDecimal(totalQuantity));
 //        re.put("totalService", new BigDecimal());
-        
         return re;
 
     }

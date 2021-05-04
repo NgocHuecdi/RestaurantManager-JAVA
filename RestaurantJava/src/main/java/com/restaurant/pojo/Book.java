@@ -13,6 +13,8 @@ import java.util.Date;
  * @author HP
  */
 public class Book {
+
+
     
     private int bookDetailId;
     private String customerName;
@@ -21,8 +23,9 @@ public class Book {
     private String serviceName;
     private String eventName;
     private String dateUse;
-    private double numberGuest;
-    private String discription;
+    private Double numberGuest;
+    private String description;
+    private Integer quantity;
     
     
 //    public Book(int bookDetailId,String customerName,String phone,String address, String serviceNamee, String eventName, 
@@ -151,20 +154,32 @@ public class Book {
     }
 
     /**
-     * @return the discription
+     * @return the description
      */
-    public String getDiscription() {
-        return discription;
+    public String getDescription() {
+        return description;
     }
 
     /**
-     * @param discription the discription to set
+     * @param description the description to set
      */
-    public void setDiscription(String discription) {
-        this.discription = discription;
+    public void setDescription(String description) {
+        this.description = description;
     }
     
+    /**
+     * @return the quantity
+     */
+    public Integer getQuantity() {
+        return quantity;
+    }
 
+    /**
+     * @param quantity the quantity to set
+     */
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 
   
 }

@@ -7,10 +7,16 @@ package com.restaurant.controllers;
 
 import com.restaurant.pojo.Book;
 import com.restaurant.pojo.BookDetail;
+import com.restaurant.pojo.Customer;
+import com.restaurant.pojo.Event;
+import com.restaurant.pojo.Services;
 import com.restaurant.repository.BookDetailRepository;
 import com.restaurant.repository.EventRepository;
 import com.restaurant.repository.ServiceRepository;
 import com.restaurant.service.BookDetailService;
+import com.restaurant.service.CustomerService;
+import com.restaurant.service.EventService;
+import com.restaurant.service.ServicesService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,41 +40,57 @@ import org.springframework.web.bind.annotation.RestController;
 public class ApiBookPartyController {
     @Autowired
     private BookDetailService bookDetailService;
+    @Autowired
+    private CustomerService customerService;
+    @Autowired
+    private ServicesService servicesService; 
+    @Autowired
+    private EventService eventService;
     
     @GetMapping("/viewBook")
     public ResponseEntity<List<Object[]>> getBookDetail() {
         return new ResponseEntity<>(this.bookDetailService.getBookDetail(null), HttpStatus.OK);
     }
     
-    @GetMapping("/bookParty/{bookPartyId}")
+    @GetMapping("/viewBook/{bookDetailId}")
     @ResponseStatus(HttpStatus.OK)
-    public void addBookParty(@PathVariable(name = "bookDetailId") int bookDetailId,
+  public void addBookParty(@PathVariable(name = "bookDetailId") int bookDetailId,int customerId, 
+          int serviceId, int eventId,
             HttpSession session) {
         
-        Map<Integer, Book> book = (Map<Integer, Book>) session.getAttribute("book");
+        Map<Integer, Book> book = (Map<Integer, Book>) session.getAttribute("viewBook");
         if (book == null)
             book = new HashMap<>();
         
-        if (book.containsKey(bookDetailId) == true) {// đã có trong don dat tiec
+        if (book.containsKey(bookDetailId) == true) {// đã có trong giỏ 
             Book b = book.get(bookDetailId);
-           // b.setQuantity(b.getQuantity() + 1);
-        } else { // chưa có trong giỏ
+            b.setQuantity(b.getQuantity() + 1);
+        }
+        if(book.containsKey(bookDetailId) == false) { // chưa có trong giỏ
+         
             BookDetail bookDetail = this.bookDetailService.getBookDetailById(bookDetailId);
+            Customer customer = this.customerService.getCustomerById(customerId);
+            Services services = this.servicesService.getServiceId(serviceId);
+            Event event = this.eventService.getEventById(eventId);
             
             Book b = new Book();
+//            c.setProductId(p.getId());
+//            c.setProductName(p.getName());
+//            c.setPrice(p.getPrice());
             b.setBookDetailId(bookDetail.getId());
-            b.setCustomerName(null);
-            b.setPhone(null);
-            b.setAddress(null);
-            b.setServiceName(null);
-            b.setEventName(null);
+            b.setCustomerName(customer.getName());
+            b.setAddress(customer.getAddress());
+            b.setPhone(customer.getPhone());
+            b.setServiceName(services.getName());
+            b.setEventName(event.getName());
             b.setDateUse(bookDetail.getDateUse());
-            b.setNumberGuest(bookDetail.getNumberGuest());
-            b.setDiscription(bookDetail.getDescription());
+            b.setDescription(bookDetail.getDescription());
+            b.setQuantity(1);
             
             book.put(bookDetailId, b);
         }
         
-        session.setAttribute("bookParty", book);
+        session.setAttribute("viewBook", book);
     }
+    
 }
