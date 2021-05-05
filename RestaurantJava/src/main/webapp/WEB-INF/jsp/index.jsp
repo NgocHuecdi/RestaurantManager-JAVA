@@ -40,18 +40,7 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-
-        <!--        <div name="group-card">
-                    <div class="card" style="width: 30rem; display:block; top: 50px">
-                        <a href="#">
-                            <img class="card-img-top" src="<c:url value="/img/hall1.jpg" />" alt="Card image cap">
-                        <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        </a>
-                    </div>
-                </div>-->
-
+                
         <div class="container" style="display:block; top: 50px; bottom: 50px">
             <div class="row">
                 <div class="col">
@@ -66,7 +55,7 @@
                 </div>
                 <div class="col">
                     <div class="card" style="width: 30rem;">
-                        <a href="#" style="text-decoration: none;">
+                        <a href="<c:url value="/cusService" />" style="text-decoration: none;">
                             <img class="card-img-top" src="<c:url value="/img/service1_1.jpg" />" alt="Card image cap">
                             <div class="card-body">
                                 <h4 class="card-text" style="color:#007bff; text-align: center">Dịch Vụ</h4>
@@ -77,7 +66,7 @@
                 <div class="w-100"></div>
                 <div class="col">
                     <div class="card" style="width: 30rem; top: 6%;  margin: auto;margin-bottom: 6%">
-                        <a href="#" style="text-decoration: none;">
+                        <a href="<c:url value="/hall" />" style="text-decoration: none;">
                             <img class="card-img-top" src="<c:url value="/img/hall1.jpg" />" alt="Card image cap">
                             <div class="card-body">
                                 <h4 class="card-text" style="color:#007bff; text-align: center">Sảnh</h4>

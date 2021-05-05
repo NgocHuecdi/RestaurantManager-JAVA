@@ -69,4 +69,12 @@
         <put-attribute name="title" value="Event-Customer" />
         <put-attribute name="content" value="/WEB-INF/jsp/cusEvent.jsp" />
     </definition>
+       <definition name="hall" extends="baseLayout">
+        <put-attribute name="title" value="Sanh" />
+        <put-attribute name="content" value="/WEB-INF/jsp/hall.jsp" />
+    </definition>
+     <definition name="cusService" extends="baseLayout">
+        <put-attribute name="title" value="Sanh" />
+        <put-attribute name="content" value="/WEB-INF/jsp/cusService.jsp" />
+    </definition>
 </tiles-definitions>

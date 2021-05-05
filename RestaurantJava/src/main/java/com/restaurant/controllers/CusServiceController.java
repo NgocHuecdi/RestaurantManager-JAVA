@@ -9,16 +9,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 /**
  *
  * @author HP
  */
 @Controller
-public class CusEvent {
-      @RequestMapping("/cusEvent") //mapping vao trang chu
+public class CusServiceController {
+     @RequestMapping("/cusService") //mapping vao trang chu
     public String cusEvent(Model model){
 
-        return "cusEvent";
+        return "cusService";
     }
 }
