@@ -14,8 +14,6 @@ import java.util.Date;
  */
 public class Book {
 
-
-    
     private int bookDetailId;
     private String customerName;
     private String phone;

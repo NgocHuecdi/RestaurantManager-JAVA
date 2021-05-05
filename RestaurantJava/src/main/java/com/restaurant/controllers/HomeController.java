@@ -10,6 +10,7 @@ package com.restaurant.controllers;
 import com.restaurant.service.CustomerService;
 import com.restaurant.service.EmployeeService;
 import com.restaurant.service.EventService;
+import com.restaurant.service.HallService;
 import com.restaurant.service.ServicesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,12 +38,15 @@ public class HomeController {
     private EventService eventService;
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private HallService hallService;
     
     @ModelAttribute
     public void addAttributes(Model model, HttpSession session) {
          model.addAttribute("services", this.servicesService.getServices(""));
-        model.addAttribute("event", this.eventService.getEvents());
+        model.addAttribute("event", this.eventService.getEvents(""));
         model.addAttribute("customer", this.customerService.getCustomers());
+         model.addAttribute("hall", this.hallService.getHalls(""));
        
     }
     

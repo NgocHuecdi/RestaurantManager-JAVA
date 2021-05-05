@@ -9,6 +9,7 @@ package com.restaurant.config;
 import com.restaunrant.formatter.CustomerFormatter;
 import com.restaunrant.formatter.EmployeeFormatter;
 import com.restaunrant.formatter.EventFormatter;
+import com.restaunrant.formatter.HallFormatter;
 import com.restaunrant.formatter.ServiceFormatter;
 import java.text.SimpleDateFormat;
 import org.springframework.context.MessageSource;
@@ -80,6 +81,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addFormatter(new CustomerFormatter());
         registry.addFormatter(new ServiceFormatter());
         registry.addFormatter(new EventFormatter());
+        registry.addFormatter(new HallFormatter());
     }
     @Bean
     public SimpleDateFormat simpleDateFormat() {

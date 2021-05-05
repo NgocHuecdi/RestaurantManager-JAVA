@@ -23,8 +23,6 @@ import javax.persistence.Temporal;
 @Entity
 @Table(name = "bills")
 public class Bill implements Serializable{
-
-
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,6 +47,10 @@ public class Bill implements Serializable{
     @ManyToOne
     @JoinColumn(name = "booId")
     private BookDetail bookDetail;
+    
+    @ManyToOne
+    @JoinColumn(name = "hallId")
+    private Hall hall;
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date datePay;
@@ -149,6 +151,19 @@ public class Bill implements Serializable{
      */
     public void setBookDetail(BookDetail bookDetail) {
         this.bookDetail = bookDetail;
+    }
+        /**
+     * @return the hall
+     */
+    public Hall getHall() {
+        return hall;
+    }
+
+    /**
+     * @param hall the hall to set
+     */
+    public void setHall(Hall hall) {
+        this.hall = hall;
     }
     
 }

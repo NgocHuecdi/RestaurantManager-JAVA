@@ -68,9 +68,9 @@ public class BookPartyController {
             @ModelAttribute(value = "bookParty") @Valid BookDetail bookdetail,
             BindingResult result) { 
       
-        if (result.hasErrors()) {
-            return "bookParty";
-        } 
+//        if (result.hasErrors()) {
+//            return "bookParty";
+//        } 
         if (!this.bookDetailService.addBook(bookdetail)) {
             model.addAttribute("erroMsg", "Something looi!!!");
             return "bookParty";

@@ -11,6 +11,7 @@ import com.restaurant.pojo.BookDetail;
 import com.restaurant.pojo.Customer;
 import com.restaurant.pojo.Employee;
 import com.restaurant.pojo.Event;
+import com.restaurant.pojo.Hall;
 import com.restaurant.pojo.Services;
 import com.restaurant.repository.BillStatsRepository;
 import com.restaurant.repository.EmployeeRepository;
@@ -66,11 +67,14 @@ public class BillStatsRepositoryImpl implements BillStatsRepository {
         Root empRoot = query.from(Employee.class);
         Root serviceRoot = query.from(Services.class);
         Root eventRoot = query.from(Event.class);
+        Root hallRoot = query.from(Hall.class);
+        
         query = query.where(builder.and(
                 builder.equal(customerRoot.get("customerId"), billRoot.get("customer")),
                 builder.equal(empRoot.get("empId"), billRoot.get("employee")),
                 builder.equal(serviceRoot.get("serviceId"), billRoot.get("services")),
-                builder.equal(eventRoot.get("eventId"), billRoot.get("event"))
+                builder.equal(eventRoot.get("eventId"), billRoot.get("event")),
+                builder.equal(hallRoot.get("hallId"), billRoot.get("hall"))
         ));
 
         BigDecimal total = null;
@@ -80,6 +84,7 @@ public class BillStatsRepositoryImpl implements BillStatsRepository {
                 empRoot.get("name").as(String.class),
                 serviceRoot.get("name").as(String.class),
                 eventRoot.get("name").as(String.class),
+                hallRoot.get("name").as(String.class),
                 billRoot.get("datePay").as(Date.class),
                 builder.sum(eventRoot.<BigDecimal>get("price"), serviceRoot.<BigDecimal>get("unit_price")));
 
@@ -89,6 +94,7 @@ public class BillStatsRepositoryImpl implements BillStatsRepository {
                 empRoot.get("name").as(String.class),
                 serviceRoot.get("name").as(String.class),
                 eventRoot.get("name").as(String.class),
+                hallRoot.get("name").as(String.class),
                 billRoot.get("datePay").as(Date.class)
         );
         if (fromDate != null && toDate != null) {

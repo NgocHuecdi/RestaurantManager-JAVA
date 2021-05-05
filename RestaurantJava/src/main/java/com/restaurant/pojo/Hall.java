@@ -19,12 +19,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "halls")
 public class Hall implements Serializable{
+
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int hallId;
     private String name;
-    private Double acreage;
+    private int seat;
+    
+    
+        
+    @Override
+    public String toString() {
+        return String.valueOf(hallId);
+    }
 
     /**
      * @return the hallId
@@ -55,17 +63,17 @@ public class Hall implements Serializable{
     }
 
     /**
-     * @return the acreage
+     * @return the seat
      */
-    public Double getAcreage() {
-        return acreage;
+    public int getSeat() {
+        return seat;
     }
 
     /**
-     * @param acreage the acreage to set
+     * @param seat the seat to set
      */
-    public void setAcreage(Double acreage) {
-        this.acreage = acreage;
+    public void setSeat(int seat) {
+        this.seat = seat;
     }
 
 }

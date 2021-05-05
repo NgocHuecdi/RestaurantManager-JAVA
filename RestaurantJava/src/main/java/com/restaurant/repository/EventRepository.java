@@ -13,6 +13,6 @@ import java.util.List;
  * @author HP
  */
 public interface EventRepository {
-    List<Event> getEvents();
+    List<Event> getEvents(String kw);
     Event getEventById(int eventId);
 }

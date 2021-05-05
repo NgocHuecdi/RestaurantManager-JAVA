@@ -48,7 +48,7 @@
                     <c:forEach items="${hall}" var="ha" begin="0" end = "0">        
 
                         <h2 class="nav-link active " style="color: #007bff">${ha.name}</h2>
-                        <p style="font-size: 20px;   font-style: italic;">  Với diện tích ${ha.acreage}</p>
+                        <p style="font-size: 20px;   font-style: italic;">  Với ${ha.seat} chổ ngồi</p>
 
                     </c:forEach>
                 </div>
@@ -63,7 +63,7 @@
                 <div class="discription">
                     <c:forEach items="${hall}" var="ha" begin="1" end = "1">        
                         <h2 class="nav-link active " style="color: #007bff">${ha.name}</h2>
-                        <p style="font-size: 20px;   font-style: italic;">  Với diện tích ${ha.acreage}</p>
+                        <p style="font-size: 20px;   font-style: italic;">  Với ${ha.seat} chổ ngồi</p>
                     </c:forEach>
                 </div>
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width: 550px">
@@ -123,7 +123,7 @@
                     <c:forEach items="${hall}" var="ha" begin="2" end = "2">        
 
                         <h2 class="nav-link active " style="color: #007bff">${ha.name}</h2>
-                        <p style="font-size: 20px;   font-style: italic;">  Với diện tích ${ha.acreage}</p>
+                        <p style="font-size: 20px;   font-style: italic;">  Với ${ha.seat} chổ ngồi</p>
 
                     </c:forEach>
                 </div>
@@ -140,7 +140,7 @@
                 <div class="discription">
                     <c:forEach items="${hall}" var="ha" begin="3" end = "3">        
                         <h2 class="nav-link active " style="color: #007bff">${ha.name}</h2>
-                        <p style="font-size: 20px;   font-style: italic;">  Với diện tích ${ha.acreage}</p>
+                        <p style="font-size: 20px;   font-style: italic;">  Với ${ha.seat} chổ ngồi</p>
                     </c:forEach>
                 </div>
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width: 550px">

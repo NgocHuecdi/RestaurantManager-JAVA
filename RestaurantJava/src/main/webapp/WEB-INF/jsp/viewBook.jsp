@@ -15,6 +15,7 @@
         <th>Địa chỉ</th>
         <th>Dịch vụ</th>
         <th>Sự kiện</th>
+        <th>Sảnh</th>
         <th>Ngày tổ chức</th>
         <th>Số lượng khách</th>
         <th>Ghi chú</th>
@@ -31,6 +32,7 @@
         <td>${stats[6]}</td>
         <td>${stats[7]}</td>
         <td>${stats[8]}</td>
+        <td>${stats[9]}</td>
     </tr>
     </c:forEach>
   

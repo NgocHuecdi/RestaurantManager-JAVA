@@ -9,6 +9,7 @@ import com.restaurant.pojo.Book;
 import com.restaurant.pojo.BookDetail;
 import com.restaurant.pojo.Customer;
 import com.restaurant.pojo.Event;
+import com.restaurant.pojo.Hall;
 import com.restaurant.pojo.Services;
 import com.restaurant.repository.BookDetailRepository;
 import java.util.Date;
@@ -46,11 +47,13 @@ public class BookDetailRepositoryImpl implements BookDetailRepository {
         Root serviceRoot = query.from(Services.class);
         Root eventRoot = query.from(Event.class);
         Root bookDetailRoot = query.from(BookDetail.class);
+        Root hallRoot = query.from(Hall.class);
 
         query = query.where(builder.and(
                 builder.equal(customerRoot.get("customerId"), bookDetailRoot.get("customer")),
                 builder.equal(serviceRoot.get("serviceId"), bookDetailRoot.get("services")),
-                builder.equal(eventRoot.get("eventId"), bookDetailRoot.get("event"))
+                builder.equal(eventRoot.get("eventId"), bookDetailRoot.get("event")),
+                builder.equal(hallRoot.get("hallId"),  bookDetailRoot.get("hall"))
         ));
 
         query.multiselect(bookDetailRoot.get("id"),
@@ -59,6 +62,7 @@ public class BookDetailRepositoryImpl implements BookDetailRepository {
                 customerRoot.get("address").as(String.class),
                 serviceRoot.get("name").as(String.class),
                 eventRoot.get("name").as(String.class),
+                hallRoot.get("name").as(String.class),
                 bookDetailRoot.get("dateUse").as(String.class),
                 bookDetailRoot.get("numberGuest").as(Double.class),
                 bookDetailRoot.get("description").as(String.class)
@@ -69,6 +73,7 @@ public class BookDetailRepositoryImpl implements BookDetailRepository {
                 customerRoot.get("address").as(String.class),
                 serviceRoot.get("name").as(String.class),
                 eventRoot.get("name").as(String.class),
+                hallRoot.get("name").as(String.class),
                 bookDetailRoot.get("dateUse").as(String.class),
                 bookDetailRoot.get("numberGuest").as(Double.class),
                 bookDetailRoot.get("description").as(String.class)

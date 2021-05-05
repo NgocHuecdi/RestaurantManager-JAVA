@@ -14,6 +14,6 @@ import java.util.List;
  */
 
 public interface EventService {
-    List<Event> getEvents();
+    List<Event> getEvents(String kw);
     Event getEventById(int eventId);
 }

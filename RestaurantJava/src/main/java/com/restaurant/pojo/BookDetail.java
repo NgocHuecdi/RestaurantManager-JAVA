@@ -22,7 +22,7 @@ import javax.persistence.Temporal;
 @Entity
 @Table(name = "book_detail")
 public class BookDetail implements Serializable {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -38,6 +38,10 @@ public class BookDetail implements Serializable {
     @ManyToOne
     @JoinColumn(name = "eventId")
     private Event event;
+    
+    @ManyToOne
+    @JoinColumn(name = "hallId")
+    private Hall hall;
     
  
     private String dateUse;
@@ -143,6 +147,18 @@ public class BookDetail implements Serializable {
         this.description = description;
     }
 
- 
+   /**
+     * @return the hall
+     */
+    public Hall getHall() {
+        return hall;
+    }
+
+    /**
+     * @param hall the hall to set
+     */
+    public void setHall(Hall hall) {
+        this.hall = hall;
+    }
 
 }

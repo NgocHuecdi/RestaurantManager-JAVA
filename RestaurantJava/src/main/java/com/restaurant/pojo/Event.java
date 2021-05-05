@@ -13,6 +13,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,16 +26,17 @@ import javax.persistence.Table;
 @Table(name = "events")
 public class Event implements Serializable {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int eventId;
     private String name;
-//    private int hallId;
+    
+    
     private BigDecimal price;
-    @OneToMany(mappedBy = "event", fetch = FetchType.EAGER)
-    private List<BookDetail> bookDetail;
+//    @OneToMany(mappedBy = "event", fetch = FetchType.EAGER)
+//    private List<BookDetail> bookDetail;
+    
     
     @Override
     public String toString() {
@@ -81,31 +84,5 @@ public class Event implements Serializable {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
-//
-//    /**
-//     * @return the hallId
-//     */
-//    public int getHallId() {
-//        return hallId;
-//    }
-//
-//    /**
-//     * @param hallId the hallId to set
-//     */
-//    public void setHallId(int hallId) {
-//        this.hallId = hallId;
-//    }
-//    /**
-//     * @return the bookDetail
-//     */
-//    public List<BookDetail> getBookDetail() {
-//        return bookDetail;
-//    }
-//
-//    /**
-//     * @param bookDetail the bookDetail to set
-//     */
-//    public void setBookDetail(List<BookDetail> bookDetail) {
-//        this.bookDetail = bookDetail;
-//    }
+ 
 }

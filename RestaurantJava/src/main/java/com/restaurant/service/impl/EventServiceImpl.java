@@ -20,14 +20,16 @@ import org.springframework.stereotype.Service;
 public class EventServiceImpl implements EventService{
     @Autowired
     private EventRepository eventRepository;
-    @Override
-    public List<Event> getEvents() {
-        return this.eventRepository.getEvents();
+   @Override
+    public List<Event> getEvents(String kw) {
+        return this.eventRepository.getEvents(kw);
     }
 
     @Override
     public Event getEventById(int eventId) {
         return this.eventRepository.getEventById(eventId);
     }
+
+   
     
 }

@@ -27,6 +27,7 @@
         <th>Nhân Viên</th>
         <th>Dịch vụ</th>
         <th>Sự Kiện</th>
+        <th>Sảnh</th>
         <th>Ngày Thanh Toán</th>
         <th>Tổng Tiền</th>
     </tr>
@@ -39,6 +40,7 @@
         <td>${stats[4]}</td>
         <td>${stats[5]}</td>
         <td>${stats[6]}</td>
+         <td>${stats[7]}</td>
     </tr>
     </c:forEach>
   

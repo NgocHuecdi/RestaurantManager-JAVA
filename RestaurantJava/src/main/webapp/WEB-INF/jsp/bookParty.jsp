@@ -42,6 +42,14 @@
             </c:forEach>
         </form:select>
     </div>
+     <div class="form-group">
+        <label for="hall">Sảnh</label>
+        <form:select path="hall" cssClass="form-control">
+            <c:forEach items="${hall}" var="ha">
+                <option value="${ha.hallId}">${ha.name}</option>
+            </c:forEach>
+        </form:select>
+    </div>
     <div class="form-group">
         <label for="">Ngày tổ chức</label>
         <form:input cssClass="form-control" path="dateUse"  />
