@@ -51,8 +51,28 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
         Query q = s.createQuery(query);
         return q.getResultList();
-
     }
+    
+    
+    @Override
+    @Transactional
+    public List<Employee> getSearch(String name) {
+        
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Employee> query = builder.createQuery(Employee.class);
+        Root rootEmp = query.from(Employee.class);
+        query.select(rootEmp);
+        if(name != null  && !name.isEmpty()){
+           Predicate p = builder.like(rootEmp.get("name").as(String.class),
+                    String.format("%%%s%%", name));
+            query = query.where(p);
+        }
+        
+        Query q = session.createQuery(query);
+        return q.getResultList();
+    } 
 
     @Override
     @Transactional 
@@ -93,24 +113,6 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         return s.get(Employee.class, empId);
    }
 
-    @Override
-    @Transactional
-    public List<Employee> getSearch(String name) {
-            Session session = this.sessionFactory.getObject().getCurrentSession();
-        
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Employee> query = builder.createQuery(Employee.class);
-        Root rootEmp = query.from(Employee.class);
-        query.select(rootEmp);
-        if(name != null  && !name.isEmpty()){
-           Predicate p = builder.like(rootEmp.get("name").as(String.class),
-                    String.format("%%%s%%", name));
-            query = query.where(p);
-        }
-        
-        Query q = session.createQuery(query);
-        return q.getResultList();
-    }
     
 
    

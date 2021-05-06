@@ -47,7 +47,5 @@ public class EmployeeServiceImpl implements EmployeeService{
     public List<Employee> getSearch(String name) {
         return this.employeeRepository.getSearch(name);
     }
-
    
-    
 }

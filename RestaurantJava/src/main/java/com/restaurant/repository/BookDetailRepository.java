@@ -17,4 +17,5 @@ public interface BookDetailRepository {
     List<Object[]> getBookDetail(String kw);
     BookDetail getBookDetailById(int bookDetailId);
     boolean addBook(BookDetail bookDetail);
+//    List<Object[]> getSearch(String key);
 }

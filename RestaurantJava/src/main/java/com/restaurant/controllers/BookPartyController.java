@@ -39,12 +39,27 @@ public class BookPartyController {
 
     @GetMapping("/viewBook") //mapping vao trang chu
     public String viewBook(Model model, HttpSession session,
-            @RequestParam(name = "description", required = false) String description) {
+            @RequestParam(name = "dateUse", required = false) String dateUse,
+            @RequestParam(name = "hallName", required = false) String hallName) {
       
+        if(dateUse != null){
+            List<Object[]> bookDetails = this.bookDetailService.getBookDetail(dateUse);
+            //model.addAttribute("viewBook", bookDetails);
+            model.addAttribute("bookDetails", bookDetails);
+        }
+//        if(hallName != null){
+//             List<Object[]> bookDetails = this.bookDetailService.getBookDetail(dateUse);
+//            //model.addAttribute("viewBook", bookDetails);
+//            model.addAttribute("bookDetails", bookDetails);
+//        }
+        else{
        List<Object[]> bookDetails = this.bookDetailService.getBookDetail("");
         model.addAttribute("bookDetails", bookDetails);
-        model.addAttribute("viewBook", session.getAttribute("viewBook"));
-        return "viewBook";
+//        model.addAttribute("viewBook", session.getAttribute("viewBook"));
+       
+        }
+        
+         return "viewBook";
     }
 
 //    @GetMapping("/viewBook")

@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -39,8 +40,9 @@ public class BookDetailRepositoryImpl implements BookDetailRepository {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public List<Object[]> getBookDetail(String kw) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
-
+        
+        String hallName = null;
+         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Object[]> query = builder.createQuery(Object[].class);
         Root customerRoot = query.from(Customer.class);
@@ -48,15 +50,19 @@ public class BookDetailRepositoryImpl implements BookDetailRepository {
         Root eventRoot = query.from(Event.class);
         Root bookDetailRoot = query.from(BookDetail.class);
         Root hallRoot = query.from(Hall.class);
+        
+        if (kw != null && !kw.isEmpty()) {
 
         query = query.where(builder.and(
                 builder.equal(customerRoot.get("customerId"), bookDetailRoot.get("customer")),
                 builder.equal(serviceRoot.get("serviceId"), bookDetailRoot.get("services")),
                 builder.equal(eventRoot.get("eventId"), bookDetailRoot.get("event")),
-                builder.equal(hallRoot.get("hallId"),  bookDetailRoot.get("hall"))
+                builder.equal(hallRoot.get("hallId"),  bookDetailRoot.get("hall")),
+                builder.like(bookDetailRoot.get("dateUse").as(String.class), kw )
         ));
+                           
 
-        query.multiselect(bookDetailRoot.get("id"),
+                query.multiselect(bookDetailRoot.get("id"),
                 customerRoot.get("name").as(String.class),
                 customerRoot.get("phone").as(String.class),
                 customerRoot.get("address").as(String.class),
@@ -76,11 +82,89 @@ public class BookDetailRepositoryImpl implements BookDetailRepository {
                 hallRoot.get("name").as(String.class),
                 bookDetailRoot.get("dateUse").as(String.class),
                 bookDetailRoot.get("numberGuest").as(Double.class),
+                    bookDetailRoot.get("description").as(String.class)
+            );
+
+
+        }
+        
+//        if(hallName == kw && hallName!= null && !hallName.isEmpty()){
+//            
+//            query = query.where(builder.and(
+//                builder.equal(customerRoot.get("customerId"), bookDetailRoot.get("customer")),
+//                builder.equal(serviceRoot.get("serviceId"), bookDetailRoot.get("services")),
+//                builder.equal(eventRoot.get("eventId"), bookDetailRoot.get("event")),
+//                builder.equal(hallRoot.get("hallId"),  bookDetailRoot.get("hall")),
+//                builder.like(hallRoot.get("name").as(String.class), hallName )
+//        ));
+//                           
+//
+//                query.multiselect(bookDetailRoot.get("id"),
+//                customerRoot.get("name").as(String.class),
+//                customerRoot.get("phone").as(String.class),
+//                customerRoot.get("address").as(String.class),
+//                serviceRoot.get("name").as(String.class),
+//                eventRoot.get("name").as(String.class),
+//                hallRoot.get("name").as(String.class),
+//                bookDetailRoot.get("dateUse").as(String.class),
+//                bookDetailRoot.get("numberGuest").as(Double.class),
+//                bookDetailRoot.get("description").as(String.class)
+//        );
+//         query.groupBy(bookDetailRoot.get("id"),
+//                customerRoot.get("name").as(String.class),
+//                customerRoot.get("phone").as(String.class),
+//                customerRoot.get("address").as(String.class),
+//                serviceRoot.get("name").as(String.class),
+//                eventRoot.get("name").as(String.class),
+//                hallRoot.get("name").as(String.class),
+//                bookDetailRoot.get("dateUse").as(String.class),
+//                bookDetailRoot.get("numberGuest").as(Double.class),
+//                    bookDetailRoot.get("description").as(String.class)
+//            );
+//            
+//        }
+//        
+        else{
+            query = query.where(builder.and(
+                builder.equal(customerRoot.get("customerId"), bookDetailRoot.get("customer")),
+                builder.equal(serviceRoot.get("serviceId"), bookDetailRoot.get("services")),
+                builder.equal(eventRoot.get("eventId"), bookDetailRoot.get("event")),
+                builder.equal(hallRoot.get("hallId"),  bookDetailRoot.get("hall"))
+              //  builder.like(bookDetailRoot.get("dateUse").as(String.class), kw)
+               ));
+               
+                    query.multiselect(bookDetailRoot.get("id"),
+                customerRoot.get("name").as(String.class),
+                customerRoot.get("phone").as(String.class),
+                customerRoot.get("address").as(String.class),
+                serviceRoot.get("name").as(String.class),
+                eventRoot.get("name").as(String.class),
+                hallRoot.get("name").as(String.class),
+                bookDetailRoot.get("dateUse").as(String.class),
+                bookDetailRoot.get("numberGuest").as(Double.class),
                 bookDetailRoot.get("description").as(String.class)
         );
+         query.groupBy(bookDetailRoot.get("id"),
+                customerRoot.get("name").as(String.class),
+                customerRoot.get("phone").as(String.class),
+                customerRoot.get("address").as(String.class),
+                serviceRoot.get("name").as(String.class),
+                eventRoot.get("name").as(String.class),
+                hallRoot.get("name").as(String.class),
+                bookDetailRoot.get("dateUse").as(String.class),
+                bookDetailRoot.get("numberGuest").as(Double.class),
+                    bookDetailRoot.get("description").as(String.class)
+            );
+
+            
+            
+        }
+         
+      
 
         Query q = session.createQuery(query);
         return q.getResultList();
+    
     }
 
     @Override
@@ -105,6 +189,6 @@ public class BookDetailRepositoryImpl implements BookDetailRepository {
         }
         return false;
     }
-
-    
 }
+
+

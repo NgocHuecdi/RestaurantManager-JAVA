@@ -38,5 +38,10 @@ public class BookDetailServiceImpl implements BookDetailService{
         return this.bookDetailRepository.addBook(bookDetail);
     }
 
+//    @Override
+//    public List<Object[]> getSearch(String key) {
+//        return  this.bookDetailRepository.getSearch(key);
+//    }
+
     
 }
