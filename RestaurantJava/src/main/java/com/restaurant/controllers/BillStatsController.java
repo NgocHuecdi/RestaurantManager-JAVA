@@ -45,8 +45,8 @@ public class BillStatsController {
         
         List<Object[]> dataBills = this.billStatsService.getBillStats(fr, to);
         List<BigDecimal> total = new ArrayList<>();
-//        for (Object[] d: dataStats)
-//            total.add((BigDecimal) d[1]);
+        for (Object[] d: dataBills)
+            total.add((BigDecimal) d[7]);
                 
         model.addAttribute("dataBills", dataBills);
         model.addAttribute("total", total);
@@ -66,14 +66,20 @@ public class BillStatsController {
         }
         
         List<Object[]> des = this.billStatsService.getBillStats(fr, to);
+        List<Long> total = new ArrayList<>();
         int totalCount = 0;
+        
         
         for (Object[] d: des){
             totalCount++; 
         }
+        
+         for (Object[] d: des)
+            total.add((Long) d[8]);
                 
         model.addAttribute("des", des);
         model.addAttribute("totalCount", totalCount);
+        model.addAttribute("total",total);
         return "statsDen";
     }
 }

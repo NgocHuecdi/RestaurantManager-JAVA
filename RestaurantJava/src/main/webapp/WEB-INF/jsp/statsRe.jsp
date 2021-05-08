@@ -43,7 +43,6 @@
          <td>${stats[7]}</td>
     </tr>
     </c:forEach>
-  
    
 </table>
 

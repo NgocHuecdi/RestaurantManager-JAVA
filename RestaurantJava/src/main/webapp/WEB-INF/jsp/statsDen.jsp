@@ -31,26 +31,26 @@
         <th>Ngày Thanh Toán</th>
         <th>Tổng Tiền</th>
     </tr>
-     <c:forEach items="${des}" var="stats">
-    <tr>
-        <td>${stats[0]}</td>
-        <td>${stats[1]} </td>
-        <td>${stats[2]}</td>
-        <td>${stats[3]}</td>
-        <td>${stats[4]}</td>
-        <td>${stats[5]}</td>
-        <td>${stats[6]}</td>
-         <td>${stats[7]}</td>
-        
-    </tr>
-  
+    <c:forEach items="${des}" var="stats">
+        <tr>
+            <td>${stats[0]}</td>
+            <td>${stats[1]} </td>
+            <td>${stats[2]}</td>
+            <td>${stats[3]}</td>
+            <td>${stats[4]}</td>
+            <td>${stats[5]}</td>
+            <td>${stats[6]}</td>
+            <td>${stats[7]}</td>
+
+        </tr>
+
     </c:forEach>
-    
-    
-              <p> tổng tiệc ${totalCount}</p>
-           
-    
-   
+
+
+    <span class="text-info" style="font-style: italic; font-size: 30px "> Tổng Tiệc: </span> <span style="font-size: 30px">${totalCount}</span>
+
+
+
 </table>
 
 
@@ -60,49 +60,50 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.1.0/dist/chart.min.js">
-    
+
 </script>
 <script>
     let d = [];
-
+    <c:forEach items="${total}" var="c">
+    d.push(${c})
+    </c:forEach>
     console.info(d);
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: d,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
+        type: 'bar',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                    label: '# of Votes',
+                    data: d,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
             }
         }
-    }
-});
+    });
 </script>
 
 
 
- 
