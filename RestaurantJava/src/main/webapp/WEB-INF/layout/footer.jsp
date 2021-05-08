@@ -6,8 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<div class = "bg-info p-3 mt-3">
-    <div class="row">
+<div class = "row bg-info p-3 mt-3">
         <div class="col-md-10">
             <h3 class="text-white font-weight-bold">WEDDING RESTAURANT</h3>
         </div>
@@ -15,12 +14,9 @@
             <div class="text-white font-weight-bold">Liên hệ</div>
             <div class="text-white">Hotline: 012223333</div>
         </div>
-    </div>
-    <div class=" row" mb-3>
         <div class="col-md-12 text-white">
             <small>© Copyright | 2021 Restaurant Wedding Manager</small>
         </div>
-    </div>
 </div>
 
 

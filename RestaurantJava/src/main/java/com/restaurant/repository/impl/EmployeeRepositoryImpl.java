@@ -5,7 +5,9 @@
  */
 package com.restaurant.repository.impl;
 
+
 import com.restaurant.pojo.Employee;
+import com.restaurant.pojo.User;
 import com.restaurant.repository.EmployeeRepository;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +21,7 @@ import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -33,22 +36,26 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     private LocalSessionFactoryBean sessionFactory;
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED)
     public List<Employee> getEmployeies(String kw) {
         
         Session s = this.sessionFactory.getObject().getCurrentSession();
         
         CriteriaBuilder builder = s.getCriteriaBuilder();
-        CriteriaQuery<Employee> query = builder.createQuery(Employee.class);
-        Root root = query.from(Employee.class);
-        query.select(root);
-
-        if (kw != null && !kw.isEmpty()) {
-            Predicate p = builder.like(root.get("name").as(String.class),
-                    String.format("%%%s%%", kw));
-            query = query.where(p);
-        }
-
+        CriteriaQuery<Object[]> query = builder.createQuery(Object[].class);
+        Root employeeRoot = query.from(Employee.class);
+        Root userRoot = query.from(User.class);
+        
+        query = query  .where(builder.and(
+                    builder.equal(userRoot.get("id"), employeeRoot.get("user"))
+        ));
+        query.multiselect(employeeRoot.get("empId"), 
+                userRoot.get("username").as(String.class),
+                employeeRoot.get("name").as(String.class),
+                employeeRoot.get("mail").as(String.class),
+                employeeRoot.get("address").as(String.class),
+                employeeRoot.get("birth").as(String.class));
+         
         Query q = s.createQuery(query);
         return q.getResultList();
     }

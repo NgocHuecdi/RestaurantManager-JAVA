@@ -77,5 +77,21 @@ public class EmployeeController {
         
         return "redirect:/employee";
     }
+   
+   @PostMapping("/updateEmp/add")
+   public String updateEmploy(Model model,
+       @ModelAttribute(value = "updateEmp") @Valid Employee emp,
+        BindingResult result) {
+        if (result.hasErrors()) {
+            return "updateEmp";
+        }
+        
+        if (!this.employeeService.addOrUpdateEmployee(emp)) {
+            model.addAttribute("erroMsg", "Something Wrong!!!");
+            return "updateEmp";
+        }
+        
+        return "redirect:/employee";
+    }
        
 }
