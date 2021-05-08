@@ -21,7 +21,7 @@
         <label for="">Tên Khách Hàng</label>
        <form:select path="customer" cssClass="form-control">
             <c:forEach items="${customer}" var="cus">
-                <option value="${cus.customerId}">${cus.name}</option>
+                <option value="${cus[0]}">${cus[1]}</option>
             </c:forEach>
         </form:select>
     </div>

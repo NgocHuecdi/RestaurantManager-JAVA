@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.restaurant.service;
+package com.restaurant.repository;
 
-import com.restaurant.pojo.Customer;
+import com.restaurant.pojo.User;
 import java.util.List;
 
 /**
  *
- * @author HP
+ * @author OS
  */
-public interface CustomerService {
-    List<Customer> getCustomers(String kw);
-    Customer getCustomerById(int customerId);
+public interface UserRepository {
+    void addUser(User user);
+    List<User> getUsers(String username);
 }

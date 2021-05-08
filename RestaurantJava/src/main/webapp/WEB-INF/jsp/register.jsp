@@ -12,30 +12,12 @@
     </div>
 </c:if>
 <c:url value="/register" var="action" />
-<form:form method="post"  action="${action}" modelAttribute="customer">
-    <div class="form-group">
-        <lable for="name">Tên</lable>
-        <form:input id="name" 
-                    class="form-control"
-                    path="name" />
-    </div>
-    <div class="form-group">
-        <lable for="phone">Số điện thoại</lable>
-        <form:input id="phone" 
-                    class="form-control"
-                    path="phone" />
-    </div>
-    <div class="form-group">
-        <lable for="address">Địa chỉ</lable>
-        <form:input id="address" 
-                    class="form-control"
-                    path="address" />
-    </div>
+<form:form method="post"  action="${action}" modelAttribute="user">
     <div class="form-group">
         <lable for="username">Tên đăng nhập</lable>
         <form:input id="username" 
                     class="form-control"
-                    path="useName" />
+                    path="username" />
     </div>
     <div class="form-group">
         <lable for="password">Mật khẩu</lable>

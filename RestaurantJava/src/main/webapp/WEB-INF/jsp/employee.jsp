@@ -58,14 +58,14 @@
             </thead>
             <tbody>
                 <c:forEach items="${employees}" var = "emp">
-                    <tr id="employees${emp.empId}">
-                        <td> ${emp.empId}</td>
-                        <td>${emp.name}</td>
-                        <td>${emp.mail}</td>
-                        <td>${emp.address}</td>
-                        <td>${emp.birth}</td>
-                        <td class="text-center"> <a href="<c:url value="/addemp" />/?empId=${emp.empId}"  class="btn btn-primary">Cập Nhật</a>
-                            <a href="javascript:;" class="btn btn-danger" onclick="deleteEmployee(${emp.empId})">Xóa</a>
+                    <tr>
+                        <td>${emp[0]}</td>
+                        <td>${emp[2]}</td>
+                        <td>${emp[3]}</td>
+                        <td>${emp[4]}</td>
+                        <td>${emp[5]}</td>
+                        <td class="text-center"> <a href="<c:url value="/updateEmp" />/?empId=${emp[0]}"  class="btn btn-primary">Cập Nhật</a>
+                            <a href="javascript:;" class="btn btn-danger" onclick="deleteEmployee(${emp[0]})">Xóa</a>
                         </td>
                     </tr>
                 </c:forEach>

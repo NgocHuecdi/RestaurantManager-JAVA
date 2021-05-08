@@ -13,7 +13,7 @@ import java.util.List;
  * @author HP
  */
 public interface CustomerRepository {
-    List<Customer> getCustomers();
+    List<Customer> getCustomers(String kw);
     Customer getCustomerById(int customerId);
     
 }

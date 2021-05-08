@@ -12,9 +12,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+
 
 /**
  *
@@ -31,15 +33,13 @@ public class Customer implements Serializable {
     private String name;
     private String phone;
     private String address;
-    private String useName;
-    private String password;
-//    private boolean active;
-    @Transient
-    private String confirmPassword;
 //    @OneToMany(mappedBy = "customers", fetch = FetchType.EAGER)
 //    private List<BookDetail> bookDetail;
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     private List<BookDetail> bookDetail;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
     
     @Override
     public String toString() {
@@ -100,49 +100,6 @@ public class Customer implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
-    /**
-     * @return the useName
-     */
-    public String getUseName() {
-        return useName;
-    }
-
-    /**
-     * @param useName the useName to set
-     */
-    public void setUseName(String useName) {
-        this.useName = useName;
-    }
-
-    /**
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /**
-     * @return the confirmPassword
-     */
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    /**
-     * @param confirmPassword the confirmPassword to set
-     */
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
     /**
      * @return the feedback
      */
@@ -161,6 +118,20 @@ public class Customer implements Serializable {
      */
     public void setBookDetail(List<BookDetail> bookDetail) {
         this.bookDetail = bookDetail;
+    }
+
+    /**
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(User user) {
+        this.user = user;
     }
     
     

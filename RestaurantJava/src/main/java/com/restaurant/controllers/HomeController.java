@@ -45,7 +45,7 @@ public class HomeController {
     public void addAttributes(Model model, HttpSession session) {
          model.addAttribute("services", this.servicesService.getServices(""));
         model.addAttribute("event", this.eventService.getEvents(""));
-        model.addAttribute("customer", this.customerService.getCustomers());
+        model.addAttribute("customer", this.customerService.getCustomers(""));
          model.addAttribute("hall", this.hallService.getHalls(""));
        
     }

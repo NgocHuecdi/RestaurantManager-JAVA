@@ -13,6 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+
+import javax.persistence.ManyToOne;
 
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -35,6 +38,10 @@ public class Employee implements Serializable {
     private String mail;
     private String address;
     private String birth;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    
 
     @Override
     public String toString() {
@@ -109,5 +116,24 @@ public class Employee implements Serializable {
     public void setBirth(String birth) {
         this.birth = birth;
     }
+
+    /**
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    /**
+     * @return the user
+     */
+    
 
 }
