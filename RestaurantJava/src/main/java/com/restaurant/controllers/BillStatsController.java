@@ -51,5 +51,29 @@ public class BillStatsController {
         model.addAttribute("dataBills", dataBills);
         model.addAttribute("total", total);
        return "statsRe";
+    
+   }
+     @GetMapping("/statsDen")
+    public String statsDe(Model model, @RequestParam(name = "fromDate", required = false) String fromDate,
+             @RequestParam(name = "toDate", required = false) String toDate){
+         Date fr = null, to = null;
+        
+           try {
+            fr = this.simpleDateFormat.parse(fromDate);
+            to = this.simpleDateFormat.parse(toDate);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+        List<Object[]> des = this.billStatsService.getBillStats(fr, to);
+        int totalCount = 0;
+        
+        for (Object[] d: des){
+            totalCount++; 
+        }
+                
+        model.addAttribute("des", des);
+        model.addAttribute("totalCount", totalCount);
+        return "statsDen";
     }
 }

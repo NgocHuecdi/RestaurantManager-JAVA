@@ -41,7 +41,7 @@ public class BookDetailRepositoryImpl implements BookDetailRepository {
     @Transactional(propagation = Propagation.REQUIRED)
     public List<Object[]> getBookDetail(String kw) {
         
-        String hallName = null;
+        
          Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Object[]> query = builder.createQuery(Object[].class);
@@ -50,6 +50,7 @@ public class BookDetailRepositoryImpl implements BookDetailRepository {
         Root eventRoot = query.from(Event.class);
         Root bookDetailRoot = query.from(BookDetail.class);
         Root hallRoot = query.from(Hall.class);
+       
         
         if (kw != null && !kw.isEmpty()) {
 
@@ -59,6 +60,7 @@ public class BookDetailRepositoryImpl implements BookDetailRepository {
                 builder.equal(eventRoot.get("eventId"), bookDetailRoot.get("event")),
                 builder.equal(hallRoot.get("hallId"),  bookDetailRoot.get("hall")),
                 builder.like(bookDetailRoot.get("dateUse").as(String.class), kw )
+//                builder.like(hallRoot.get("name").as(String.class), kw )
         ));
                            
 
@@ -82,13 +84,13 @@ public class BookDetailRepositoryImpl implements BookDetailRepository {
                 hallRoot.get("name").as(String.class),
                 bookDetailRoot.get("dateUse").as(String.class),
                 bookDetailRoot.get("numberGuest").as(Double.class),
-                    bookDetailRoot.get("description").as(String.class)
+                bookDetailRoot.get("description").as(String.class)
             );
 
 
         }
         
-//        if(hallName == kw && hallName!= null && !hallName.isEmpty()){
+//        if( kw == hallRoot.get("name").as(String.class) && kw!= null && !kw.isEmpty()){
 //            
 //            query = query.where(builder.and(
 //                builder.equal(customerRoot.get("customerId"), bookDetailRoot.get("customer")),
@@ -123,7 +125,7 @@ public class BookDetailRepositoryImpl implements BookDetailRepository {
 //            );
 //            
 //        }
-//        
+        
         else{
             query = query.where(builder.and(
                 builder.equal(customerRoot.get("customerId"), bookDetailRoot.get("customer")),

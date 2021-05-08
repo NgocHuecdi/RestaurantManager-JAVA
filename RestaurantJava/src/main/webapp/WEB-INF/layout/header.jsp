@@ -25,8 +25,6 @@
                     <a class="nav-link text-white" href="<c:url value="/feedback" />">Phản Hồi</a>
                 </li>
 
-                <li class="nav-item active">
-                    <a class="nav-link text-white" href="<c:url value="/statsRe" />">Thống Kê</a>
 
                 <li class="nav-item active">
                     <a class="nav-link text-white" href="<c:url value="/bookParty" />">Đặt Tiệc</a>
@@ -36,6 +34,17 @@
 <!--                         <span class="badge badge-danger" id="book-counter">${book.getQuantity()}</span>-->
                     </a>
                 </li>
+<!--                <li class="nav-item active">
+                    <a class="nav-link text-white" href="<c:url value="/statsRe" />">Thống Kê</a>
+                </li>-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Thống Kê</a>
+                    <div class="dropdown-menu ">
+                        <a class="dropdown-item" href="<c:url value="/statsRe" />">Doanh Thu</a>
+                        <a class="dropdown-item"  href="<c:url value="/statsDen" />">Mật Độ Tiệc Cưới</a>       
+                    </div>
+                </li>
+
             </ul>
         </nav>
     </div>

@@ -37,10 +37,14 @@
         <put-attribute name="title" value="Add Servcie" />
         <put-attribute name="content" value="/WEB-INF/jsp/addService.jsp" />
     </definition>
-        <definition name="statsRe" extends="baseLayout">
-        <put-attribute name="title" value="Bill" />
+    <definition name="statsRe" extends="baseLayout">
+        <put-attribute name="title" value="doanh-thu" />
         <put-attribute name="content" value="/WEB-INF/jsp/statsRe.jsp" />
-        </definition>
+    </definition>
+    <definition name="statsDen" extends="baseLayout">
+        <put-attribute name="title" value="mat-do-tiec-cuoi" />
+        <put-attribute name="content" value="/WEB-INF/jsp/statsDen.jsp" />
+    </definition>
     <definition name="feedback" extends="baseLayout">
         <put-attribute name="title" value="Feedback" />
         <put-attribute name="content" value="/WEB-INF/jsp/feedback.jsp" />
@@ -49,11 +53,11 @@
         <put-attribute name="title" value=" Add Feedback" />
         <put-attribute name="content" value="/WEB-INF/jsp/addFeedback.jsp" />
     </definition>
-     <definition name="bookParty" extends="baseLayout">
+    <definition name="bookParty" extends="baseLayout">
         <put-attribute name="title" value="Book Party" />
         <put-attribute name="content" value="/WEB-INF/jsp/bookParty.jsp" />
     </definition>
-         <definition name="viewBook" extends="baseLayout">
+    <definition name="viewBook" extends="baseLayout">
         <put-attribute name="title" value="Don Dat Tiec" />
         <put-attribute name="content" value="/WEB-INF/jsp/viewBook.jsp" />
     </definition>
@@ -69,11 +73,11 @@
         <put-attribute name="title" value="Event-Customer" />
         <put-attribute name="content" value="/WEB-INF/jsp/cusEvent.jsp" />
     </definition>
-       <definition name="hall" extends="baseLayout">
+    <definition name="hall" extends="baseLayout">
         <put-attribute name="title" value="Sanh" />
         <put-attribute name="content" value="/WEB-INF/jsp/hall.jsp" />
     </definition>
-     <definition name="cusService" extends="baseLayout">
+    <definition name="cusService" extends="baseLayout">
         <put-attribute name="title" value="Sanh" />
         <put-attribute name="content" value="/WEB-INF/jsp/cusService.jsp" />
     </definition>

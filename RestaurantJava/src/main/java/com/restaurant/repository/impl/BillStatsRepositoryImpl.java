@@ -77,7 +77,8 @@ public class BillStatsRepositoryImpl implements BillStatsRepository {
                 builder.equal(hallRoot.get("hallId"), billRoot.get("hall"))
         ));
 
-        BigDecimal total = null;
+            //int density = 0;
+            
 //         //Select
         query.multiselect(billRoot.get("billId"),
                 customerRoot.get("name").as(String.class),
@@ -86,8 +87,10 @@ public class BillStatsRepositoryImpl implements BillStatsRepository {
                 eventRoot.get("name").as(String.class),
                 hallRoot.get("name").as(String.class),
                 billRoot.get("datePay").as(Date.class),
-                builder.sum(eventRoot.<BigDecimal>get("price"), serviceRoot.<BigDecimal>get("unit_price")));
-
+                builder.sum(eventRoot.<BigDecimal>get("price"), serviceRoot.<BigDecimal>get("unit_price")),
+                builder.count(billRoot.get("billId"))
+                );
+       // density = getInt(builder.array(count(billRoot.get("billId"))));
 //         List<Object[]> resultList = session.createQuery(query).getResultList();
         query.groupBy(billRoot.get("billId"),
                 customerRoot.get("name").as(String.class),
