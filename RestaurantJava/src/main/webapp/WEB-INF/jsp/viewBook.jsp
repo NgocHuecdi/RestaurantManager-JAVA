@@ -26,6 +26,7 @@
         </form>
 
 <table class="table">
+    
     <tr>
         <th>Mã Tiệc</th>
         <th>Khách Hàng</th>
@@ -51,6 +52,7 @@
         <td>${stats[7]}</td>
         <td>${stats[8]}</td>
         <td>${stats[9]}</td>
+        
     </tr>
     </c:forEach>
   

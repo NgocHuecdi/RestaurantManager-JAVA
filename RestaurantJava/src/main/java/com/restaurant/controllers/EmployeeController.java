@@ -6,7 +6,9 @@
 package com.restaurant.controllers;
 
 import com.restaurant.pojo.Employee;
+import com.restaurant.service.BookDetailService;
 import com.restaurant.service.EmployeeService;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -28,6 +30,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private BookDetailService bookDetailService;
     
     @RequestMapping("/employee") //mapping vao trang chu
     public String employee(Model model,@RequestParam(name="name", required = false) String name){
@@ -38,6 +42,13 @@ public class EmployeeController {
         else {
             model.addAttribute("employees", this.employeeService.getEmployeies(""));
         }
+          int totalBook = 0;
+            List<Object[]> bookDetails = this.bookDetailService.getBookDetail("");
+              for (Object[] bd : bookDetails) {
+                totalBook++;
+            }
+             
+             model.addAttribute("totalBook",totalBook);
         return "employee";
     }
      

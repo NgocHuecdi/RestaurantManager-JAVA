@@ -40,9 +40,8 @@ public class BookDetailRepositoryImpl implements BookDetailRepository {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public List<Object[]> getBookDetail(String kw) {
-        
-        
-         Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Object[]> query = builder.createQuery(Object[].class);
         Root customerRoot = query.from(Customer.class);
@@ -50,111 +49,102 @@ public class BookDetailRepositoryImpl implements BookDetailRepository {
         Root eventRoot = query.from(Event.class);
         Root bookDetailRoot = query.from(BookDetail.class);
         Root hallRoot = query.from(Hall.class);
-       
-        
+
         if (kw != null && !kw.isEmpty()) {
 
-        query = query.where(builder.and(
-                builder.equal(customerRoot.get("customerId"), bookDetailRoot.get("customer")),
-                builder.equal(serviceRoot.get("serviceId"), bookDetailRoot.get("services")),
-                builder.equal(eventRoot.get("eventId"), bookDetailRoot.get("event")),
-                builder.equal(hallRoot.get("hallId"),  bookDetailRoot.get("hall")),
-                builder.like(bookDetailRoot.get("dateUse").as(String.class), kw )
-//                builder.like(hallRoot.get("name").as(String.class), kw )
-        ));
-                           
-
-                query.multiselect(bookDetailRoot.get("id"),
-                customerRoot.get("name").as(String.class),
-                customerRoot.get("phone").as(String.class),
-                customerRoot.get("address").as(String.class),
-                serviceRoot.get("name").as(String.class),
-                eventRoot.get("name").as(String.class),
-                hallRoot.get("name").as(String.class),
-                bookDetailRoot.get("dateUse").as(String.class),
-                bookDetailRoot.get("numberGuest").as(Double.class),
-                bookDetailRoot.get("description").as(String.class)
-        );
-         query.groupBy(bookDetailRoot.get("id"),
-                customerRoot.get("name").as(String.class),
-                customerRoot.get("phone").as(String.class),
-                customerRoot.get("address").as(String.class),
-                serviceRoot.get("name").as(String.class),
-                eventRoot.get("name").as(String.class),
-                hallRoot.get("name").as(String.class),
-                bookDetailRoot.get("dateUse").as(String.class),
-                bookDetailRoot.get("numberGuest").as(Double.class),
-                bookDetailRoot.get("description").as(String.class)
-            );
-
-
-        }
-        
-        else{
             query = query.where(builder.and(
-                builder.equal(customerRoot.get("customerId"), bookDetailRoot.get("customer")),
-                builder.equal(serviceRoot.get("serviceId"), bookDetailRoot.get("services")),
-                builder.equal(eventRoot.get("eventId"), bookDetailRoot.get("event")),
-                builder.equal(hallRoot.get("hallId"),  bookDetailRoot.get("hall"))
-              //  builder.like(bookDetailRoot.get("dateUse").as(String.class), kw)
-               ));
-               
-                    query.multiselect(bookDetailRoot.get("id"),
-                customerRoot.get("name").as(String.class),
-                customerRoot.get("phone").as(String.class),
-                customerRoot.get("address").as(String.class),
-                serviceRoot.get("name").as(String.class),
-                eventRoot.get("name").as(String.class),
-                hallRoot.get("name").as(String.class),
-                bookDetailRoot.get("dateUse").as(String.class),
-                bookDetailRoot.get("numberGuest").as(Double.class),
-                bookDetailRoot.get("description").as(String.class)
-        );
-         query.groupBy(bookDetailRoot.get("id"),
-                customerRoot.get("name").as(String.class),
-                customerRoot.get("phone").as(String.class),
-                customerRoot.get("address").as(String.class),
-                serviceRoot.get("name").as(String.class),
-                eventRoot.get("name").as(String.class),
-                hallRoot.get("name").as(String.class),
-                bookDetailRoot.get("dateUse").as(String.class),
-                bookDetailRoot.get("numberGuest").as(Double.class),
+                    builder.equal(customerRoot.get("customerId"), bookDetailRoot.get("customer")),
+                    builder.equal(serviceRoot.get("serviceId"), bookDetailRoot.get("services")),
+                    builder.equal(eventRoot.get("eventId"), bookDetailRoot.get("event")),
+                    builder.equal(hallRoot.get("hallId"), bookDetailRoot.get("hall")),
+                    builder.like(bookDetailRoot.get("dateUse").as(String.class), kw)
+            //                builder.like(hallRoot.get("name").as(String.class), kw )
+            ));
+
+            query.multiselect(bookDetailRoot.get("id"),
+                    customerRoot.get("name").as(String.class),
+                    customerRoot.get("phone").as(String.class),
+                    customerRoot.get("address").as(String.class),
+                    serviceRoot.get("name").as(String.class),
+                    eventRoot.get("name").as(String.class),
+                    hallRoot.get("name").as(String.class),
+                    bookDetailRoot.get("dateUse").as(String.class),
+                    bookDetailRoot.get("numberGuest").as(Double.class),
+                    bookDetailRoot.get("description").as(String.class),
+                    builder.count(bookDetailRoot.get("id"))
+            );
+            query.groupBy(bookDetailRoot.get("id"),
+                    customerRoot.get("name").as(String.class),
+                    customerRoot.get("phone").as(String.class),
+                    customerRoot.get("address").as(String.class),
+                    serviceRoot.get("name").as(String.class),
+                    eventRoot.get("name").as(String.class),
+                    hallRoot.get("name").as(String.class),
+                    bookDetailRoot.get("dateUse").as(String.class),
+                    bookDetailRoot.get("numberGuest").as(Double.class),
                     bookDetailRoot.get("description").as(String.class)
             );
 
-            
-            
+        } else {
+            query = query.where(builder.and(
+                    builder.equal(customerRoot.get("customerId"), bookDetailRoot.get("customer")),
+                    builder.equal(serviceRoot.get("serviceId"), bookDetailRoot.get("services")),
+                    builder.equal(eventRoot.get("eventId"), bookDetailRoot.get("event")),
+                    builder.equal(hallRoot.get("hallId"), bookDetailRoot.get("hall"))
+            //  builder.like(bookDetailRoot.get("dateUse").as(String.class), kw)
+            ));
+
+            query.multiselect(bookDetailRoot.get("id"),
+                    customerRoot.get("name").as(String.class),
+                    customerRoot.get("phone").as(String.class),
+                    customerRoot.get("address").as(String.class),
+                    serviceRoot.get("name").as(String.class),
+                    eventRoot.get("name").as(String.class),
+                    hallRoot.get("name").as(String.class),
+                    bookDetailRoot.get("dateUse").as(String.class),
+                    bookDetailRoot.get("numberGuest").as(Double.class),
+                    bookDetailRoot.get("description").as(String.class),
+                    builder.count(bookDetailRoot.get("id"))
+            );
+            query.groupBy(bookDetailRoot.get("id"),
+                    customerRoot.get("name").as(String.class),
+                    customerRoot.get("phone").as(String.class),
+                    customerRoot.get("address").as(String.class),
+                    serviceRoot.get("name").as(String.class),
+                    eventRoot.get("name").as(String.class),
+                    hallRoot.get("name").as(String.class),
+                    bookDetailRoot.get("dateUse").as(String.class),
+                    bookDetailRoot.get("numberGuest").as(Double.class),
+                    bookDetailRoot.get("description").as(String.class)
+            );
+
         }
-         
-      
 
         Query q = session.createQuery(query);
         return q.getResultList();
-    
+
     }
 
     @Override
     @Transactional
     public BookDetail getBookDetailById(int bookDetailId) {
-         Session s = this.sessionFactory.getObject().getCurrentSession();
+        Session s = this.sessionFactory.getObject().getCurrentSession();
         return s.get(BookDetail.class, bookDetailId);
     }
 
     @Override
     @Transactional
     public boolean addBook(BookDetail bookDetail) {
-         Session session = this.sessionFactory.getObject().getCurrentSession();
+        Session session = this.sessionFactory.getObject().getCurrentSession();
         try {
             if (bookDetail.getId() == 0) {
-                
+
                 session.save(bookDetail);
             }
             return true;
-        } catch (HibernateException ex){
+        } catch (HibernateException ex) {
             ex.printStackTrace();
         }
         return false;
     }
 }
-
-
