@@ -5,7 +5,6 @@
  */
 package com.restaurant.repository.impl;
 
-
 import com.restaurant.pojo.Employee;
 import com.restaurant.pojo.User;
 import com.restaurant.repository.EmployeeRepository;
@@ -24,7 +23,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-
 /**
  *
  * @author HP
@@ -38,51 +36,76 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public List<Employee> getEmployeies(String kw) {
-        
+
         Session s = this.sessionFactory.getObject().getCurrentSession();
-        
+
         CriteriaBuilder builder = s.getCriteriaBuilder();
         CriteriaQuery<Object[]> query = builder.createQuery(Object[].class);
         Root employeeRoot = query.from(Employee.class);
         Root userRoot = query.from(User.class);
-        
-        query = query  .where(builder.and(
-                    builder.equal(userRoot.get("id"), employeeRoot.get("user"))
-        ));
-        query.multiselect(employeeRoot.get("empId"), 
-                userRoot.get("username").as(String.class),
-                employeeRoot.get("name").as(String.class),
-                employeeRoot.get("mail").as(String.class),
-                employeeRoot.get("address").as(String.class),
-                employeeRoot.get("birth").as(String.class));
-         
+
+        if (kw != null && !kw.isEmpty()) {
+            query = query.where(builder.and(
+                    builder.equal(userRoot.get("id"), employeeRoot.get("user")),
+                    builder.like(employeeRoot.get("name").as(String.class),String.format("%%%s%%", kw) )
+            ));
+            query.multiselect(employeeRoot.get("empId"),
+                    userRoot.get("username").as(String.class),
+                    employeeRoot.get("name").as(String.class),
+                    employeeRoot.get("mail").as(String.class),
+                    employeeRoot.get("address").as(String.class),
+                    employeeRoot.get("birth").as(String.class));
+             query.groupBy(employeeRoot.get("empId"),
+                    userRoot.get("username").as(String.class),
+                    employeeRoot.get("name").as(String.class),
+                    employeeRoot.get("mail").as(String.class),
+                    employeeRoot.get("address").as(String.class),
+                    employeeRoot.get("birth").as(String.class));
+        } else {
+            query = query.where(builder.and(
+                    builder.equal(userRoot.get("id"), employeeRoot.get("user")
+                            )
+            ));
+            query.multiselect(employeeRoot.get("empId"),
+                    userRoot.get("username").as(String.class),
+                    employeeRoot.get("name").as(String.class),
+                    employeeRoot.get("mail").as(String.class),
+                    employeeRoot.get("address").as(String.class),
+                    employeeRoot.get("birth").as(String.class));
+              query.groupBy(employeeRoot.get("empId"),
+                    userRoot.get("username").as(String.class),
+                    employeeRoot.get("name").as(String.class),
+                    employeeRoot.get("mail").as(String.class),
+                    employeeRoot.get("address").as(String.class),
+                    employeeRoot.get("birth").as(String.class));
+        }
+
         Query q = s.createQuery(query);
         return q.getResultList();
     }
-    
-    
-    @Override
-    @Transactional
-    public List<Employee> getSearch(String name) {
-        
-        Session session = this.sessionFactory.getObject().getCurrentSession();
-        
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Employee> query = builder.createQuery(Employee.class);
-        Root rootEmp = query.from(Employee.class);
-        query.select(rootEmp);
-        if(name != null  && !name.isEmpty()){
-           Predicate p = builder.like(rootEmp.get("name").as(String.class),
-                    String.format("%%%s%%", name));
-            query = query.where(p);
-        }
-        
-        Query q = session.createQuery(query);
-        return q.getResultList();
-    } 
+
+//    @Override
+//    @Transactional
+//    public List<Employee> getSearch(String name) {
+//
+//        Session session = this.sessionFactory.getObject().getCurrentSession();
+//
+//        CriteriaBuilder builder = session.getCriteriaBuilder();
+//        CriteriaQuery<Employee> query = builder.createQuery(Employee.class);
+//        Root rootEmp = query.from(Employee.class);
+//        query.select(rootEmp);
+//        if (name != null && !name.isEmpty()) {
+//            Predicate p = builder.like(rootEmp.get("name").as(String.class),
+//                    String.format("%%%s%%", name));
+//            query = query.where(p);
+//        }
+//
+//        Query q = session.createQuery(query);
+//        return q.getResultList();
+//    }
 
     @Override
-    @Transactional 
+    @Transactional
     public boolean addOrUpdateEmployee(Employee emp) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         try {
@@ -92,7 +115,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
                 session.save(emp);
             }
             return true;
-        } catch (HibernateException ex){
+        } catch (HibernateException ex) {
             ex.printStackTrace();
         }
         return false;
@@ -101,26 +124,23 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     @Override
     @Transactional
     public boolean deleteEmployee(int employeeId) {
-        try{
+        try {
             Session session = this.sessionFactory.getObject().getCurrentSession();
             session.delete(session.get(Employee.class, employeeId));
-            
+
             return true;
-        } catch(HibernateException ex){
+        } catch (HibernateException ex) {
             ex.printStackTrace();
         }
-        
+
         return false;
     }
 
     @Override
     @Transactional
     public Employee getEmpById(int empId) {
-         Session s = this.sessionFactory.getObject().getCurrentSession();
+        Session s = this.sessionFactory.getObject().getCurrentSession();
         return s.get(Employee.class, empId);
-   }
+    }
 
-    
-
-   
 }

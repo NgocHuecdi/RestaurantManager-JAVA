@@ -90,42 +90,6 @@ public class BookDetailRepositoryImpl implements BookDetailRepository {
 
         }
         
-//        if( kw == hallRoot.get("name").as(String.class) && kw!= null && !kw.isEmpty()){
-//            
-//            query = query.where(builder.and(
-//                builder.equal(customerRoot.get("customerId"), bookDetailRoot.get("customer")),
-//                builder.equal(serviceRoot.get("serviceId"), bookDetailRoot.get("services")),
-//                builder.equal(eventRoot.get("eventId"), bookDetailRoot.get("event")),
-//                builder.equal(hallRoot.get("hallId"),  bookDetailRoot.get("hall")),
-//                builder.like(hallRoot.get("name").as(String.class), hallName )
-//        ));
-//                           
-//
-//                query.multiselect(bookDetailRoot.get("id"),
-//                customerRoot.get("name").as(String.class),
-//                customerRoot.get("phone").as(String.class),
-//                customerRoot.get("address").as(String.class),
-//                serviceRoot.get("name").as(String.class),
-//                eventRoot.get("name").as(String.class),
-//                hallRoot.get("name").as(String.class),
-//                bookDetailRoot.get("dateUse").as(String.class),
-//                bookDetailRoot.get("numberGuest").as(Double.class),
-//                bookDetailRoot.get("description").as(String.class)
-//        );
-//         query.groupBy(bookDetailRoot.get("id"),
-//                customerRoot.get("name").as(String.class),
-//                customerRoot.get("phone").as(String.class),
-//                customerRoot.get("address").as(String.class),
-//                serviceRoot.get("name").as(String.class),
-//                eventRoot.get("name").as(String.class),
-//                hallRoot.get("name").as(String.class),
-//                bookDetailRoot.get("dateUse").as(String.class),
-//                bookDetailRoot.get("numberGuest").as(Double.class),
-//                    bookDetailRoot.get("description").as(String.class)
-//            );
-//            
-//        }
-        
         else{
             query = query.where(builder.and(
                 builder.equal(customerRoot.get("customerId"), bookDetailRoot.get("customer")),

@@ -17,6 +17,4 @@ public interface EmployeeRepository {
     Employee getEmpById(int empId);
     boolean addOrUpdateEmployee(Employee emp);
     boolean deleteEmployee(int EmployeeId);
-    
-   List<Employee> getSearch(String name);
 }
