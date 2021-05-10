@@ -43,5 +43,10 @@ public class BookDetailServiceImpl implements BookDetailService{
 //        return  this.bookDetailRepository.getSearch(key);
 //    }
 
+    @Override
+    public boolean deleteBookDetail(int bookdetailId) {
+        return this.bookDetailRepository.deleteBookDetail(bookdetailId);
+    }
+
     
 }

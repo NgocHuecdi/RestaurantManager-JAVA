@@ -147,4 +147,21 @@ public class BookDetailRepositoryImpl implements BookDetailRepository {
         }
         return false;
     }
+
+    @Override
+    @Transactional
+    public boolean deleteBookDetail(int bookDetailId) {
+         try {
+            Session session = this.sessionFactory.getObject().getCurrentSession();
+            BookDetail bookDetail = session.get(BookDetail.class, bookDetailId);
+            session.delete(bookDetail);
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        }
+
+        return false;
+    }
+    
+    
 }

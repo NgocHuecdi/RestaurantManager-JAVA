@@ -33,7 +33,12 @@ public class BillStatsController {
     
        @Autowired
     private BookDetailService bookDetailService;
-    
+       
+       
+    @GetMapping("/billParty")
+    public String billParty(Model model){
+        return "billParty";
+    }
     @GetMapping("/statsRe")
     public String statsRe(Model model,  @RequestParam(name = "fromDate", required = false) String fromDate,
              @RequestParam(name = "toDate", required = false) String toDate) {

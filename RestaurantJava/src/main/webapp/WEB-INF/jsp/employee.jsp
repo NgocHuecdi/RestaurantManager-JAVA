@@ -54,6 +54,7 @@
                     <th class="text-center">
                         Chỉnh sửa
                     </th>
+                    
                 </tr>   
             </thead>
             <tbody>
@@ -64,7 +65,8 @@
                         <td>${emp[3]}</td>
                         <td>${emp[4]}</td>
                         <td>${emp[5]}</td>
-                        <td class="text-center"> <a href="<c:url value="/updateEmp" />/?empId=${emp[0]}"  class="btn btn-primary">Cập Nhật</a>
+                        <td class="text-center"> 
+                            <a href="<c:url value="/updateEmp" />/?empId=${emp[0]}"  class="btn btn-primary">Cập Nhật</a>
                             <a href="javascript:;" class="btn btn-danger" onclick="deleteEmployee(${emp[0]})">Xóa</a>
                         </td>
                     </tr>
