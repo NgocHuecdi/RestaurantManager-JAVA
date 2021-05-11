@@ -15,6 +15,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -60,6 +61,23 @@ public class CustomerRepositoryImpl implements CustomerRepository{
     public Customer getCustomerById(int customerId) {
          Session s = this.sessionFactory.getObject().getCurrentSession();
         return s.get(Customer.class, customerId);
+    }
+
+    @Override
+    @Transactional
+    public boolean addCustomer(Customer cus) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            if (cus.getCustomerId()> 0) {
+                session.update(cus);
+            } else {
+                session.save(cus);
+            }
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        }
+        return false;
     }
     
 }

@@ -15,4 +15,5 @@ import java.util.List;
 public interface CustomerService {
     List<Customer> getCustomers(String kw);
     Customer getCustomerById(int customerId);
+    boolean addCustomer(Customer cus);
 }
