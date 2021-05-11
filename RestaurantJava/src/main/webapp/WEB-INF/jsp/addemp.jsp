@@ -33,10 +33,16 @@
         <label><spring:message code="addemp.birth" /></label>
         <form:input cssClass="form-control" path="birth" placeholder="yyyy/mm/dd"/>
     </div>
-    
+    <div class="form-group">
+        <label for="user"><spring:message code="addemp.username" /></label>
+        <form:select id="user" path="user" cssClass="form-control">
+            <c:forEach items="${user}" var="u">
+                <option value="${u.id}">${u.username}</option>
+            </c:forEach>
+        </form:select>
+    </div>
     
     <div>
-        <form:hidden path="empId" />
         <input type="submit" class="btn btn-success" value="<spring:message code="addemp.submit" />" />
     </div>
 </form:form>

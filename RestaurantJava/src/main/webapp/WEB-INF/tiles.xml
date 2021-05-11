@@ -81,4 +81,8 @@
         <put-attribute name="title" value="Sanh" />
         <put-attribute name="content" value="/WEB-INF/jsp/cusService.jsp" />
     </definition>
+    <definition name="customerInfo" extends="baseLayout">
+        <put-attribute name="title" value="Ttkh" />
+        <put-attribute name="content" value="/WEB-INF/jsp/customerInfo.jsp" />
+    </definition>
 </tiles-definitions>

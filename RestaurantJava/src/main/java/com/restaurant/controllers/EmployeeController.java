@@ -6,7 +6,9 @@
 package com.restaurant.controllers;
 
 import com.restaurant.pojo.Employee;
+import com.restaurant.pojo.User;
 import com.restaurant.service.EmployeeService;
+import com.restaurant.service.UserService;
 
 import javax.validation.Valid;
 
@@ -26,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 //@RequestMapping("/addemp")
 public class EmployeeController {
+    @Autowired
+    private UserService userService;
     @Autowired
     private EmployeeService employeeService;
     
@@ -48,7 +52,8 @@ public class EmployeeController {
             model.addAttribute("addemp", this.employeeService.getEmpById(empId));
            
         
-        else   
+        else 
+            model.addAttribute("user", this.userService.getUsers(""));
             model.addAttribute("addemp", new Employee());
         
         return "addemp";
@@ -56,9 +61,10 @@ public class EmployeeController {
     @RequestMapping("/updateEmp")
     public String updateEmploy(Model model,  
             @RequestParam(name = "empId", required=false, defaultValue = "0") int empId){
-         if (empId > 0) 
+         if (empId > 0) {
             model.addAttribute("updateEmp", this.employeeService.getEmpById(empId));
-        
+            model.addAttribute("user", this.userService.getUsers(""));
+         }
         return "updateEmp";
     }
     

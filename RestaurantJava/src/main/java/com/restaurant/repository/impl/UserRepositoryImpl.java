@@ -34,6 +34,7 @@ public class UserRepositoryImpl implements UserRepository{
 //    private BCryptPasswordEncoder passwordEncoder;
     
     @Override
+    @Transactional
     public List<User> getUsers(String username) {
         List<User> users;
         Session session = sessionFactory.getCurrentSession();
@@ -44,7 +45,7 @@ public class UserRepositoryImpl implements UserRepository{
 
         CriteriaQuery<User> query = cr.select(root);
         if (!username.isEmpty())
-            query.where(builder.equal(root.get("username"), username));
+            query.where(builder.equal(root.get("username"), username.trim()));
 
         users = session.createQuery(query).getResultList();
         
@@ -52,9 +53,12 @@ public class UserRepositoryImpl implements UserRepository{
     }
 
     @Override
+    @Transactional
     public void addUser(User user) {
         Session session = sessionFactory.getCurrentSession();
         session.save(user);
     }
+
+    
     
 }

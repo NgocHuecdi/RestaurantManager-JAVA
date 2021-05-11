@@ -11,6 +11,7 @@ import com.restaunrant.formatter.EmployeeFormatter;
 import com.restaunrant.formatter.EventFormatter;
 import com.restaunrant.formatter.HallFormatter;
 import com.restaunrant.formatter.ServiceFormatter;
+import com.restaunrant.formatter.UserFormatter;
 import java.text.SimpleDateFormat;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -90,6 +91,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addFormatter(new ServiceFormatter());
         registry.addFormatter(new EventFormatter());
         registry.addFormatter(new HallFormatter());
+        registry.addFormatter(new UserFormatter());
     }
     @Bean
     public SimpleDateFormat simpleDateFormat() {
