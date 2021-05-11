@@ -30,5 +30,10 @@ public class CustomerServiceImpl implements CustomerService{
     public Customer getCustomerById(int customerId) {
         return this.customerRepository.getCustomerById(customerId);
     }
+
+    @Override
+    public boolean addCustomer(Customer cstmr) {
+        return this.customerRepository.addCustomer(cstmr);
+    }
     
 }

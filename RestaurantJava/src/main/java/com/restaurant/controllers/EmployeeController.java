@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author HP
  */
 @Controller
-//@RequestMapping("/addemp")
 public class EmployeeController {
     @Autowired
     private UserService userService;
