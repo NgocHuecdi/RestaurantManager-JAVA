@@ -33,15 +33,12 @@
                     <a class="nav-link text-white" href="<c:url value="/viewBook" />">Đơn Đặt Tiệc   
                         <span class="badge badge-danger">${totalBook}</span>
                     </a>
-                    
-                             
-                      
                 </li>
 <!--                <li class="nav-item active">
                     <a class="nav-link text-white" href="<c:url value="/statsRe" />">Thống Kê</a>
                 </li>-->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Thống Kê</a>
+                    <a class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="javascript:;" role="button" aria-haspopup="true" aria-expanded="false">Thống Kê</a>
                     <div class="dropdown-menu ">
                         <a class="dropdown-item" href="<c:url value="/statsRe" />">Doanh Thu</a>
                         <a class="dropdown-item"  href="<c:url value="/statsDen" />">Mật Độ Tiệc Cưới</a>       

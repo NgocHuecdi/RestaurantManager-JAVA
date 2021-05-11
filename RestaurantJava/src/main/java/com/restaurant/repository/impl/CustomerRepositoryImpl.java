@@ -48,6 +48,7 @@ public class CustomerRepositoryImpl implements CustomerRepository{
         query.multiselect(customerRoot.get("customerId"), 
                 userRoot.get("username").as(String.class),
                 customerRoot.get("name").as(String.class),
+                customerRoot.get("phone").as(String.class),
                 customerRoot.get("address").as(String.class));
          
         Query q = s.createQuery(query);

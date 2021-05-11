@@ -33,6 +33,11 @@ public class User implements Serializable  {
     @Transient
     private String confirmPassword;
     
+    @Override
+    public String toString() {
+        return String.valueOf(id);
+    }
+    
     
 
     /**
