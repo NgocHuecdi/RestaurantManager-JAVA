@@ -19,11 +19,16 @@
 
   <div class="form-group">
         <label for="">Tên Khách Hàng</label>
-       <form:select path="customer" cssClass="form-control">
+          <a href="#">
+                    ${pageContext.request.userPrincipal.name}
+                </a>
+      
+            <form:select path="customer" cssClass="form-control">
             <c:forEach items="${customer}" var="cus">
-                <option value="${cus[0]}">${cus[1]}</option>
+                <option value="${cus[0]}">${cus[2]}</option>
             </c:forEach>
         </form:select>
+        
     </div>
  
     <div class="form-group">

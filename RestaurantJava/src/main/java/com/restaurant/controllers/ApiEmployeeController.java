@@ -29,7 +29,6 @@ public class ApiEmployeeController {
     @ResponseStatus(HttpStatus.OK)
     public void deleteEmployee(@PathVariable(name = "employeeId") int employeeId){
         this.employeeService.deleteEmployee(employeeId);
-        
-        
+  
     }
 }

@@ -7,11 +7,13 @@ package com.restaurant.controllers;
 
 
 
+import com.restaurant.service.BookDetailService;
 import com.restaurant.service.CustomerService;
 import com.restaurant.service.EmployeeService;
 import com.restaurant.service.EventService;
 import com.restaurant.service.HallService;
 import com.restaurant.service.ServicesService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +42,8 @@ public class HomeController {
     private CustomerService customerService;
     @Autowired
     private HallService hallService;
+    @Autowired
+    private BookDetailService bookDetailService;
     
     @ModelAttribute
     public void addAttributes(Model model, HttpSession session) {
@@ -52,6 +56,13 @@ public class HomeController {
     
     @RequestMapping("/") //mapping vao trang chu
     public String index(Model model){
+        int totalBook = 0;
+            List<Object[]> bookDetails = this.bookDetailService.getBookDetail("");
+              for (Object[] bd : bookDetails) {
+                totalBook++;
+            }
+             
+             model.addAttribute("totalBook",totalBook);
 //        model.addAttribute("services", this.servicesService.getServices(""));
 //        model.addAttribute("events", this.eventService.getEvents());
         return "index";

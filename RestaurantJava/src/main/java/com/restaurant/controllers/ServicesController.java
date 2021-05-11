@@ -6,7 +6,9 @@
 package com.restaurant.controllers;
 
 import com.restaurant.pojo.Services;
+import com.restaurant.service.BookDetailService;
 import com.restaurant.service.ServicesService;
+import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,8 @@ public class ServicesController {
 
     @Autowired
     private ServicesService servicesService;
+       @Autowired
+    private BookDetailService bookDetailService;
 
     @RequestMapping("/services") //mapping vao trang chu
     public String services(Model model, @RequestParam(name = "name", required = false) String name) {
@@ -42,6 +46,14 @@ public class ServicesController {
         if (serviceId == 0) {
             model.addAttribute("addService", new Services());
         }
+          //Bill
+          int totalBook = 0;
+            List<Object[]> bookDetails = this.bookDetailService.getBookDetail("");
+              for (Object[] bd : bookDetails) {
+                totalBook++;
+            }
+             
+        model.addAttribute("totalBook",totalBook);
 
         return "addService";
     }

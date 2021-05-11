@@ -30,9 +30,12 @@
                     <a class="nav-link text-white" href="<c:url value="/bookParty" />">Đặt Tiệc</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link text-white" href="<c:url value="/viewBook" />">Đơn Đặt Tiệc
-<!--                         <span class="badge badge-danger" id="book-counter">${book.getQuantity()}</span>-->
+                    <a class="nav-link text-white" href="<c:url value="/viewBook" />">Đơn Đặt Tiệc   
+                        <span class="badge badge-danger">${totalBook}</span>
                     </a>
+                    
+                             
+                      
                 </li>
 <!--                <li class="nav-item active">
                     <a class="nav-link text-white" href="<c:url value="/statsRe" />">Thống Kê</a>

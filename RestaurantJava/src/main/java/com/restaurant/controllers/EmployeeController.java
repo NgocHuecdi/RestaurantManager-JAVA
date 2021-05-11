@@ -9,6 +9,8 @@ import com.restaurant.pojo.Employee;
 import com.restaurant.pojo.User;
 import com.restaurant.service.EmployeeService;
 import com.restaurant.service.UserService;
+import com.restaurant.service.BookDetailService;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -32,6 +34,8 @@ public class EmployeeController {
     private UserService userService;
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private BookDetailService bookDetailService;
     
     @RequestMapping("/employee") //mapping vao trang chu
     public String employee(Model model,@RequestParam(name="name", required = false) String name){
@@ -42,6 +46,13 @@ public class EmployeeController {
         else {
             model.addAttribute("employees", this.employeeService.getEmployeies(""));
         }
+          int totalBook = 0;
+            List<Object[]> bookDetails = this.bookDetailService.getBookDetail("");
+              for (Object[] bd : bookDetails) {
+                totalBook++;
+            }
+             
+             model.addAttribute("totalBook",totalBook);
         return "employee";
     }
      

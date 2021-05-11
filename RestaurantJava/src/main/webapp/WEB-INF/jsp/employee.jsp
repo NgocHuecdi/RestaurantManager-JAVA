@@ -54,17 +54,19 @@
                     <th class="text-center">
                         Chỉnh sửa
                     </th>
-                </tr>
+                    
+                </tr>   
             </thead>
             <tbody>
                 <c:forEach items="${employees}" var = "emp">
-                    <tr>
+                    <tr id="employee${emp[0]}">
                         <td>${emp[0]}</td>
                         <td>${emp[2]}</td>
                         <td>${emp[3]}</td>
                         <td>${emp[4]}</td>
                         <td>${emp[5]}</td>
-                        <td class="text-center"> <a href="<c:url value="/updateEmp" />/?empId=${emp[0]}"  class="btn btn-primary">Cập Nhật</a>
+                        <td class="text-center"> 
+                            <a href="<c:url value="/updateEmp" />/?empId=${emp[0]}"  class="btn btn-primary">Cập Nhật</a>
                             <a href="javascript:;" class="btn btn-danger" onclick="deleteEmployee(${emp[0]})">Xóa</a>
                         </td>
                     </tr>

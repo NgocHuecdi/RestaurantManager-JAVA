@@ -17,5 +17,6 @@ public interface BookDetailService {
     List<Object[]> getBookDetail(String kw);
     BookDetail getBookDetailById(int bookDetailId);
     boolean addBook(BookDetail bookDetail);
+    boolean deleteBookDetail(int bookDetailId);
 //    List<Object[]> getSearch(String key);
 }

@@ -6,6 +6,7 @@
 package com.restaurant.controllers;
 
 import com.restaurant.service.BillStatsService;
+import com.restaurant.service.BookDetailService;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,6 +31,14 @@ public class BillStatsController {
     @Autowired
     private BillStatsService billStatsService;
     
+       @Autowired
+    private BookDetailService bookDetailService;
+       
+       
+    @GetMapping("/billParty")
+    public String billParty(Model model){
+        return "billParty";
+    }
     @GetMapping("/statsRe")
     public String statsRe(Model model,  @RequestParam(name = "fromDate", required = false) String fromDate,
              @RequestParam(name = "toDate", required = false) String toDate) {
@@ -47,6 +56,15 @@ public class BillStatsController {
         List<BigDecimal> total = new ArrayList<>();
         for (Object[] d: dataBills)
             total.add((BigDecimal) d[7]);
+        
+            //Bill
+          int totalBook = 0;
+            List<Object[]> bookDetails = this.bookDetailService.getBookDetail("");
+              for (Object[] bd : bookDetails) {
+                totalBook++;
+            }
+             
+        model.addAttribute("totalBook",totalBook); 
                 
         model.addAttribute("dataBills", dataBills);
         model.addAttribute("total", total);
@@ -76,6 +94,15 @@ public class BillStatsController {
         
          for (Object[] d: des)
             total.add((Long) d[8]);
+         
+         //Bill
+          int totalBook = 0;
+            List<Object[]> bookDetails = this.bookDetailService.getBookDetail("");
+              for (Object[] bd : bookDetails) {
+                totalBook++;
+            }
+             
+        model.addAttribute("totalBook",totalBook);
                 
         model.addAttribute("des", des);
         model.addAttribute("totalCount", totalCount);

@@ -55,3 +55,21 @@ function addBookParty(bookDetailId) {
             }
         })
 }
+
+function deleteBookDetail(bookDetailId) {
+    if (confirm("Bạn muốn hủy đơn đặt tiệc?") == true){
+         fetch(`/RestaurantJava/api/viewBook/${bookDetailId}`, {
+            method: "delete",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function(res) {
+            if (res.status == 200) {
+                let d = document.getElementById(`bookDetail${bookDetailId}`);
+                d.style.display = "none";
+            } else {
+                alert("Something wrong!!!");
+            }
+        })
+    }
+}

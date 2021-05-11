@@ -9,6 +9,7 @@ import com.restaurant.pojo.BookDetail;
 import com.restaurant.service.BookDetailService;
 import com.restaurant.service.EventService;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -29,48 +30,46 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class BookPartyController {
+
     @Autowired
     private SimpleDateFormat simpleDateFormat;
-   @Autowired
+    @Autowired
     private BookDetailService bookDetailService;
-   @Autowired
+    @Autowired
     private EventService eventService;
-
 
     @GetMapping("/viewBook") //mapping vao trang chu
     public String viewBook(Model model, HttpSession session,
             @RequestParam(name = "dateUse", required = false) String dateUse,
             @RequestParam(name = "hallName", required = false) String hallName) {
-      
-        if(dateUse != null){
+
+        if (dateUse != null) {
             List<Object[]> bookDetails = this.bookDetailService.getBookDetail(dateUse);
-            //model.addAttribute("viewBook", bookDetails);
+
+            int totalBook = 0;
+
+            for (Object[] bd : bookDetails) {
+                totalBook++;
+            }
             model.addAttribute("bookDetails", bookDetails);
+            model.addAttribute("totalBook", totalBook);
+        } else {
+            int totalBook = 0;
+            List<Object[]> bookDetails = this.bookDetailService.getBookDetail("");
+            for (Object[] bd : bookDetails) {
+                totalBook++;
+            }
+            model.addAttribute("bookDetails", bookDetails);
+            model.addAttribute("totalBook", totalBook);
         }
-//        if(hallName != null){
-//             List<Object[]> bookDetails = this.bookDetailService.getBookDetail(dateUse);
-//            //model.addAttribute("viewBook", bookDetails);
-//            model.addAttribute("bookDetails", bookDetails);
-//        }
-        else{
-       List<Object[]> bookDetails = this.bookDetailService.getBookDetail("");
-        model.addAttribute("bookDetails", bookDetails);
-//        model.addAttribute("viewBook", session.getAttribute("viewBook"));
-       
-        }
-        
-         return "viewBook";
+
+        return "viewBook";
     }
 
-//    @GetMapping("/viewBook")
-//    public String book(Model model, HttpSession session){
-//       model.addAttribute("bookParty", session.getAttribute("viewBook"));
-//        return "viewBook";
-//    }
     @RequestMapping("/bookParty")
     public String addView(Model model,
             @RequestParam(name = "bookDetailId", required = false, defaultValue = "0") int bookDetailId) {
-        
+
         if (bookDetailId == 0) {
             model.addAttribute("bookParty", new BookDetail());
         }
@@ -81,11 +80,11 @@ public class BookPartyController {
     @PostMapping("/bookParty/add")
     public String addBookParty(Model model,
             @ModelAttribute(value = "bookParty") @Valid BookDetail bookdetail,
-            BindingResult result) { 
-      
-//        if (result.hasErrors()) {
-//            return "bookParty";
-//        } 
+            BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "bookParty";
+        }
         if (!this.bookDetailService.addBook(bookdetail)) {
             model.addAttribute("erroMsg", "Something looi!!!");
             return "bookParty";
