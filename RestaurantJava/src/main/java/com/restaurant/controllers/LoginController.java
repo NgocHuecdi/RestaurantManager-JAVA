@@ -55,9 +55,7 @@ public class LoginController {
         user.setRole_user("ROLE_USER");
         if (result.hasErrors()) 
             return "register";
-        
         userService.addUser(user);
-        
         return "redirect:/login";
     }
 }

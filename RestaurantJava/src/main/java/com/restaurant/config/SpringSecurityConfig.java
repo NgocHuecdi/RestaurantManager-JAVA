@@ -54,11 +54,18 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling()
             .accessDeniedPage("/login?accessDenied");
         
-        http.authorizeRequests().antMatchers("/").permitAll();
-//            .antMatchers("/addemp/**/")
-//            .access("hasRole('ROLE_ADMIN')");
-//            .antMatchers("/**/pay")
-//            .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/").permitAll()
+            .antMatchers("/employee").access("hasRole('ROLE_ADMIN')")
+            .antMatchers("/addemp/**/").access("hasRole('ROLE_ADMIN')")
+            .antMatchers("/**/add").access("hasRole('ROLE_ADMIN')")
+            .antMatchers("/addService/**/").access("hasRole('ROLE_ADMIN')")
+            .antMatchers("/statsRe").access("hasRole('ROLE_ADMIN')")
+            .antMatchers("/statsDen").access("hasRole('ROLE_ADMIN')")
+            .antMatchers("/viewBook").access("hasRole('ROLE_ADMIN')")
+            .antMatchers("/customerInfo").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+            .antMatchers("/bookParty").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+            .antMatchers("/addFeedback/**/").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
+            
         http.csrf().disable();
 
     }
