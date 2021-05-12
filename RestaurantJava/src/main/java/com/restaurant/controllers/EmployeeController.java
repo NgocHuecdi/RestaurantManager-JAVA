@@ -60,8 +60,7 @@ public class EmployeeController {
                     @RequestParam(name = "empId", required=false, defaultValue = "0") int empId) {
         if (empId > 0) 
             model.addAttribute("addemp", this.employeeService.getEmpById(empId));
-           
-        
+ 
         else 
             model.addAttribute("user", this.userService.getUsers(""));
             model.addAttribute("addemp", new Employee());

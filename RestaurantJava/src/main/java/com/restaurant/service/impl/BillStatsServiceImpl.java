@@ -5,6 +5,7 @@
  */
 package com.restaurant.service.impl;
 
+import com.restaurant.pojo.Bill;
 import com.restaurant.pojo.Book;
 import com.restaurant.repository.BillStatsRepository;
 import com.restaurant.service.BillStatsService;
@@ -27,6 +28,16 @@ public class BillStatsServiceImpl implements BillStatsService {
     @Override
     public List<Object[]> getBillStats(Date fromDate, Date toDate) {
            return this.billStatsRepository.getBillStats(toDate, toDate);
+    }
+
+    @Override
+    public Bill getBillById(int billId) {
+        return this.billStatsRepository.getBillById(billId);
+    }
+
+    @Override
+    public boolean addBill(Bill bill) {
+        return this.billStatsRepository.addBill(bill);
     }
 
 

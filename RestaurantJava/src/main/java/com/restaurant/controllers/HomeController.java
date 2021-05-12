@@ -44,6 +44,8 @@ public class HomeController {
     private HallService hallService;
     @Autowired
     private BookDetailService bookDetailService;
+    @Autowired
+    private EmployeeService employeeService;
     
     @ModelAttribute
     public void addAttributes(Model model, HttpSession session) {
@@ -51,6 +53,7 @@ public class HomeController {
         model.addAttribute("event", this.eventService.getEvents(""));
         model.addAttribute("customer", this.customerService.getCustomers(""));
          model.addAttribute("hall", this.hallService.getHalls(""));
+         model.addAttribute("employees", this.employeeService.getEmployeies(""));
        
     }
     

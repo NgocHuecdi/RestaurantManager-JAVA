@@ -112,4 +112,27 @@ public class BillStatsRepositoryImpl implements BillStatsRepository {
         return q.getResultList();
     }
 
+    @Override
+    @Transactional
+    public Bill getBillById(int billId) {
+        Session s = this.sessionFactory.getObject().getCurrentSession();
+        return s.get(Bill.class, billId);
+    }
+
+    @Override
+    @Transactional
+    public boolean addBill(Bill bill) {
+         Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            if (bill.getBillId()== 0) {
+
+                session.save(bill);
+            }
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
 }

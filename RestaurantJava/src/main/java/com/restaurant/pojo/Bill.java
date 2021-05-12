@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -45,13 +46,14 @@ public class Bill implements Serializable{
     private Event event;
     
     @ManyToOne
-    @JoinColumn(name = "booId")
+    @JoinColumn(name = "bookDetailId")
     private BookDetail bookDetail;
     
     @ManyToOne
     @JoinColumn(name = "hallId")
     private Hall hall;
     
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date datePay;
     

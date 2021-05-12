@@ -5,6 +5,7 @@
  */
 package com.restaurant.repository;
 
+import com.restaurant.pojo.Bill;
 import com.restaurant.pojo.Book;
 import java.util.Date;
 import java.util.List;
@@ -16,4 +17,6 @@ import java.util.Map;
  */
 public interface BillStatsRepository {
     List<Object[]> getBillStats(Date fromDate, Date toDate);
+    Bill getBillById(int billId);
+    boolean addBill(Bill bill);
 }

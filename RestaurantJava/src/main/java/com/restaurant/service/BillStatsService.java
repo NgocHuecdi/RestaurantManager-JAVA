@@ -5,6 +5,7 @@
  */
 package com.restaurant.service;
 
+import com.restaurant.pojo.Bill;
 import com.restaurant.pojo.Book;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +16,8 @@ import java.util.Map;
  * @author HP
  */
 public interface BillStatsService {
-  
+      Bill getBillById(int billId);
+    boolean addBill(Bill bill);
      List<Object[]> getBillStats(Date fromDate, Date toDate);
    
 }

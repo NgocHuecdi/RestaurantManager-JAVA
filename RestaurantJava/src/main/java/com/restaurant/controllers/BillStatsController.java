@@ -5,6 +5,8 @@
  */
 package com.restaurant.controllers;
 
+import com.restaurant.pojo.Bill;
+import com.restaurant.pojo.BookDetail;
 import com.restaurant.service.BillStatsService;
 import com.restaurant.service.BookDetailService;
 import java.math.BigDecimal;
@@ -12,10 +14,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,8 +42,27 @@ public class BillStatsController {
        
        
     @GetMapping("/billParty")
-    public String billParty(Model model){
+    public String billParty(Model model, @RequestParam(name = "bookDetailId", required = false, defaultValue = "0") int bookDetailId) {
+
+        if (bookDetailId >= 0) {
+            model.addAttribute("billParty", new Bill());
+        }
         return "billParty";
+    }
+     @PostMapping("/billParty/add")
+    public String addBookParty(Model model,
+            @ModelAttribute(value = "billParty") @Valid Bill bill,
+            BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "billParty";
+        }
+        if (!this.billStatsService.addBill(bill)) {
+            model.addAttribute("erroMsg", "Something looi!!!");
+            return "billParty";
+        }
+
+        return "redirect:/";
     }
     @GetMapping("/statsRe")
     public String statsRe(Model model,  @RequestParam(name = "fromDate", required = false) String fromDate,

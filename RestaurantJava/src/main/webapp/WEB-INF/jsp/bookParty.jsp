@@ -19,10 +19,6 @@
 
   <div class="form-group">
         <label for="">Tên Khách Hàng</label>
-          <a href="#">
-                    ${pageContext.request.userPrincipal.name}
-                </a>
-      
             <form:select path="customer" cssClass="form-control">
             <c:forEach items="${customer}" var="cus">
                 <option value="${cus[0]}">${cus[2]}</option>
@@ -68,9 +64,8 @@
         <label for="">Ghi Chú</label>
         <form:input cssClass="form-control" path="description"/>
     </div>
-    <a  path = "customer" href="javascript:;" 
-           onclick="addBookParty(${customerId})">Them gio hang</a>
-  
+   
+
     <div class="form-group">
         <form:hidden path="id" />
         <input type="submit" value="Gửi thông tin" 

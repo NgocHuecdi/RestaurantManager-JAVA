@@ -55,7 +55,7 @@
             <td>${stats[9]}</td>
 
             <td class="text-center"> 
-                <a href="<c:url value="/billParty"/>"  class="btn btn-primary">Thanh Toán</a>
+                <a href="<c:url value="/billParty"/>/?id=${stats[0]}"  class="btn btn-primary">Thanh Toán</a>
                 <a href="javascript:;" class="btn btn-danger" onclick="deleteBookDetail(${stats[0]})">Hủy Đơn</a>
             </td>
 
