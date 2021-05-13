@@ -6,6 +6,7 @@
 package com.restaurant.controllers;
 
 import com.restaurant.pojo.Feedback;
+import com.restaurant.service.CustomerService;
 import com.restaurant.service.FeedbackService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -26,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class FeedbackController {
     @Autowired
     private FeedbackService feedbackService;
+    @Autowired
+    private CustomerService customerService;
     @RequestMapping("/feedback")
     public String feedback(Model model, @RequestParam(name = "description", required=false) String description){
         model.addAttribute("feedback", this.feedbackService.getFeedbacks(""));
@@ -36,15 +40,20 @@ public class FeedbackController {
     @RequestMapping("/addFeedback")
     public String addView(Model model,
             @RequestParam(name = "feedbackId", required = false, defaultValue = "0") int feedbackId) {
-        if (feedbackId == 0) {
-            model.addAttribute("addFeedback", new Feedback());
-        }
-
+//        if (feedbackId > 0) {
+//            model.addAttribute("addFeedback", this.feedbackService.getFbById(feedbackId));
+//        }
+//        else
+//        {
+            model.addAttribute("customer", this.customerService.getCustomers(""));
+            
+//        }
+        model.addAttribute("addFeedback", new Feedback());
         return "addFeedback";
     }
     @PostMapping("/addFeedback/add")
     public String addFeedback(Model model,
-            @ModelAttribute(value = "feedback") @Valid Feedback feedback,
+            @ModelAttribute(value = "addFeedback") @Valid Feedback feedback,
             BindingResult result) {
         if (result.hasErrors()) {
             return "addFeedback";
@@ -57,6 +66,4 @@ public class FeedbackController {
         
         return "redirect:/feedback";
     }
-    
-    
 }

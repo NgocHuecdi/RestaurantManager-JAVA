@@ -8,6 +8,7 @@ package com.restaurant.repository.impl;
 import com.restaurant.pojo.Customer;
 import com.restaurant.pojo.Feedback;
 import com.restaurant.repository.FeedbackRepository;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -42,14 +43,14 @@ public class FeedbackRepositoryImpl implements FeedbackRepository {
         Root customerRoot = query.from(Customer.class);
         Root feedbackRoot = query.from(Feedback.class);
         
-        query = query  .where(builder.and(
+        query = query.where(builder.and(
                     builder.equal(customerRoot.get("customerId"), feedbackRoot.get("customer"))
         ));
         
          query.multiselect(feedbackRoot.get("feedbackId"), 
                 customerRoot.get("name").as(String.class),
                 feedbackRoot.get("description").as(String.class),
-                feedbackRoot.get("date").as(String.class));
+                feedbackRoot.get("date").as(Date.class));
          
         Query q = session.createQuery(query);
         return q.getResultList();
@@ -68,5 +69,12 @@ public class FeedbackRepositoryImpl implements FeedbackRepository {
             ex.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    @Transactional
+    public Feedback getFbById(int i) {
+        Session s = this.sessionFactory.getObject().getCurrentSession();
+        return s.get(Feedback.class, i);
     }
 }
