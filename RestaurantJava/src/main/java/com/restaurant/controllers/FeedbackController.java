@@ -40,13 +40,13 @@ public class FeedbackController {
     @RequestMapping("/addFeedback")
     public String addView(Model model,
             @RequestParam(name = "feedbackId", required = false, defaultValue = "0") int feedbackId) {
-//        if (feedbackId > 0) {
-//            model.addAttribute("addFeedback", this.feedbackService.getFbById(feedbackId));
-//        }
-//        else
-//        {
+        if (feedbackId > 0) {
+            model.addAttribute("addFeedback", this.feedbackService.getFbById(feedbackId));
+        }
+        else
+        {
             model.addAttribute("customer", this.customerService.getCustomers(""));
-//        }
+        }
         model.addAttribute("addFeedback", new Feedback());
         return "addFeedback";
     }
