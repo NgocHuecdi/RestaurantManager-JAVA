@@ -46,7 +46,6 @@ public class FeedbackController {
 //        else
 //        {
             model.addAttribute("customer", this.customerService.getCustomers(""));
-            
 //        }
         model.addAttribute("addFeedback", new Feedback());
         return "addFeedback";
