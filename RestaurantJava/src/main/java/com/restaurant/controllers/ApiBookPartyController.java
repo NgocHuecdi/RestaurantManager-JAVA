@@ -101,4 +101,10 @@ public class ApiBookPartyController {
   
     }
     
+    @DeleteMapping("/billParty/{bookDetailId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteBookParty(@PathVariable(name = "bookDetailId") int bookDetailId){
+        this.bookDetailService.deleteBookDetail(bookDetailId);
+  
+    }
 }

@@ -64,7 +64,7 @@ public class BillStatsController {
             return "billParty";
         }
 
-        return "redirect:/";
+        return "redirect:/viewBook";
     }
     @GetMapping("/statsRe")
     public String statsRe(Model model,  @RequestParam(name = "fromDate", required = false) String fromDate,

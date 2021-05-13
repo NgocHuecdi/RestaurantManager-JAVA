@@ -111,10 +111,8 @@
     </div>
     <div class="form-group">
         <form:hidden path="billId" />
-        <input type="submit" value="Gửi thông tin" 
-               class="btn btn-danger" onclick="deleteBookDetail(${stats[0]})" />
-
-
+        <input type="submit" value="Thanh toán" 
+               class="btn btn-danger"  onclick="deleteBookParty(${bookDetail.id})"/>
     </div>
 </form:form>
 

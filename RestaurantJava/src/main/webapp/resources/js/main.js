@@ -72,7 +72,27 @@ function deleteBookDetail(bookDetailId) {
             }
         })
     }
+    
 }
+function deleteBookParty(bookDetailId) {
+    
+     if (confirm("Bạn muốn thanh toán đơn đặt tiệc?") == true){
+         fetch(`/RestaurantJava/api/billParty/${bookDetailId}`, {
+            method: "delete",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function(res) {
+            if (res.status == 200) {
+                let d = document.getElementById(`bookDetail${bookDetailId}`);
+                d.style.display = "none";
+            } else {
+                alert("Something loii!!!");
+            }
+        })  
+    }
+}
+
 function deleteService(serviceId) {
     if (confirm("Are you sure delete this row?") == true){
          fetch(`/RestaurantJava/api/services/${serviceId}`, {
@@ -85,7 +105,7 @@ function deleteService(serviceId) {
                 let d = document.getElementById(`services${serviceId}`);
                 d.style.display = "none";
             } else {
-                alert("Something wrong!!!");
+                alert("Something loi!!!");
             }
         })
     }

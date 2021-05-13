@@ -18,5 +18,6 @@ public interface BookDetailRepository {
     BookDetail getBookDetailById(int bookDetailId);
     boolean addBook(BookDetail bookDetail);
      boolean deleteBookDetail(int bookDetailId);
+     boolean deleteBookParty(int bookDetailId);
 //    List<Object[]> getSearch(String key);
 }

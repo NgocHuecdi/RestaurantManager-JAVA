@@ -48,5 +48,10 @@ public class BookDetailServiceImpl implements BookDetailService{
         return this.bookDetailRepository.deleteBookDetail(bookdetailId);
     }
 
+    @Override
+    public boolean deleteBookParty(int bookdetailId) {
+        return this.bookDetailRepository.deleteBookDetail(bookdetailId);
+    }
+
     
 }
