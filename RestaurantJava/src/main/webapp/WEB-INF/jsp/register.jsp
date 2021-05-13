@@ -15,7 +15,7 @@
 <form:form action="${action}" modelAttribute="user" method="post" >
         <form:errors path="*" cssClass="alert alert-danger" element="div" />
     <div class="form-group">
-        <lable for="username">Tên đăng nhập</lable>
+        <label for="username">Tên đăng nhập</label>
         <form:input id="username" 
                     class="form-control"
                     path="username" />

@@ -36,7 +36,7 @@
                         Giá
                     </th>
                     <th class="text-center">
-                        Xoa
+                        Xóa
                     </th>
                 </tr>
             </thead>

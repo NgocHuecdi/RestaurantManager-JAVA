@@ -37,7 +37,6 @@
     </div>
     <div class="form-group">
         <label for = "user"><spring:message code="updateEmp.username" /></label>
-        <fieldset disabled>
         <form:select path="user" cssClass="form-control" id="user">
             <c:forEach items="${user}" var="u">
                 <c:if test="${Integer.parseInt(updateEmp.user) == u.id}">
@@ -45,7 +44,6 @@
                 </c:if>
             </c:forEach>
         </form:select>
-        </fieldset>
     </div>
     <div>
         <form:hidden path="empId" />

@@ -53,7 +53,7 @@
     </div>
     <div class="form-group">
         <label for="">Ngày tổ chức</label>
-        <form:input cssClass="form-control" path="dateUse"  />
+        <form:input type="date" cssClass="form-control" path="dateUse"  />
     </div>
     <div class="form-group">
         <label for="">Số lượng khách</label>

@@ -11,7 +11,7 @@
 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<h1 class="text-center text-danger">Đặt tiệc</h1>
+<h1 class="text-center text-danger">Thanh Toán</h1>
 <c:url value="/billParty/add" var="action" />
 <form:form method="POST" 
            action="${action}" 
@@ -27,6 +27,7 @@
     </div>
 
     <div class="form-group">
+       
         <label for="">Tên Khách Hàng</label>  
         <c:forEach items="${bookDetails}" var="stats">
             <c:if test = "${stats[0] == bookDetail.id}">
@@ -91,11 +92,10 @@
                 </form:select>
             </c:if>
         </c:forEach>
-
     </div>
     <div class="form-group">
         <label for="">Ngày Trả</label>
-        <form:input cssClass="form-control" path="datePay"  />
+        <form:input type="date" cssClass="form-control" path="datePay"  />
     </div>
     <div class="form-group">
         <label for="">Đơn Đặt</label>
@@ -103,7 +103,7 @@
         <c:forEach items="${bookDetails}" var="stats">
             <c:if test = "${stats[0] == bookDetail.id}">
                 <div id="bookDetail${stats[0]}">
-                    <form:input cssClass="form-control" path="bookDetail.id" value = "${stats[0]}"/>  
+                    <form:input type="number" cssClass="form-control" path="bookDetail.id" value = "${stats[0]}"/>  
                 </div>
             </c:if>
         </c:forEach>
