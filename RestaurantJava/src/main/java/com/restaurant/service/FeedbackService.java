@@ -15,4 +15,5 @@ import java.util.List;
 public interface FeedbackService {
     List<Object[]> getFeedbacks(String kw);
     boolean addFeedback(Feedback f);
+    Feedback getFbById(int fbId);
 }

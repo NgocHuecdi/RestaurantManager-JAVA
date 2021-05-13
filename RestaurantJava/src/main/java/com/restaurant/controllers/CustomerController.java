@@ -5,7 +5,6 @@
  */
 package com.restaurant.controllers;
 import com.restaurant.pojo.Customer;
-import com.restaurant.pojo.Employee;
 import com.restaurant.service.CustomerService;
 import com.restaurant.service.UserService;
 import javax.validation.Valid;
