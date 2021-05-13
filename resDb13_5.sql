@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
 --
 -- Host: localhost    Database: resdb
 -- ------------------------------------------------------
--- Server version	8.0.21
+-- Server version	8.0.23
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,18 +30,21 @@ CREATE TABLE `bills` (
   `eventId` int NOT NULL,
   `hallId` int NOT NULL,
   `datePay` date DEFAULT NULL,
+  `bookDetailId` int DEFAULT NULL,
   PRIMARY KEY (`billId`),
   KEY `customerId_bill_idx` (`customerId`),
   KEY `empId_bill_idx` (`empId`),
   KEY `serviceId_bill_idx` (`serviceId`),
   KEY `eventId_bill_idx` (`eventId`),
   KEY `hallId_bill_idx` (`hallId`),
+  KEY `bookDetailId_idx` (`bookDetailId`),
+  CONSTRAINT `bookDetailId` FOREIGN KEY (`bookDetailId`) REFERENCES `book_detail` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `customerId_bill` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `empId_bill` FOREIGN KEY (`empId`) REFERENCES `employees` (`empId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `eventId_bill` FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `hallId_bill` FOREIGN KEY (`hallId`) REFERENCES `halls` (`hallId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `serviceId_bill` FOREIGN KEY (`serviceId`) REFERENCES `services` (`serviceId`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,7 +53,7 @@ CREATE TABLE `bills` (
 
 LOCK TABLES `bills` WRITE;
 /*!40000 ALTER TABLE `bills` DISABLE KEYS */;
-INSERT INTO `bills` VALUES (1,1,1,1,1,1,'2021-05-05'),(2,2,2,2,2,2,'2021-05-06');
+INSERT INTO `bills` VALUES (1,1,1,1,1,1,'2021-05-05',NULL),(2,2,2,2,2,2,'2021-05-06',NULL),(30,1,1,18,3,4,'2021-05-13',8),(31,1,1,18,3,4,'2021-05-13',8),(32,1,1,18,3,4,'2021-05-13',8),(33,1,1,18,3,4,'2021-05-13',8),(34,1,1,18,3,4,'2021-05-13',8),(35,1,1,18,3,4,'2021-05-13',8);
 /*!40000 ALTER TABLE `bills` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,7 +82,7 @@ CREATE TABLE `book_detail` (
   CONSTRAINT `eventId_events_book` FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `hallId_halls` FOREIGN KEY (`hallId`) REFERENCES `halls` (`hallId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `serviceId_services_book` FOREIGN KEY (`serviceId`) REFERENCES `services` (`serviceId`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,7 +91,7 @@ CREATE TABLE `book_detail` (
 
 LOCK TABLES `book_detail` WRITE;
 /*!40000 ALTER TABLE `book_detail` DISABLE KEYS */;
-INSERT INTO `book_detail` VALUES (1,1,1,1,1,'2021-04-30','Test lan 1',110),(2,2,2,2,2,'2021-05-01','Test lan 2',120),(3,1,1,1,1,'2021-04-29','Test lan 3',400),(4,3,5,3,4,'2021-05-03','Test lan 3',400);
+INSERT INTO `book_detail` VALUES (1,1,1,1,1,'2021-04-30','Test lan 1',110),(2,2,2,2,2,'2021-05-01','Test lan 2',120),(6,3,18,3,3,'2021-04-30','Test thanh toan',12),(7,2,1,2,3,'2021-04-30','test thanh toan 2',12),(8,1,18,3,4,'2021-04-30','Test thanh toan 3',12);
 /*!40000 ALTER TABLE `book_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,7 +111,7 @@ CREATE TABLE `customers` (
   PRIMARY KEY (`customerId`),
   KEY `fk_customers_user1_idx` (`user_id`),
   CONSTRAINT `fk_customers_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,7 +120,7 @@ CREATE TABLE `customers` (
 
 LOCK TABLES `customers` WRITE;
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` VALUES (1,'James','01234567','USA',7),(2,'Harry','12304567','USA',6),(3,'Teo','1456230','VN',7);
+INSERT INTO `customers` VALUES (1,'James','01234567','USA',7),(2,'Harry','12304567','USA',6),(3,'Teo','1456230','VN',7),(4,'Test','012345678','Tay Ninh',7);
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,7 +150,7 @@ CREATE TABLE `employees` (
 
 LOCK TABLES `employees` WRITE;
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
-INSERT INTO `employees` VALUES (1,'Ngoc Hue','ngochue@gmail.com','ghjkl','1999-09-27',6),(2,'Ngoc Diem','fghjk','jkl','1999-01-01',6),(5,'Helen','helen@gmail.com','USA','1999-01-02',6),(6,'Money','helen@gmail.com','USA','1999-01-02',7),(10,'Hue','heledn@gmail.com','USA','2020-07-04',7),(11,'Pham Tien','helen@gmail.com','USA','2020-07-04',6),(12,'gh','cvbn','vbn','1999-01-02',7),(15,'dsqq','heledn@gmail.com','USA','1999-01-02',6),(19,'Tien Phat','heledn@gmail.com','USA','2020-07-07',6),(20,'B','B@gmail.com','USA','2020-07-07',7),(22,'Ray','ray@gmail.com','vn','2020-07-04',6);
+INSERT INTO `employees` VALUES (1,'Ngoc Hue','ngochue@gmail.com','ghjkl','1999-09-27',6),(2,'Ngoc Diem','fghjk','jkl','1999-01-01',6),(5,'Helen','helen@gmail.com','USA','1999-01-02',6),(6,'Money','helen@gmail.com','USA','1999-01-02',7),(10,'Hue','heledn@gmail.com','USA','2020-07-04',7),(11,'Pham Tien','helen@gmail.com','USA','2020-07-04',6),(12,'gh','cvbn','vbn','1999-01-02',7),(15,'dsqq','heledn@gmail.com','USA','1999-01-02',6),(19,'Tien Phat','heledn@gmail.com','USA','2020-07-07',6);
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,14 +187,14 @@ DROP TABLE IF EXISTS `feedback`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `feedback` (
-  `feedbackId` int NOT NULL,
+  `feedbackId` int NOT NULL AUTO_INCREMENT,
   `customerId` int NOT NULL,
   `description` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`feedbackId`),
   KEY `customerId_idx` (`customerId`),
   CONSTRAINT `customerId_feed` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -200,7 +203,6 @@ CREATE TABLE `feedback` (
 
 LOCK TABLES `feedback` WRITE;
 /*!40000 ALTER TABLE `feedback` DISABLE KEYS */;
-INSERT INTO `feedback` VALUES (1,1,'hjgsdcjdsjhgg','2021-05-24'),(2,2,'bcggffhkdkkajfhjheggggggggggggggggggggg','2021-04-25'),(3,3,'fuahohigaigpaigapighapi','2021-05-06');
 /*!40000 ALTER TABLE `feedback` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -241,7 +243,7 @@ CREATE TABLE `services` (
   `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `unit_price` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`serviceId`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -250,7 +252,7 @@ CREATE TABLE `services` (
 
 LOCK TABLES `services` WRITE;
 /*!40000 ALTER TABLE `services` DISABLE KEYS */;
-INSERT INTO `services` VALUES (1,'Dịch vụ 1',2000),(2,'Dịch vụ 2',3000),(3,NULL,NULL),(4,'Dá»ch vá»¥ 3',4000),(5,'Dich Vu 5',5000),(6,'Dich Vu 5',5000),(7,'Dich Vu 5',5000),(8,'Dich Vu 6',6000),(9,NULL,NULL),(10,'Dich Vu 7',7000),(11,'Dich Vu 8',8000),(12,'Dich Vu 9',9000),(13,'Dich vu 10',1000),(14,'dich vu 11',1110),(15,'Dich vá»¥ 15',1500),(16,'gsd',1000000);
+INSERT INTO `services` VALUES (1,'Dịch vụ 1',2000),(2,'Dịch vụ 2',3000),(18,'Dich Vu 3',3000),(19,'Dich vu 4',4000);
 /*!40000 ALTER TABLE `services` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,7 +269,7 @@ CREATE TABLE `user` (
   `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `role_user` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -276,7 +278,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (6,'nd','$2a$10$VJyJeUDbKWtd1QtQQdzTP.tSuTzvTR.pZjNWMM5mOyvcd.mOG7r1G','ROLE_USER'),(7,'diem','$2a$10$gHCa.qBeO7Wj33MyBW1bTejiBaw93J1m8PLog4effi9.U2Mv68FQ.','ROLE_ADMIN');
+INSERT INTO `user` VALUES (6,'nd','$2a$10$VJyJeUDbKWtd1QtQQdzTP.tSuTzvTR.pZjNWMM5mOyvcd.mOG7r1G','ROLE_USER'),(7,'diem','$2a$10$gHCa.qBeO7Wj33MyBW1bTejiBaw93J1m8PLog4effi9.U2Mv68FQ.','ROLE_ADMIN'),(8,'hue','$2a$10$isv4B5HVi5yzVv8YrDb/Nu7daXlX6nF9XA59cNk7lpwlacwiko/2.','ROLE_ADMIN');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -289,4 +291,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-08 21:59:36
+-- Dump completed on 2021-05-13 15:33:14
