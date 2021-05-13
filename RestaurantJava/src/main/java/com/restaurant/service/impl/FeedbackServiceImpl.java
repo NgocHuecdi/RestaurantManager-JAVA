@@ -30,5 +30,10 @@ public class FeedbackServiceImpl implements FeedbackService{
     public boolean addFeedback(Feedback fdbck) {
         return this.feedbackRepository.addFeedback(fdbck);
     }
+
+    @Override
+    public Feedback getFbById(int i) {
+        return this.feedbackRepository.getFbById(i);
+    }
     
 }

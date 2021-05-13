@@ -30,7 +30,7 @@
     </div>
     <div class="form-group">
         <label for="user"><spring:message code="cus.username" /></label>
-        <form:select id="user" path="user" cssClass="form-control">
+        <form:select path="user" cssClass="form-control" id="user">
             <c:forEach items="${user}" var="u">
                 <option value="${u.id}">${u.username}</option>
             </c:forEach>

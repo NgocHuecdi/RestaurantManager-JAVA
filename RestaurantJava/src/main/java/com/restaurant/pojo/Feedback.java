@@ -6,6 +6,7 @@
 package com.restaurant.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -28,10 +31,43 @@ public class Feedback implements Serializable{
     private int feedbackId;
     @NotNull(message = "(addfb.description.notNullMsg)")
     private String description;
-    private String date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date date;
     @ManyToOne
     @JoinColumn(name = "customerId")
     private Customer customer;
+    {
+       date = new Date();
+    }
+
+    /**
+     * @return the customer
+     */
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    /**
+     * @param customer the customer to set
+     */
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    /**
+     * @return the date
+     */
+    public Date getDate() {
+        return date;
+    }
+
+    /**
+     * @param date the date to set
+     */
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     /**
      * @return the feedbackId
@@ -59,33 +95,5 @@ public class Feedback implements Serializable{
      */
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    /**
-     * @return the date
-     */
-    public String getDate() {
-        return date;
-    }
-
-    /**
-     * @param date the date to set
-     */
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    /**
-     * @return the customer
-     */
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    /**
-     * @param customer the customer to set
-     */
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
     }
 }

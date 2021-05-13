@@ -13,6 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 /**
@@ -26,7 +29,9 @@ public class User implements Serializable  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     private int id;
+    @NotNull(message = "(user.username.notNullMsg)")
     private String username;
+    @NotNull(message = "(user.password.notNullMsg)")
     private String password;
     @Column(name = "role_user")
     private String role_user;
