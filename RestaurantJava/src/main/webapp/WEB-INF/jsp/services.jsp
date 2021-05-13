@@ -21,11 +21,11 @@
     </head>
     <body>
         <h1 class="text-center mt-3 mb-5">Danh Sách Dịch Vụ</h1>
-          <br/>  
+        <br/>  
         <a href="<c:url value="/addService" />" class="btn btn-success">Thêm dịch vụ mới</a> 
         <table border="1" class = "table table-striped table-responsive-md mt-3">
             <thead>
-                <tr>
+                <tr >
                     <th class="text-center">
                         Mã Dịch Vụ
                     </th>
@@ -35,15 +35,22 @@
                     <th class="text-center">
                         Giá
                     </th>
+                    <th class="text-center">
+                        Xoa
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 <c:forEach items="${services}" var = "ser">
 
-                    <tr id="services{ser.serviceId}">
+                    <tr id="services${ser.serviceId}">
                         <td> ${ser.serviceId}</td>
                         <td>${ser.name}</td>
                         <td>${ser.unit_price}</td>
+                        <td class="text-center"> 
+                            <a href="javascript:;" class="btn btn-danger" onclick="deleteService(${ser.serviceId})">Xóa</a>
+                        </td>
+                    </tr>
                 </c:forEach>
             </tbody>
         </table>

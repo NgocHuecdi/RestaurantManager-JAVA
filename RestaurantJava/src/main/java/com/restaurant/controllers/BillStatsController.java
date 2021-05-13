@@ -37,15 +37,17 @@ public class BillStatsController {
     @Autowired
     private BillStatsService billStatsService;
     
-       @Autowired
+    @Autowired
     private BookDetailService bookDetailService;
        
        
-    @GetMapping("/billParty")
+    @RequestMapping("/billParty")
     public String billParty(Model model, @RequestParam(name = "bookDetailId", required = false, defaultValue = "0") int bookDetailId) {
-
-        if (bookDetailId >= 0) {
+        if (bookDetailId > 0) {
+            List<Object[]> bookDetails = this.bookDetailService.getBookDetail("");
             model.addAttribute("billParty", new Bill());
+            model.addAttribute("bookDetails", bookDetails);
+            model.addAttribute("bookDetail", this.bookDetailService.getBookDetailById(bookDetailId));
         }
         return "billParty";
     }
@@ -58,7 +60,7 @@ public class BillStatsController {
             return "billParty";
         }
         if (!this.billStatsService.addBill(bill)) {
-            model.addAttribute("erroMsg", "Something looi!!!");
+            model.addAttribute("erroMsg", "Something loi!!!");
             return "billParty";
         }
 

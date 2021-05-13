@@ -41,5 +41,10 @@ public class ServicesImpl implements ServicesService{
       return this.serviceRepository.addService(ser);   
 
     }
+
+    @Override
+    public boolean deleteService(int serviceId) {
+        return this.serviceRepository.deleteService(serviceId);
+    }
     
 }

@@ -36,7 +36,13 @@ public class ServicesController {
     public String services(Model model, @RequestParam(name = "name", required = false) String name) {
 
         model.addAttribute("services", this.servicesService.getServices(""));
-
+        int totalBook = 0;
+            List<Object[]> bookDetails = this.bookDetailService.getBookDetail("");
+              for (Object[] bd : bookDetails) {
+                totalBook++;
+            }
+             
+        model.addAttribute("totalBook",totalBook);
         return "services";
     }
 

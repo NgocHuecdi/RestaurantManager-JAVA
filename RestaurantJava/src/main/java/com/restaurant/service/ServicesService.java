@@ -16,4 +16,5 @@ public interface ServicesService {
     List<Services> getServices(String kw);
     Services getServiceId(int serviceId);
     boolean addService(Services ser);
+    boolean deleteService(int serviceId);
 }

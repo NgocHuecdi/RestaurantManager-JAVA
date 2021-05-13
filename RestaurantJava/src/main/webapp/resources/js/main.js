@@ -73,3 +73,20 @@ function deleteBookDetail(bookDetailId) {
         })
     }
 }
+function deleteService(serviceId) {
+    if (confirm("Are you sure delete this row?") == true){
+         fetch(`/RestaurantJava/api/services/${serviceId}`, {
+            method: "delete",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function(res) {
+            if (res.status == 200) {
+                let d = document.getElementById(`services${serviceId}`);
+                d.style.display = "none";
+            } else {
+                alert("Something wrong!!!");
+            }
+        })
+    }
+}

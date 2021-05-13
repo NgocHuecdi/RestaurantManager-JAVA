@@ -7,12 +7,14 @@ package com.restaurant.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -45,7 +47,7 @@ public class Bill implements Serializable{
     @JoinColumn(name = "eventId")
     private Event event;
     
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "bookDetailId")
     private BookDetail bookDetail;
     

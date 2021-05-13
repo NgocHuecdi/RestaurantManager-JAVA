@@ -74,4 +74,19 @@ public class ServiceRepositoryImpl implements ServiceRepository {
         }
         return false;
     }
+
+    @Override
+    @Transactional
+    public boolean deleteService(int serviceId) {
+         try {
+            Session session = this.sessionFactory.getObject().getCurrentSession();
+            Services ser = session.get(Services.class, serviceId);
+            session.delete(ser);
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        }
+
+        return false;
+    }
 }
